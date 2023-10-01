@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsaxlh3iw1dhi"]
+[gd_scene load_steps=3 format=3 uid="uid://dsaxlh3iw1dhi"]
 
 [ext_resource type="PackedScene" uid="uid://cxgs6u5j1rofb" path="res://Prefabs/Player.tscn" id="1_ltwyh"]
-[ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="2_uo86m"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5dwn7"]
 
@@ -13,7 +12,5 @@ mesh = SubResource("PlaneMesh_5dwn7")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ltwyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-script = ExtResource("2_uo86m")
-mMovementSpeed = 200.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

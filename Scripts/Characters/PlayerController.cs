@@ -6,6 +6,8 @@ public partial class PlayerController : CharacterBody3D
     [ExportGroup("Movement Settings")]
     [Export] private float mMovementSpeed;                  // How fast the character moves at
     private bool mCanMove = true;                       // if the character can move
+    public bool IsMoving = false;                       // if the character is currently moving
+    [Export] private Node3D mMovementDirection;             // Object to set the direction we are moving in
 
     public override void _Process(double delta)
     {
@@ -35,6 +37,10 @@ public partial class PlayerController : CharacterBody3D
 
             // Apply the movement
             moveDirection = (forward + right) * delta;
+            IsMoving = true;
+        } else 
+        {
+            IsMoving = false;
         }
 
         this.Velocity = moveDirection;                  // apply the movement direction

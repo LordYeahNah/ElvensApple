@@ -7,6 +7,10 @@ public partial class CameraController : Node3D
     [Export] private float mLookSensitivity;
     [Export] private float mLookClampMin;
     [Export] private float mLookClampMax;
+    
+    [ExportGroup("Player Objects")]
+    [Export] private PlayerController mCharacterObject;                   // Reference to the character object
+    [Export] private Node3D mMovementDirectionObject;           // Reference to the movement direction
 
     private Vector2 mMouseDelta;
 
@@ -28,7 +32,9 @@ public partial class CameraController : Node3D
         if(@event is InputEventMouseMotion e)
         {
             mMouseDelta = e.Relative;
-        } 
+        }
+
+
     }
 
     private void HandleRotation(float delta)
@@ -44,7 +50,13 @@ public partial class CameraController : Node3D
         //this.RotateZ(Mathf.DegToRad(desiredrotationY * (mLookSensitivity * delta)));
         //this.RotateY(Mathf.DegToRad(desiredRotationX * (mLookSensitivity * delta)));
 
-        this.Rotation = new Vector3(0f, Mathf.DegToRad(desiredrotationY), Mathf.DegToRad(desiredRotationX));
+        this.Rotation = new Vector3(0f, 0f, Mathf.DegToRad(desiredRotationX));
+
+        if(mCharacterObject != null)
+        {
+            mCharacterObject.RotateY(Mathf.DegToRad(desiredrotationY));
+        }
+
 
         mMouseDelta = Vector2.Zero;
     }

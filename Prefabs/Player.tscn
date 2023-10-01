@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxgs6u5j1rofb"]
+[gd_scene load_steps=8 format=3 uid="uid://cxgs6u5j1rofb"]
 
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
+[ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hc1u7"]
 
@@ -14,7 +15,10 @@ albedo_color = Color(1, 0.243137, 0.243137, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection")]
+script = ExtResource("1_uqjoj")
+mMovementSpeed = 200.0
+mMovementDirection = NodePath("MoveDirection")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00178915, 1.0211, 0.00684476)
@@ -30,12 +34,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pn4k4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)
 shape = SubResource("CylinderShape3D_wrgfb")
 
-[node name="CameraJoint" type="Node3D" parent="."]
+[node name="CameraJoint" type="Node3D" parent="." node_paths=PackedStringArray("mCharacterObject", "mMovementDirectionObject")]
 transform = Transform3D(0.999913, -0.0131769, 0, 0.0131769, 0.999913, 0, 0, 0, 1, 0, 1.56961, 0)
 script = ExtResource("1_h6mgi")
 mLookSensitivity = 50.0
 mLookClampMin = -44.0
 mLookClampMax = 25.0
+mCharacterObject = NodePath("..")
+mMovementDirectionObject = NodePath("../MoveDirection")
 
 [node name="Camera3D" type="Camera3D" parent="CameraJoint"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.68087, 0.94646, 0.968451)
+transform = Transform3D(-4.28868e-08, 0.193327, -0.981135, 8.4506e-09, 0.981135, 0.193327, 1, 8.88178e-16, -4.37115e-08, -5.15281, 2.18551, 0.698779)
+
+[node name="MoveDirection" type="Node3D" parent="."]
