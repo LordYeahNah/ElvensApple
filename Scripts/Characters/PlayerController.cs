@@ -25,19 +25,20 @@ public partial class PlayerController : CharacterBody3D
 
         // Get the movement axis
         Vector2 movementInput = Input.GetVector("MoveLeft", "MoveRight", "MoveBack", "MoveForward");
-
+        
         // Check that we are moving
         if(movementInput.Length() > 0.1)
         {
             // Calculate movement directions
-            Vector3 forward = this.Transform.Basis.X * (moveDirection.Y * mMovementSpeed);
-            Vector3 right = this.Transform.Basis.Z * (moveDirection.X * mMovementSpeed);
+            Vector3 forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
+            Vector3 right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
 
             // Apply the movement
             moveDirection = (forward + right) * delta;
         }
 
         this.Velocity = moveDirection;                  // apply the movement direction
+        MoveAndSlide();
     }
 
 }
