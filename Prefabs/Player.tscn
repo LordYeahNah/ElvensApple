@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxgs6u5j1rofb"]
+[gd_scene load_steps=7 format=3 uid="uid://cxgs6u5j1rofb"]
+
+[ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hc1u7"]
 
@@ -29,7 +31,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)
 shape = SubResource("CylinderShape3D_wrgfb")
 
 [node name="CameraJoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56961, 0)
+transform = Transform3D(0.999913, -0.0131769, 0, 0.0131769, 0.999913, 0, 0, 0, 1, 0, 1.56961, 0)
+script = ExtResource("1_h6mgi")
+mLookSensitivity = 50.0
+mLookClampMin = -44.0
+mLookClampMax = 25.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraJoint"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.68087, 0.94646, 0.968451)
