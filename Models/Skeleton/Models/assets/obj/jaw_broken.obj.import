@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dkhxsrq181sdn"
+path="res://.godot/imported/jaw_broken.obj-8905a427f5c70ed1b50572deb8ed860a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/jaw_broken.obj-8905a427f5c70ed1b50572deb8ed860a.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/jaw_broken.obj"
+dest_files=["res://.godot/imported/jaw_broken.obj-8905a427f5c70ed1b50572deb8ed860a.mesh", "res://.godot/imported/jaw_broken.obj-8905a427f5c70ed1b50572deb8ed860a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

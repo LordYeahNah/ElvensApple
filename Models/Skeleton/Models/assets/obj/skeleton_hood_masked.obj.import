@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxjqhup77xbv0"
+path="res://.godot/imported/skeleton_hood_masked.obj-bbadadd05861bf0635bb3a29086c6797.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skeleton_hood_masked.obj-bbadadd05861bf0635bb3a29086c6797.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/skeleton_hood_masked.obj"
+dest_files=["res://.godot/imported/skeleton_hood_masked.obj-bbadadd05861bf0635bb3a29086c6797.mesh", "res://.godot/imported/skeleton_hood_masked.obj-bbadadd05861bf0635bb3a29086c6797.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

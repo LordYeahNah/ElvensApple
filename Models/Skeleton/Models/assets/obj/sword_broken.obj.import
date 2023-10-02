@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpfchiiog3j8t"
+path="res://.godot/imported/sword_broken.obj-a39898191fe2b378470415df103338e1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sword_broken.obj-a39898191fe2b378470415df103338e1.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/sword_broken.obj"
+dest_files=["res://.godot/imported/sword_broken.obj-a39898191fe2b378470415df103338e1.mesh", "res://.godot/imported/sword_broken.obj-a39898191fe2b378470415df103338e1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

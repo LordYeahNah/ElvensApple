@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ch34hv77vfmmu"
+path="res://.godot/imported/skeleton_helmet_full.obj-475d58af13444530b169de3171795cfc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skeleton_helmet_full.obj-475d58af13444530b169de3171795cfc.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/skeleton_helmet_full.obj"
+dest_files=["res://.godot/imported/skeleton_helmet_full.obj-475d58af13444530b169de3171795cfc.mesh", "res://.godot/imported/skeleton_helmet_full.obj-475d58af13444530b169de3171795cfc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

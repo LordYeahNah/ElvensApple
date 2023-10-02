@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b6dq7uc7udcra"
+path="res://.godot/imported/skull_broken.obj-d7f8b1b0ac557ffe098e4a0c6bafca48.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skull_broken.obj-d7f8b1b0ac557ffe098e4a0c6bafca48.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/skull_broken.obj"
+dest_files=["res://.godot/imported/skull_broken.obj-d7f8b1b0ac557ffe098e4a0c6bafca48.mesh", "res://.godot/imported/skull_broken.obj-d7f8b1b0ac557ffe098e4a0c6bafca48.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

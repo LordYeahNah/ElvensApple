@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://da63bua7xxacm"
+path="res://.godot/imported/skeleton_mage_cowl.obj-f08b1e6524f0dcf762ba56d32d7eee48.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skeleton_mage_cowl.obj-f08b1e6524f0dcf762ba56d32d7eee48.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/skeleton_mage_cowl.obj"
+dest_files=["res://.godot/imported/skeleton_mage_cowl.obj-f08b1e6524f0dcf762ba56d32d7eee48.mesh", "res://.godot/imported/skeleton_mage_cowl.obj-f08b1e6524f0dcf762ba56d32d7eee48.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

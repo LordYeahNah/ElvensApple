@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://lglrd0q585kr"
+path="res://.godot/imported/arrow_purple_broken_half.obj-e18a9f1a18d178aebe6314d7f395012c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arrow_purple_broken_half.obj-e18a9f1a18d178aebe6314d7f395012c.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/arrow_purple_broken_half.obj"
+dest_files=["res://.godot/imported/arrow_purple_broken_half.obj-e18a9f1a18d178aebe6314d7f395012c.mesh", "res://.godot/imported/arrow_purple_broken_half.obj-e18a9f1a18d178aebe6314d7f395012c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

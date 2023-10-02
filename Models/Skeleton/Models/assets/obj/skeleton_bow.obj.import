@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pfmtuc0cqd8"
+path="res://.godot/imported/skeleton_bow.obj-bfe7431d1c49ea550797a4c520682249.mesh"
+
+[deps]
+
+files=["res://.godot/imported/skeleton_bow.obj-bfe7431d1c49ea550797a4c520682249.mesh"]
+
+source_file="res://Models/Skeleton/Models/assets/obj/skeleton_bow.obj"
+dest_files=["res://.godot/imported/skeleton_bow.obj-bfe7431d1c49ea550797a4c520682249.mesh", "res://.godot/imported/skeleton_bow.obj-bfe7431d1c49ea550797a4c520682249.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
