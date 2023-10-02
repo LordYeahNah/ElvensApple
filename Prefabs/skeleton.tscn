@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://mkjo4ykp67qm"]
+[gd_scene load_steps=24 format=3 uid="uid://doxh7dw2x6tu6"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/BaseAI.cs" id="1_cama7"]
 [ext_resource type="PackedScene" uid="uid://dathhl2v7eopk" path="res://Models/Character/CharacterAnimations.tscn" id="1_q5yux"]
@@ -639,5 +639,6 @@ shape = SubResource("CylinderShape3D_ihmkg")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5
 target_desired_distance = 0.5
+path_max_distance = 200.01
 
 [editable path="KayKit_AnimatedCharacter_v1_2"]

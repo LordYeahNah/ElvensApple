@@ -5,6 +5,8 @@ using Godot;
 public partial class BaseAI : CharacterBody3D
 {
 
+    private AnimationController mAnim;
+
     [ExportGroup("Movement Settings")]
     [Export] protected NavigationAgent3D mAgent;
     [Export] protected float mMovementSpeed;
@@ -14,6 +16,9 @@ public partial class BaseAI : CharacterBody3D
     // Reference to AI Components
     protected Blackboard mBlackboard;
     protected BehaviorTree mTree;
+
+    [ExportGroup("Components")]
+    [Export] protected AnimationPlayer mAnimPlayer;
 
     public override void _Ready()
     {
@@ -25,16 +30,30 @@ public partial class BaseAI : CharacterBody3D
         mTree.OnInitialize(mBlackboard);
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if(mTree != null)
+            mTree.OnUpdate((float)delta);
+    }
+
     public void SetTargetPosition(Vector3 targetLocation)
     {
         GD.Print(targetLocation);
         mTargetPosition = targetLocation;
+        mAgent.TargetPosition = mTargetPosition;
         CanMove = true;
+
+        if(mAnim != null)
+            mAnim.SetBool("IsMoving", true);
     }
 
     public void StopMovement()
     {
         CanMove = false;
+        mAgent.TargetPosition = this.Position;
+        if(mAnim != null)
+            mAnim.SetBool("IsMoving", false);
     }
 
     public override void _PhysicsProcess(double delta)
