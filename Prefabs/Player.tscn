@@ -1,34 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxgs6u5j1rofb"]
+[gd_scene load_steps=5 format=3 uid="uid://cxgs6u5j1rofb"]
 
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hc1u7"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10jb8"]
-albedo_color = Color(0.333333, 0.333333, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_afo63"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn4k4"]
-albedo_color = Color(1, 0.243137, 0.243137, 1)
+[ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00178915, 1.0211, 0.00684476)
-mesh = SubResource("CapsuleMesh_hc1u7")
-surface_material_override/0 = SubResource("StandardMaterial3D_10jb8")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(0.401259, 0, 0, 0, 0.406788, 0, 0, 0, 0.631402, 0.363554, 0.534038, 0.00194597)
-mesh = SubResource("BoxMesh_afo63")
-surface_material_override/0 = SubResource("StandardMaterial3D_pn4k4")
+[node name="Character" parent="." instance=ExtResource("2_lhv5y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)

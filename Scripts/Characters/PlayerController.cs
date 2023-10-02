@@ -3,11 +3,23 @@ using Godot;
 
 public partial class PlayerController : CharacterBody3D
 {
+    private PlayerAnimator mAnimator;
+
     [ExportGroup("Movement Settings")]
     [Export] private float mMovementSpeed;                  // How fast the character moves at
     private bool mCanMove = true;                       // if the character can move
     public bool IsMoving = false;                       // if the character is currently moving
     [Export] private Node3D mMovementDirection;             // Object to set the direction we are moving in
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        AnimationPlayer anim = GetNode<AnimationPlayer>("Character/Animated/AnimationPlayer");
+        if(anim != null)
+            mAnimator = new PlayerAnimator(anim);
+    }
+
 
     public override void _Process(double delta)
     {
