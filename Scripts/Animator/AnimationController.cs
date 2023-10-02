@@ -14,7 +14,10 @@ public abstract class AnimationController
     public AnimationController(AnimationPlayer mPlayer)
     {
         mAnimator = mPlayer;
-    }    
+        mRootAnimation = CreateAnimationTree();                 // Create the tree
+    } 
+
+    public abstract Animation CreateAnimationTree();   
 
     #region Properties Getters & Setters
 
