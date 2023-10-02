@@ -62,22 +62,34 @@ public class Inventory
         }
     }
 
-    public bool HasItem(BaseItem item)
+    public bool CanAddToStack(InventoryStack stack)
     {
         foreach(var i in mItems)
         {
-            if(i.Item == item)
+            if(i.CurrentStackSize < i.MaxStackSize)
                 return true;
         }
 
         return false;
     }
 
-    public bool CanAddToStack(InventoryStack stack)
+    public bool RemoveItem(InventoryStack stackItem)
+    {
+        if(stackItem.CurrentStackSize == 1)
+        {
+            mItems.Remove(stackItem);
+            return true;
+        }
+
+        stackItem.CurrentStackSize -= 1;
+        return true;
+    }
+
+    public bool HasItem(BaseItem item)
     {
         foreach(var i in mItems)
         {
-            if(i.CurrentStackSize < i.MaxStackSize)
+            if(i.Item == item)
                 return true;
         }
 
