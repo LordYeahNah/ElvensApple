@@ -15,6 +15,7 @@ public abstract class AnimationController
     {
         mAnimator = mPlayer;
         mRootAnimation = CreateAnimationTree();                 // Create the tree
+        mRootAnimation.PlayAnimation();
     } 
 
     public abstract Animation CreateAnimationTree();   
