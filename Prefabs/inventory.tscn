@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=3 uid="uid://rdxpmufdvnyp"]
+
+[ext_resource type="Texture2D" uid="uid://b0dl4shybi5s4" path="res://UI/Inventory.png" id="1_66sti"]
+[ext_resource type="Texture2D" uid="uid://bpxx3o80fakep" path="res://UI/PlayerPanel.png" id="2_caba4"]
+[ext_resource type="Texture2D" uid="uid://dkprqnp1j1h2f" path="res://UI/Icons/armor.png" id="3_j7qcw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7f54"]
+bg_color = Color(1, 1, 1, 0.454902)
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_right = -768.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_66sti")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 446.0
+offset_right = -49.0
+offset_bottom = -11.0
+texture = ExtResource("2_caba4")
+
+[node name="EquippedSlots" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 286.0
+offset_top = 188.0
+offset_right = 326.0
+offset_bottom = 228.0
+
+[node name="TextureButton" type="TextureButton" parent="EquippedSlots"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = -29.0
+offset_right = 802.0
+offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="TextureButton2" type="TextureButton" parent="EquippedSlots"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 99.0
+offset_right = 802.0
+offset_bottom = 194.0
+ignore_texture_size = true
+
+[node name="TextureButton3" type="TextureButton" parent="EquippedSlots"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 234.0
+offset_right = 802.0
+offset_bottom = 329.0
+ignore_texture_size = true
+
+[node name="TextureButton4" type="TextureButton" parent="EquippedSlots"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 368.0
+offset_right = 802.0
+offset_bottom = 463.0
+ignore_texture_size = true
+
+[node name="TextureButton5" type="TextureButton" parent="EquippedSlots"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 500.0
+offset_right = 802.0
+offset_bottom = 595.0
+ignore_texture_size = true
+
+[node name="ItemSlots" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="ItemSlots"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 188.0
+offset_right = 382.0
+offset_bottom = 284.0
+texture_normal = ExtResource("3_j7qcw")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 351.0
+offset_top = 256.0
+offset_right = 474.0
+offset_bottom = 370.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7f54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 108.0
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Equip Left Hand"
+flat = true
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Equip Right Hand"
+flat = true
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Drop"
+flat = true
+
+[node name="Button4" type="Button" parent="Panel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "View"
+flat = true
