@@ -27,6 +27,7 @@ public partial class BaseAI : CharacterBody3D
 
     public void SetTargetPosition(Vector3 targetLocation)
     {
+        GD.Print(targetLocation);
         mTargetPosition = targetLocation;
         CanMove = true;
     }
@@ -58,7 +59,7 @@ public partial class BaseAI : CharacterBody3D
     protected virtual void CreateBlackboard()
     {
         mBlackboard = new Blackboard();
-        mBlackboard.SetValue<Node3D>("Self", this);
+        mBlackboard.SetValue<BaseAI>("Self", this);
         mBlackboard.SetValue("HasLocation", true);
         mBlackboard.SetValue("MoveToLocation", new Vector3(9.6f, 0.015f, 6.8f));
     }

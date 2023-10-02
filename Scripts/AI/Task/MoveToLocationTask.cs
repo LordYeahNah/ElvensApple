@@ -22,7 +22,7 @@ public class MoveToLocationTask : Task
             // Get the move to location
             Vector3 moveToLocation = board.GetValue<Vector3>("MoveToLocation");
             // Get the current location of the agent
-            Vector3 currentLocation = board.GetValue<Node3D>("Self").Position;
+            Vector3 currentLocation = board.GetValue<BaseAI>("Self").Position;
             // Get the distance to the position
             float distance = moveToLocation.DistanceTo(currentLocation);
 
@@ -40,7 +40,7 @@ public class MoveToLocationTask : Task
 
     private ETaskState PollLocation(float distance, Blackboard board)
     {
-        BaseAI ai = (BaseAI)board.GetValue<Node3D>("Self");
+        BaseAI ai = board.GetValue<BaseAI>("Self");
         GD.Print(distance);
         if(distance > STOPPING_DISTANCE)
         {
