@@ -16,6 +16,20 @@ public class Inventory
 
     private int mInventorySize;             // The current size of the inventory
     private int mMaxInventorySize;              // The max size of the inventory
+
+    private BoneAttachment3D mLeftHandAttachment;
+    private BoneAttachment3D mRightHandAttachment;
+
+    // Equipped settings
+    private Equipable mEquippedLeftHand;
+    private Equipable mEquippedRight;
+
+    public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand)
+    {
+        mMaxInventorySize = inventorySize;
+        mLeftHandAttachment = leftHand;
+        mRightHandAttachment = rightHand;
+    }
     
     /// <summary>
     /// Adds an item to the inventory
@@ -122,6 +136,33 @@ public class Inventory
         }
 
         return false;
+    }
+
+    public void EquipItem(Equipable item, EAttachmentHand hand)
+    {
+        if(hand == EAttachmentHand.LEFT)
+        {
+            if(mEquippedLeftHand != null)
+            {
+                // TODO: Remove mesh spawned here
+            }
+
+            if(item != null)
+            {
+                // TODO: Spawn new mesh here
+            }
+        } else 
+        {
+            if(mEquippedRight != null)
+            {
+                // TODO: Remove spawned mesh here
+            }
+
+            if(item != null)
+            {
+                // TODO: Spawn item mesh here
+            }
+        }
     }
 
 }
