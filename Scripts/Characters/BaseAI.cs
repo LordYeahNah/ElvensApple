@@ -28,6 +28,8 @@ public partial class BaseAI : CharacterBody3D
         CreateBlackboard();
         mTree = new TestBT();
         mTree.OnInitialize(mBlackboard);
+        if(mAnimPlayer != null)
+            mAnim = new BaseAI_Animator(mAnimPlayer);
     }
 
     public override void _Process(double delta)
