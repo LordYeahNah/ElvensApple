@@ -5,10 +5,12 @@ using Godot;
 public abstract class AnimationController
 {
     public bool IsActive = true;
-    private AnimationPlayer mAnimator;                          // Reference to the animation controller
+    protected AnimationPlayer mAnimator;                          // Reference to the animation controller
 
-    private List<AnimationProperty> mProperties = new List<AnimationProperty>();                    // Reference to the animation properties used for transitions
+    protected List<AnimationProperty> mProperties = new List<AnimationProperty>();                    // Reference to the animation properties used for transitions
     
+    protected Animation mRootAnimation;
+
     public AnimationController(AnimationPlayer mPlayer)
     {
         mAnimator = mPlayer;
