@@ -51,7 +51,9 @@ public partial class CameraController : Node3D
         //this.RotateY(Mathf.DegToRad(desiredRotationX * (mLookSensitivity * delta)));
 
         this.Rotation = new Vector3(0f, 0f, Mathf.DegToRad(desiredRotationX));
+        
 
+        // Rotate the character object
         if(mCharacterObject != null)
         {
             mCharacterObject.RotateY(Mathf.DegToRad(desiredrotationY));
