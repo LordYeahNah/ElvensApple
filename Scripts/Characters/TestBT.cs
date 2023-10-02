@@ -6,6 +6,13 @@ public class TestBT : BehaviorTree
 {
     protected override Task CreateTree()
     {
-        throw new NotImplementedException();
+        return new Selector(this, new List<Task>
+        {
+            new Sequence(this, new List<Task>
+            {
+                new HasLocation(this),
+                new MoveToLocationTask(this)
+            })
+        });
     }
 }

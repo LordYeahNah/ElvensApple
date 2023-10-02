@@ -12,7 +12,7 @@ public enum ETaskState
 public abstract class Task
 {
     public Task Parent;
-    protected List<Task> mChildren;
+    protected List<Task> mChildren = new List<Task>();
 
     protected BehaviorTree mTree;
 

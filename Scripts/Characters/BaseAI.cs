@@ -59,7 +59,7 @@ public partial class BaseAI : CharacterBody3D
     {
         mBlackboard = new Blackboard();
         mBlackboard.SetValue<Node3D>("Self", this);
-        mBlackboard.SetValue("HasMoveToLocation", false);
-        mBlackboard.SetValue("MoveToLocation", Vector3.Zero);
+        mBlackboard.SetValue("HasLocation", true);
+        mBlackboard.SetValue("MoveToLocation", new Vector3(9.6f, 0.015f, 6.8f));
     }
 }

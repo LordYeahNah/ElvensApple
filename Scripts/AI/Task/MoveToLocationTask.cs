@@ -3,7 +3,7 @@ using Godot;
 
 public class MoveToLocationTask : Task
 {
-    private const float STOPPING_DISTANCE = 2.0f;
+    private const float STOPPING_DISTANCE = 0.5f;
     private const float POLL_TIME = 1.0f;
     private float mTimeSincePoll = 0.0f;
     private bool mHasPolled = false;
@@ -26,27 +26,39 @@ public class MoveToLocationTask : Task
             // Get the distance to the position
             float distance = moveToLocation.DistanceTo(currentLocation);
 
+            if(!mHasPolled)
+                return PollLocation(distance, board);
+
             mTimeSincePoll += 1 * delta;                    // Update the poll timer
             // If we need to poll then poll the location
             if(mTimeSincePoll > POLL_TIME)
-                return PollLocation(distance);
+                return PollLocation(distance, board);
         }
 
         return ETaskState.RUNNING;
     }
 
-    private ETaskState PollLocation(float distance)
+    private ETaskState PollLocation(float distance, Blackboard board)
     {
+        BaseAI ai = (BaseAI)board.GetValue<Node3D>("Self");
+        GD.Print(distance);
         if(distance > STOPPING_DISTANCE)
         {
-            // TODO: Set move location on agent
+            if(ai != null)
+            {
+                ai.SetTargetPosition(board.GetValue<Vector3>("MoveToLocation"));
+            }
+            mHasPolled = true;
+            mTimeSincePoll = 0.0f;
             return ETaskState.RUNNING;
         } else 
         {
-            // TODO: Stop moving agent
+            if(ai != null)
+                ai.StopMovement();
+            mHasPolled = false;
+            mTimeSincePoll = 0.0f;
             return ETaskState.SUCCESS;
         }
-        mTimeSincePoll = 0.0f;
-        mHasPolled = true;
+
     }
 }
