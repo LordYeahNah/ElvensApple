@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxgs6u5j1rofb"]
+[gd_scene load_steps=6 format=3 uid="uid://cxgs6u5j1rofb"]
 
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
 [ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
@@ -14,7 +16,7 @@ mMovementDirection = NodePath("MoveDirection")
 mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
 
 [node name="Character" parent="." instance=ExtResource("2_lhv5y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.169725, 0)
 
 [node name="Skeleton3D" parent="Character/Animated/KayKit Animated Character2" index="0"]
 bones/0/rotation = Quaternion(-0.0152504, 0, 3.79838e-18, 0.999884)
@@ -53,8 +55,13 @@ mLookClampMax = 25.0
 mCharacterObject = NodePath("..")
 mMovementDirectionObject = NodePath("../MoveDirection")
 
-[node name="Camera3D" type="Camera3D" parent="CameraJoint"]
-transform = Transform3D(-4.28868e-08, 0.193327, -0.981135, 8.4506e-09, 0.981135, 0.193327, 1, 8.88178e-16, -4.37115e-08, -5.15281, 2.18551, 0.698779)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraJoint"]
+transform = Transform3D(-3.96344e-08, 0.421717, -0.906728, 1.84338e-08, 0.906728, 0.421717, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_cqku2")
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraJoint/SpringArm3D"]
+transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0.238466, -1.261e-09, 0.238466, 0.971151, 0.698779, -0.191362, 5.59386)
 
 [node name="MoveDirection" type="Node3D" parent="."]
 
