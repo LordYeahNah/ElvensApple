@@ -17,7 +17,9 @@ public class Animation
     public List<Animation> TransitionAnimations = new List<Animation>();
     // Properties required to transition to this animation
     protected List<AnimationProperty> mRequiredProperties = new List<AnimationProperty>();   
-    public List<AnimationProperty> RequiredProperties => mRequiredProperties;        
+    public List<AnimationProperty> RequiredProperties => mRequiredProperties;    
+
+    protected bool mIsPaused = false;                       // if the animation is currently paused 
 
     public Animation(string animationName, AnimationPlayer animPlayer)
     {
@@ -27,7 +29,7 @@ public class Animation
 
     public void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
     {
-        if(mPlayer == null)
+        if(mPlayer == null || mIsPaused)
             return;
 
         if(playDirection == EPlayDirection.FORWARD)
@@ -37,5 +39,14 @@ public class Animation
         {
             mPlayer.PlayBackwards(mAnimationName);
         }
+    }
+
+    public void SetPlayMove(bool paused)
+    {
+        mIsPaused = paused;
+        if(mIsPaused)
+            mPlayer.Pause();
+        else
+        PlayAnimation();
     }
 }
