@@ -19,11 +19,15 @@ public class MoveToLocationTask : Task
         Blackboard board = mTree.GetBlackboard();
         if(board != null)
         {
+            // Get the move to location
             Vector3 moveToLocation = board.GetValue<Vector3>("MoveToLocation");
+            // Get the current location of the agent
             Vector3 currentLocation = board.GetValue<Node3D>("Self").Position;
+            // Get the distance to the position
             float distance = moveToLocation.DistanceTo(currentLocation);
 
-            mTimeSincePoll += 1 * delta;
+            mTimeSincePoll += 1 * delta;                    // Update the poll timer
+            // If we need to poll then poll the location
             if(mTimeSincePoll > POLL_TIME)
                 return PollLocation(distance);
         }
