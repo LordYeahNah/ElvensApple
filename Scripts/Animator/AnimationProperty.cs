@@ -22,7 +22,7 @@ public abstract class AnimationProperty
 public class AnimationInt : AnimationProperty
 {
     public int Value;
-    AnimationInt(string key, int value) : base(key)
+    public AnimationInt(string key, int value) : base(key)
     {
         Value = value;
         mType = EPropertyType.INT;
@@ -32,7 +32,7 @@ public class AnimationInt : AnimationProperty
 public class AnimationFloat : AnimationProperty
 {
     public float Value;
-    AnimationFloat(string key, float value) : base(key)
+    public AnimationFloat(string key, float value) : base(key)
     {
         Value = value;
         mType = EPropertyType.FLOAT;
@@ -44,7 +44,7 @@ public class AnimationFloat : AnimationProperty
 public class AnimationBool : AnimationProperty
 {
     public bool Value;
-    AnimationBool(string key, bool value) : base(key)
+    public AnimationBool(string key, bool value) : base(key)
     {
         Value = value;
         mType = EPropertyType.BOOL;
