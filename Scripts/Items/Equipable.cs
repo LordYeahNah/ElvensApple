@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Godot;
 
 public enum EAttachmentHand
@@ -10,7 +11,5 @@ public enum EAttachmentHand
 public abstract class Equipable : BaseItem
 {
     protected PackedScene mItemMesh;
-    
-
-    public abstract void Equip(EAttachmentHand hand);
+    public PackedScene ItemMesh => mItemMesh;
 }
