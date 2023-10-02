@@ -1,0 +1,16 @@
+[
+	{
+		"WeaponName": "Test Weapon",
+		"Description": "This is a test weapon",
+		"Cost": 10,
+		"DamagePoints": 5,
+		"CriticalHitChance": 0.2,
+	},
+	{
+		"WeaponName": "Odin Sword",
+		"Description": "The sword used by the great warrior odin",
+		"Cost": 23,
+		"DamagePoints": 23,
+		"CriticalHitChance": 0.4
+	}
+]

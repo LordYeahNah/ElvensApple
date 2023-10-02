@@ -11,5 +11,10 @@ public enum EAttachmentHand
 public abstract class Equipable : BaseItem
 {
     protected PackedScene mItemMesh;
+
     public PackedScene ItemMesh => mItemMesh;
+
+    protected Equipable(string itemName, bool isConsumable, string desc, int cost) : base(itemName, isConsumable, desc, cost)
+    {
+    }
 }

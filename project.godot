@@ -15,6 +15,10 @@ run/main_scene="res://Scene/TestEnv.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ItemDatabase="*res://Scripts/ItemDatabase.cs"
+
 [dotnet]
 
 project/assembly_name="ElvensApple"

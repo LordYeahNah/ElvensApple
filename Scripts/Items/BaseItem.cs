@@ -5,7 +5,15 @@ using Godot;
 public abstract class BaseItem
 {
     protected string mItemName;                        // Name of the item
-    protected string mIsConsumable;                        // IF we can consume this (false means it's equippable)
+    protected bool mIsConsumable;                        // IF we can consume this (false means it's equippable)
     protected string mItemDescription;                 // A description of the item
     protected int mCost;                   // The value of the item
+
+    public BaseItem(string itemName, bool isConsumable, string desc, int cost)
+    {
+        mItemName = itemName;
+        mIsConsumable = isConsumable;
+        mItemDescription = desc;
+        mCost = cost;
+    }
 }
