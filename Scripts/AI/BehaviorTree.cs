@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class BeahviourTree
+public class BehaviorTree
 {
     
 }
