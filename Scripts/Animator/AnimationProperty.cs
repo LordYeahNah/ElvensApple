@@ -21,7 +21,7 @@ public abstract class AnimationProperty
 
 public class AnimationInt : AnimationProperty
 {
-    int Value;
+    public int Value;
     AnimationInt(string key, int value) : base(key)
     {
         Value = value;
@@ -31,7 +31,7 @@ public class AnimationInt : AnimationProperty
 
 public class AnimationFloat : AnimationProperty
 {
-    float Value;
+    public float Value;
     AnimationFloat(string key, float value) : base(key)
     {
         Value = value;
@@ -43,7 +43,7 @@ public class AnimationFloat : AnimationProperty
 
 public class AnimationBool : AnimationProperty
 {
-    bool Value;
+    public bool Value;
     AnimationBool(string key, bool value) : base(key)
     {
         Value = value;
