@@ -6,9 +6,10 @@ public abstract class BehaviorTree
 {
     protected Task mRootTask;
     protected bool mIsInitialized = false;                      // If the tree has been set up
-
-    public void OnInitialize()
+    protected Blackboard mBlackboard;
+    public void OnInitialize(Blackboard board)
     {
+        mBlackboard = board;
         mRootTask = CreateTree();
         mIsInitialized = true;
     }
@@ -20,4 +21,6 @@ public abstract class BehaviorTree
     }
 
     protected abstract Task CreateTree();
+
+    public Blackboard GetBlackboard() => mBlackboard;
 }
