@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+public enum EPlayDirection
+{
+    FORWARD = 0,
+    BACK = 1
+}
+
 public class Animation
 {
     protected string mAnimationName;                        // Name of the animation we will play
@@ -17,5 +23,19 @@ public class Animation
     {
         mAnimationName = animationName;
         mPlayer = animPlayer;
+    }
+
+    public void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
+    {
+        if(mPlayer == null)
+            return;
+
+        if(playDirection == EPlayDirection.FORWARD)
+        {
+            mPlayer.Play(mAnimationName);
+        } else if(playDirection == EPlayDirection.BACK)
+        {
+            mPlayer.PlayBackwards(mAnimationName);
+        }
     }
 }
