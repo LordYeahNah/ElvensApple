@@ -14,7 +14,7 @@ public abstract class Equipable : BaseItem
 
     public PackedScene ItemMesh => mItemMesh;
 
-    protected Equipable(string itemName, bool isConsumable, string desc, int cost) : base(itemName, isConsumable, desc, cost)
+    protected Equipable(string itemName, bool isConsumable, string desc, int cost, Texture2D icon) : base(itemName, isConsumable, desc, cost, icon)
     {
     }
 }

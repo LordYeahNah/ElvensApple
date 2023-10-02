@@ -37,7 +37,8 @@ public partial class ItemDatabase : Node3D
 
     private Weapon CreateWeapon(WeaponData data)
     {
-        return new Weapon(data.WeaponName, data.Description, data.Cost, data.DamagePoints, data.CriticalHitChance);
+        Texture2D icon = GD.Load<Texture2D>(data.PathToIcon);
+        return new Weapon(data.WeaponName, data.Description, data.Cost, data.DamagePoints, data.CriticalHitChance, icon);
     }
 }
 
@@ -48,4 +49,5 @@ public class WeaponData
     [JsonProperty] public int Cost;
     [JsonProperty] public float DamagePoints;
     [JsonProperty] public float CriticalHitChance;
+    [JsonProperty] public string PathToIcon;
 }

@@ -5,12 +5,14 @@
 		"Cost": 10,
 		"DamagePoints": 5,
 		"CriticalHitChance": 0.2,
+		"PathToIcon": "res://UI/Icons/upg_sword.png"
 	},
 	{
 		"WeaponName": "Odin Sword",
 		"Description": "The sword used by the great warrior odin",
 		"Cost": 23,
 		"DamagePoints": 23,
-		"CriticalHitChance": 0.4
+		"CriticalHitChance": 0.4,
+		"PathToIcon": "res://UI/Icons/upg_sword.png"
 	}
 ]

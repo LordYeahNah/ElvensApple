@@ -8,12 +8,14 @@ public abstract class BaseItem
     protected bool mIsConsumable;                        // IF we can consume this (false means it's equippable)
     protected string mItemDescription;                 // A description of the item
     protected int mCost;                   // The value of the item
+    protected Texture2D mIcon;
 
-    public BaseItem(string itemName, bool isConsumable, string desc, int cost)
+    public BaseItem(string itemName, bool isConsumable, string desc, int cost, Texture2D icon)
     {
         mItemName = itemName;
         mIsConsumable = isConsumable;
         mItemDescription = desc;
         mCost = cost;
+        mIcon = icon;
     }
 }
