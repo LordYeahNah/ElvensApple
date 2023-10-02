@@ -17,7 +17,7 @@ public partial class CameraController : Node3D
     public override void _Ready()
     {
         base._Ready();
-       // Input.MouseMode = Input.MouseModeEnum.Captured;
+        Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
     public override void _Process(double delta)

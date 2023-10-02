@@ -19,6 +19,11 @@ public class Animation
     protected List<AnimationProperty> mRequiredProperties = new List<AnimationProperty>();   
     public List<AnimationProperty> RequiredProperties => mRequiredProperties;    
 
+    public List<AnimationEvent> AnimEvents = new List<AnimationEvent>();
+
+    // ANIMATION TIME //
+    private float mCurrentTime;
+
     protected bool mIsPaused = false;                       // if the animation is currently paused 
 
     public Animation(string animationName, AnimationPlayer animPlayer)
@@ -41,6 +46,27 @@ public class Animation
         }
     }
 
+    public void OnUpdate(float delta)
+    {
+        mCurrentTime += 1 * delta;
+        if(mCurrentTime >= mPlayer.CurrentAnimationLength)
+        {
+            mCurrentTime = 0f;
+            foreach(var e in AnimEvents)
+                e.HasPlayed = false;
+        }
+            
+
+        foreach(var e in AnimEvents)
+        {
+            if(e.AnimationEventTime > mCurrentTime)
+            {
+                e.PlayEvent();
+            }
+                
+        }
+    }
+
     public void SetPlayMove(bool paused)
     {
         mIsPaused = paused;
@@ -48,5 +74,26 @@ public class Animation
             mPlayer.Pause();
         else
         PlayAnimation();
+    }
+}
+
+public class AnimationEvent
+{
+    public float AnimationEventTime;
+    private event Action mEventAction;
+    public bool HasPlayed = false;
+
+    public AnimationEvent(float time, Action e)
+    {
+        AnimationEventTime = time;
+        mEventAction = e;
+    }
+
+    public void PlayEvent()
+    {
+        if(!HasPlayed)
+            mEventAction?.Invoke();
+
+        HasPlayed = true;
     }
 }

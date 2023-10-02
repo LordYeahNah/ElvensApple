@@ -20,8 +20,17 @@ public abstract class AnimationController
 
     public abstract Animation CreateAnimationTree();   
 
+    public void OnUpdate(float delta)
+    {
+        if(mCurrentAnimation != null)
+            mCurrentAnimation.OnUpdate(delta);
+    }
+
     public void CheckTransition()
     {
+        if(mCurrentAnimation == null || mCurrentAnimation.TransitionAnimations.Count == 0)
+            return;
+
         foreach(var animation in mCurrentAnimation.TransitionAnimations)
         {
             List<AnimationProperty> transProps = animation.RequiredProperties;

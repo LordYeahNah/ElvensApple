@@ -24,6 +24,13 @@ public class PlayerAnimator : AnimationController
         idleAnimation.TransitionAnimations.Add(moveAnimation);
         moveAnimation.TransitionAnimations.Add(idleAnimation);
 
+        idleAnimation.AnimEvents.Add(new AnimationEvent(0.8f, TestAnimation));
+
         return idleAnimation;                       // Return the idle animation as the root
+    }
+
+    public void TestAnimation()
+    {
+        GD.Print("Event Hit");
     }
 }

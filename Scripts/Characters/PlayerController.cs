@@ -11,20 +11,22 @@ public partial class PlayerController : CharacterBody3D
     public bool IsMoving = false;                       // if the character is currently moving
     [Export] private Node3D mMovementDirection;             // Object to set the direction we are moving in
 
+    [ExportGroup("Components")]
+    [Export] private AnimationPlayer mAnimPlayer;
+
     public override void _Ready()
     {
         base._Ready();
 
-        AnimationPlayer anim = GetNode<AnimationPlayer>("Character/Animated/AnimationPlayer");
-        if(anim != null)
-            mAnimator = new PlayerAnimator(anim);
+        mAnimator = new PlayerAnimator(mAnimPlayer);
     }
 
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-
+        if(mAnimator != null)
+            mAnimator.OnUpdate((float)delta);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -50,9 +52,15 @@ public partial class PlayerController : CharacterBody3D
             // Apply the movement
             moveDirection = (forward + right) * delta;
             IsMoving = true;
+            if(mAnimator != null)
+            {
+                mAnimator.SetBool("IsMoving", true);
+            }
         } else 
         {
             IsMoving = false;
+            if(mAnimator != null)
+                mAnimator.SetBool("IsMoving", false);
         }
 
         this.Velocity = moveDirection;                  // apply the movement direction
