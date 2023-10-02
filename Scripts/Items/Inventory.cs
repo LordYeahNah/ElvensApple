@@ -11,12 +11,17 @@ public class InventoryStack
 
 public class Inventory
 {
-    private List<InventoryStack> mItems = new List<InventoryStack>();
+    private List<InventoryStack> mItems = new List<InventoryStack>();                   // List of sttack items
     public List<InventoryStack> Items => mItems;
 
-    private int mInventorySize;
-    private int mMaxInventorySize;
+    private int mInventorySize;             // The current size of the inventory
+    private int mMaxInventorySize;              // The max size of the inventory
     
+    /// <summary>
+    /// Adds an item to the inventory
+    /// </summary>
+    /// <param name="item">Item to add to the inventory</param>
+    /// <returns>If the item was added to the inventory</returns>
     public bool AddItem(BaseItem item)
     {
         if(item == null)
@@ -27,8 +32,10 @@ public class Inventory
         {
             foreach(var i in mItems)
             {
+                // Check the item to see if it matches
                 if(item == i.Item)
                 {
+                    // Check if the item can be added to the inventory
                     if(CanAddToStack(i))
                     {
                         i.CurrentStackSize += 1;                // Added the item to the stack
@@ -39,18 +46,24 @@ public class Inventory
             }
         }
 
+        // Check if there is remove for the inventory
         if(mInventorySize < mMaxInventorySize)
         {
-            InventoryStack stack = new InventoryStack();
-            stack.Item = item;
-            stack.CurrentStackSize = 1;
-            stack.MaxStackSize = GetMaxStackSize(item);
+            InventoryStack stack = new InventoryStack();            // Create a new stack
+            stack.Item = item;                  // Set the item
+            stack.CurrentStackSize = 1;                 // Set the current size of the stack
+            stack.MaxStackSize = GetMaxStackSize(item);             // Determine the max size of the stack
             return true;
         }
 
-        return false;
+        return false;                   // No room to add the item 
     }
 
+    /// <summary>
+    /// Determines the size of the inventory stack
+    /// </summary>
+    /// <param name="item">Item to get the item type</param>
+    /// <returns>Max size of the inventory stack</returns>
     private int GetMaxStackSize(BaseItem item)
     {
         if(item is Weapon)
@@ -62,6 +75,11 @@ public class Inventory
         }
     }
 
+    /// <summary>
+    /// Checks to see if the item can be added to an existing stack
+    /// </summary>
+    /// <param name="stack">Stack to check</param>
+    /// <returns>If the item can be added to this stack</returns>
     public bool CanAddToStack(InventoryStack stack)
     {
         foreach(var i in mItems)
@@ -73,6 +91,11 @@ public class Inventory
         return false;
     }
 
+    /// <summary>
+    /// Removes the item from the inventory stack or the inventory itself.
+    /// </summary>
+    /// <param name="stackItem">Stack item to remove/remove from</param>
+    /// <returns></returns>
     public bool RemoveItem(InventoryStack stackItem)
     {
         if(stackItem.CurrentStackSize == 1)
@@ -85,6 +108,11 @@ public class Inventory
         return true;
     }
 
+    /// <summary>
+    /// Checks if the inventory has the specified item
+    /// </summary>
+    /// <param name="item">Item to check</param>
+    /// <returns>If the item exist in the inventory</returns>
     public bool HasItem(BaseItem item)
     {
         foreach(var i in mItems)
