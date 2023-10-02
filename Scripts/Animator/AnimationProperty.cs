@@ -12,7 +12,7 @@ public enum EPropertyType
 public abstract class AnimationProperty
 {
     public string Key;
-    protected EPropertyType mType;                      // What type of property this is
+    public EPropertyType Type;                      // What type of property this is
     public AnimationProperty(string key)
     {
         Key = key;
@@ -25,7 +25,7 @@ public class AnimationInt : AnimationProperty
     public AnimationInt(string key, int value) : base(key)
     {
         Value = value;
-        mType = EPropertyType.INT;
+        Type = EPropertyType.INT;
     }
 }
 
@@ -35,7 +35,7 @@ public class AnimationFloat : AnimationProperty
     public AnimationFloat(string key, float value) : base(key)
     {
         Value = value;
-        mType = EPropertyType.FLOAT;
+        Type = EPropertyType.FLOAT;
     }
 
 
@@ -47,6 +47,6 @@ public class AnimationBool : AnimationProperty
     public AnimationBool(string key, bool value) : base(key)
     {
         Value = value;
-        mType = EPropertyType.BOOL;
+        Type = EPropertyType.BOOL;
     }
 }

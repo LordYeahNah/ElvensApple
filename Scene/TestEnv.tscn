@@ -14,4 +14,4 @@ mesh = SubResource("PlaneMesh_5dwn7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.157365, 0.98754, 0, -0.98754, 0.157365, 1.10949, 5.45769, -0.575012)
+transform = Transform3D(1, 0, 0, 0, 0.157365, 0.98754, 0, -0.98754, 0.157365, 1.09437, 5.44106, -0.580248)
