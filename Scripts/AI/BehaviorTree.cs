@@ -17,7 +17,7 @@ public abstract class BehaviorTree
     public void OnUpdate(float delta)
     {
         if(mIsInitialized)
-            mRootTask.RunTask();
+            mRootTask.RunTask(delta);
     }
 
     protected abstract Task CreateTree();

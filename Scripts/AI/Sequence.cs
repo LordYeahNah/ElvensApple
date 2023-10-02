@@ -8,11 +8,11 @@ public class Sequence : Task
     {
     }
 
-    public override ETaskState RunTask()
+    public override ETaskState RunTask(float delta)
     {
         foreach(var child in mChildren)
         {
-            switch(child.RunTask())
+            switch(child.RunTask(delta))
             {
                 case ETaskState.SUCCESS:
                     continue;

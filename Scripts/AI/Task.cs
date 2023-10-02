@@ -31,5 +31,5 @@ public abstract class Task
         }
     }
 
-    public abstract ETaskState RunTask();
+    public abstract ETaskState RunTask(float delta);
 }
