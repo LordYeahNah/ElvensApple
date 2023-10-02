@@ -14,13 +14,16 @@ public abstract class Task
     public Task Parent;
     protected List<Task> mChildren;
 
-    public Task()
-    {
+    protected BeahviourTree mTree;
 
+    public Task(BeahviourTree bTree)
+    {
+        mTree = bTree;
     }
 
-    public Task(List<Task> children)
+    public Task(BeahviourTree bTree, List<Task> children)
     {
+        mTree = bTree;
         foreach(var child in children)
         {
             child.Parent = this;
