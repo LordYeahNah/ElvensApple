@@ -8,6 +8,10 @@ public class Sequence : Task
     {
     }
 
+    public Sequence(BehaviorTree bTree, List<Task> children) : base(bTree, children)
+    {
+    }
+
     public override ETaskState RunTask(float delta)
     {
         foreach(var child in mChildren)
