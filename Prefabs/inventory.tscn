@@ -14,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7f54"]
 bg_color = Color(1, 1, 1, 0.454902)
 
-[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mActionPanel")]
+[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mEquippedLeftHand", "mEquippedRightHand", "mEquippedArmor", "mQuickAccessLeft", "mQuickAccessRight", "mActionPanel", "mConsumablePanel", "mEquippedPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,8 +22,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rvljx")
-mSlotItems = [NodePath("ItemSlots/TextureButton")]
-mActionPanel = NodePath("ActionPanel")
+mSlotItems = [NodePath("ItemSlots/TextureButton"), NodePath("ItemSlots/TextureButton2"), NodePath("ItemSlots/TextureButton3"), NodePath("ItemSlots/TextureButton4"), NodePath("ItemSlots/TextureButton5"), NodePath("ItemSlots/TextureButton6"), NodePath("ItemSlots/TextureButton7"), NodePath("ItemSlots/TextureButton8"), NodePath("ItemSlots/TextureButton9"), NodePath("ItemSlots/TextureButton10"), NodePath("ItemSlots/TextureButton11"), NodePath("ItemSlots/TextureButton12"), NodePath("ItemSlots/TextureButton13"), NodePath("ItemSlots/TextureButton14"), NodePath("ItemSlots/TextureButton15"), NodePath("ItemSlots/TextureButton16"), NodePath("ItemSlots/TextureButton17"), NodePath("ItemSlots/TextureButton18"), NodePath("ItemSlots/TextureButton19"), NodePath("ItemSlots/TextureButton20")]
+mEquippedLeftHand = NodePath("EquippedSlots/TextureButton")
+mEquippedRightHand = NodePath("EquippedSlots/TextureButton2")
+mEquippedArmor = NodePath("EquippedSlots/TextureButton3")
+mQuickAccessLeft = NodePath("EquippedSlots/TextureButton4")
+mQuickAccessRight = NodePath("EquippedSlots/TextureButton5")
+mActionPanel = NodePath("ItemActionPanel")
+mConsumablePanel = NodePath("ConsumableActionPanel")
+mEquippedPanel = NodePath("EquippedActionPanel")
 mPanelOffset = Vector2(70, 70)
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -57,45 +64,65 @@ offset_top = 188.0
 offset_right = 326.0
 offset_bottom = 228.0
 
-[node name="TextureButton" type="TextureButton" parent="EquippedSlots"]
+[node name="TextureButton" type="TextureButton" parent="EquippedSlots" node_paths=PackedStringArray("mController")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = -29.0
 offset_right = 802.0
-offset_bottom = 66.0
+offset_bottom = 67.0
 ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIsEquippedSlot = true
 
-[node name="TextureButton2" type="TextureButton" parent="EquippedSlots"]
+[node name="TextureButton2" type="TextureButton" parent="EquippedSlots" node_paths=PackedStringArray("mController")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = 99.0
 offset_right = 802.0
 offset_bottom = 194.0
 ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIsEquippedSlot = true
 
-[node name="TextureButton3" type="TextureButton" parent="EquippedSlots"]
+[node name="TextureButton3" type="TextureButton" parent="EquippedSlots" node_paths=PackedStringArray("mController")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = 234.0
 offset_right = 802.0
 offset_bottom = 329.0
 ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIsEquippedSlot = true
 
-[node name="TextureButton4" type="TextureButton" parent="EquippedSlots"]
+[node name="TextureButton4" type="TextureButton" parent="EquippedSlots" node_paths=PackedStringArray("mController")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = 368.0
 offset_right = 802.0
 offset_bottom = 463.0
 ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIsEquippedSlot = true
 
-[node name="TextureButton5" type="TextureButton" parent="EquippedSlots"]
+[node name="TextureButton5" type="TextureButton" parent="EquippedSlots" node_paths=PackedStringArray("mController")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = 500.0
 offset_right = 802.0
 offset_bottom = 595.0
 ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIsEquippedSlot = true
 
 [node name="ItemSlots" type="Control" parent="."]
 anchors_preset = 0
@@ -146,43 +173,963 @@ label_settings = SubResource("LabelSettings_wfj3j")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ActionPanel" type="Panel" parent="."]
+[node name="TextureButton2" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 188.0
+offset_right = 514.0
+offset_bottom = 284.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 1
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton2"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton2"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton2/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 188.0
+offset_right = 647.0
+offset_bottom = 284.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 2
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton3"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton3"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton3/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton4" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 188.0
+offset_right = 780.0
+offset_bottom = 284.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 3
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton4"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton4"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton4/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton5" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 312.0
+offset_right = 382.0
+offset_bottom = 408.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 4
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton5"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton5"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton5/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton6" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 312.0
+offset_right = 514.0
+offset_bottom = 408.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 5
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton6"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton6"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton6/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton7" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 312.0
+offset_right = 647.0
+offset_bottom = 408.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 6
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton7"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton7"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton7/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton8" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 312.0
+offset_right = 780.0
+offset_bottom = 408.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 7
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton8"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton8"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton8/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton9" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 435.0
+offset_right = 382.0
+offset_bottom = 531.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 8
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton9"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton9"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton9/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton10" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 435.0
+offset_right = 514.0
+offset_bottom = 531.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 9
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton10"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton10"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton10/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton11" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 435.0
+offset_right = 647.0
+offset_bottom = 531.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 10
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton11"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton11"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton11/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton12" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 435.0
+offset_right = 780.0
+offset_bottom = 531.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 11
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton12"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton12"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton12/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton13" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 559.0
+offset_right = 382.0
+offset_bottom = 655.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 12
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton13"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton13"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton13/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton14" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 559.0
+offset_right = 514.0
+offset_bottom = 655.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 13
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton14"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton14"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton14/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton15" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 559.0
+offset_right = 647.0
+offset_bottom = 655.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 14
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton15"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton15"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton15/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton16" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 559.0
+offset_right = 780.0
+offset_bottom = 655.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 15
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton16"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton16"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton16/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton17" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 684.0
+offset_right = 382.0
+offset_bottom = 780.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 16
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton17"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton17"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton17/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton18" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 684.0
+offset_right = 514.0
+offset_bottom = 780.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 17
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton18"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton18"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton18/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton19" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 684.0
+offset_right = 647.0
+offset_bottom = 780.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 18
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton19"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton19"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton19/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton20" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 684.0
+offset_right = 780.0
+offset_bottom = 780.0
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_43txo")
+mController = NodePath("../..")
+mIndex = 19
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
+
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton20"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
+
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton20"]
+visible = false
+layout_mode = 0
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
+
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton20/EquippedIndicator2"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemActionPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
 offset_left = 77.0
-offset_top = 162.0
+offset_top = 193.0
 offset_right = 200.0
 offset_bottom = 276.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_g7f54")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ActionPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemActionPanel"]
 layout_mode = 0
 offset_right = 123.0
-offset_bottom = 108.0
+offset_bottom = 82.0
 alignment = 1
 
-[node name="Button" type="Button" parent="ActionPanel/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Equip Left Hand"
-flat = true
-
-[node name="Button2" type="Button" parent="ActionPanel/VBoxContainer"]
+[node name="Button2" type="Button" parent="ItemActionPanel/VBoxContainer"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Equip Right Hand"
 flat = true
 
-[node name="Button3" type="Button" parent="ActionPanel/VBoxContainer"]
+[node name="Button3" type="Button" parent="ItemActionPanel/VBoxContainer"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Drop"
 flat = true
 
-[node name="Button4" type="Button" parent="ActionPanel/VBoxContainer"]
+[node name="Button4" type="Button" parent="ItemActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "View"
+flat = true
+
+[node name="ConsumableActionPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 77.0
+offset_top = 183.0
+offset_right = 200.0
+offset_bottom = 276.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7f54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConsumableActionPanel"]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 93.0
+alignment = 1
+
+[node name="Button" type="Button" parent="ConsumableActionPanel/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Consume"
+flat = true
+
+[node name="Button2" type="Button" parent="ConsumableActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Drop"
+flat = true
+
+[node name="Button3" type="Button" parent="ConsumableActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "View"
+flat = true
+
+[node name="EquippedActionPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1221.0
+offset_top = 245.0
+offset_right = 1344.0
+offset_bottom = 338.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7f54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EquippedActionPanel"]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 93.0
+alignment = 1
+
+[node name="Unequip" type="Button" parent="EquippedActionPanel/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Unequip"
+flat = true
+
+[node name="Button2" type="Button" parent="EquippedActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Drop"
+flat = true
+
+[node name="Button3" type="Button" parent="EquippedActionPanel/VBoxContainer"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
@@ -203,9 +1150,32 @@ offset_top = 27.0
 offset_right = 1544.0
 offset_bottom = 67.0
 
+[connection signal="pressed" from="EquippedSlots/TextureButton" to="EquippedSlots/TextureButton" method="OnPressed"]
+[connection signal="pressed" from="EquippedSlots/TextureButton2" to="EquippedSlots/TextureButton2" method="OnPressed"]
+[connection signal="pressed" from="EquippedSlots/TextureButton3" to="EquippedSlots/TextureButton3" method="OnPressed"]
+[connection signal="pressed" from="EquippedSlots/TextureButton4" to="EquippedSlots/TextureButton4" method="_on_pressed"]
+[connection signal="pressed" from="EquippedSlots/TextureButton5" to="." method="OnPressed"]
 [connection signal="pressed" from="ItemSlots/TextureButton" to="ItemSlots/TextureButton" method="OnPressed"]
-[connection signal="pressed" from="ActionPanel/VBoxContainer/Button" to="." method="EquipLeftHand"]
-[connection signal="pressed" from="ActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
-[connection signal="pressed" from="ActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
+[connection signal="pressed" from="ItemSlots/TextureButton2" to="ItemSlots/TextureButton2" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton3" to="ItemSlots/TextureButton3" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton4" to="ItemSlots/TextureButton4" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton5" to="ItemSlots/TextureButton5" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton6" to="ItemSlots/TextureButton6" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton7" to="ItemSlots/TextureButton7" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton8" to="ItemSlots/TextureButton8" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton9" to="ItemSlots/TextureButton9" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton10" to="ItemSlots/TextureButton10" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton11" to="ItemSlots/TextureButton11" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton12" to="ItemSlots/TextureButton12" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton13" to="ItemSlots/TextureButton13" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton14" to="ItemSlots/TextureButton14" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton15" to="ItemSlots/TextureButton15" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton16" to="ItemSlots/TextureButton16" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton17" to="ItemSlots/TextureButton17" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton18" to="ItemSlots/TextureButton18" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton19" to="ItemSlots/TextureButton19" method="OnPressed"]
+[connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
+[connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
+[connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]

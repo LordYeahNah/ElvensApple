@@ -28,6 +28,9 @@ public class Inventory
     private Equipable mEquippedLeftHand;
     private Equipable mEquippedRight;
 
+    public BaseItem EquippedRightHand => mEquippedRight;
+    public BaseItem EquippedLeftHand => mEquippedLeftHand;
+
     public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand)
     {
         mMaxInventorySize = inventorySize;
