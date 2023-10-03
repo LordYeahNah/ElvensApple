@@ -1,9 +1,10 @@
 using System;
 using Godot;
 
-public partial class PlayerController : CharacterBody3D
+public partial class PlayerController : CharacterBody3D, ICombat
 {
     public bool IsAttacking = false;                    // Indicator for if the player is currently attacking
+    public bool CanAttack = true;                       // if the character can attack
 
     [ExportGroup("Inventory")]
     [Export] private InventoryController mInventoryPanel;
@@ -55,8 +56,10 @@ public partial class PlayerController : CharacterBody3D
             {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
             }
-                
         }
+
+        if(Input.IsActionJustPressed("LightAttack"))
+            LightAttack();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -103,4 +106,22 @@ public partial class PlayerController : CharacterBody3D
         bool added = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon());
     }
 
+    public void LightAttack()
+    {
+        if(!CanAttack || IsAttacking)
+            return;
+
+        if(mAnimator != null)
+            mAnimator.SetBool("IsAttacking", true);
+    }
+
+    public void HeavyAttack()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void TakeDamage()
+    {
+        throw new NotImplementedException();
+    }
 }

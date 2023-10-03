@@ -21,6 +21,9 @@ public class Animation
 
     public List<AnimationEvent> AnimEvents = new List<AnimationEvent>();
 
+    public bool IsPlaying = false;
+    public bool ShouldPlay = false;
+
     // ANIMATION TIME //
     private float mCurrentTime;
 
@@ -33,10 +36,12 @@ public class Animation
         mAnimController = anim;
     }
 
-    public void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
+    protected virtual void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
     {
         if(mPlayer == null || mIsPaused)
             return;
+
+        IsPlaying = true;
 
         if(playDirection == EPlayDirection.FORWARD)
         {
@@ -49,23 +54,36 @@ public class Animation
 
     public void OnUpdate(float delta)
     {
-        mCurrentTime += 1 * delta;
-        if(mCurrentTime >= mPlayer.CurrentAnimationLength)
+        if(ShouldPlay)
         {
-            AnimationComplete();
-            mCurrentTime = 0f;
-            foreach(var e in AnimEvents)
-                e.HasPlayed = false;
-        }
-            
-
-        foreach(var e in AnimEvents)
-        {
-            if(e.AnimationEventTime > mCurrentTime)
+            if(!IsPlaying)
             {
-                e.PlayEvent();
-            }
+                PlayAnimation();
+            } else 
+            {
                 
+                mCurrentTime += 1 * delta;                  // Increment the timer to calculate how much of the animation has been played
+                // Check if the animation has player
+                if(mCurrentTime >= mPlayer.CurrentAnimationLength)
+                {
+                    AnimationComplete();                    // Perform any actions for when the animation is completed
+                    mCurrentTime = 0f;                      // Reset the current timer
+
+                    // Reset each event
+                    foreach(var e in AnimEvents)
+                        e.HasPlayed = false;
+                }
+
+                // Loop through each event to see if an event should occur
+                foreach(var e in AnimEvents)
+                {
+                    if(e.AnimationEventTime > mCurrentTime)
+                    {
+                        e.PlayEvent();
+                    }
+                        
+                }
+            }
         }
     }
 

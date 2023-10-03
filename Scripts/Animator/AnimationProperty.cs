@@ -6,16 +6,17 @@ public enum EPropertyType
 {
     INT = 0,
     FLOAT = 1,
-    BOOL = 2
+    BOOL = 2,
+    TRIGGER = 3,
 }
 
-public abstract class AnimationProperty
+public class AnimationProperty
 {
     public string Key;
     public EPropertyType Type;                      // What type of property this is
-    public AnimationProperty(string key)
+    public AnimationProperty(string key, bool trigger = false)
     {
-        Key = key;
+        Key = key;         
     }
 }
 

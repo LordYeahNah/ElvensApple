@@ -13,6 +13,7 @@ public class PlayerAnimator : AnimationController
     public override Animation CreateAnimationTree()
     {
         SetBool("IsMoving", false);                     // Add the property for the movement
+        SetBool("IsAttacking", false);
 
         // Create the movement animation
         Animation moveAnimation = new Animation("Run", mAnimator, this);
@@ -26,8 +27,6 @@ public class PlayerAnimator : AnimationController
         idleAnimation.TransitionAnimations.Add(moveAnimation);
         moveAnimation.TransitionAnimations.Add(idleAnimation);
 
-        idleAnimation.AnimEvents.Add(new AnimationEvent(0.8f, TestAnimation));
-
         mAnyTransitions.Add(CreateLightAttack(idleAnimation));
 
         return idleAnimation;                       // Return the idle animation as the root
@@ -36,7 +35,7 @@ public class PlayerAnimator : AnimationController
     private Animation CreateLightAttack(Animation transitionBack)
     {
         TriggerAnimation anim = new TriggerAnimation("Attack(1h)", mAnimator, this);
-        anim.RequiredProperties.Add(new AnimationBool("IsAttacking", false));
+        anim.RequiredProperties.Add(new AnimationBool("IsAttacking", true));
         anim.TransitionAnimations.Add(transitionBack);
 
         AnimationEvent resetEvent = new AnimationEvent(0.7f, OnResetAttackAnimation);
@@ -51,7 +50,7 @@ public class PlayerAnimator : AnimationController
         
         // Update the player controller
         if(mPlayerController != null)
-            mPlayerController.IsAttacking = true;
+            mPlayerController.IsAttacking = false;
     }
 
     public void TestAnimation()

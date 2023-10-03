@@ -23,6 +23,9 @@ background_mode = 1
 background_color = Color(0.168627, 0.168627, 0.168627, 1)
 ambient_light_color = Color(0.368627, 0.368627, 1, 0)
 ambient_light_energy = 0.05
+fog_enabled = true
+fog_light_color = Color(0.121569, 0.133333, 0.156863, 1)
+fog_density = 0.1363
 
 [node name="Node3D" type="Node3D"]
 

@@ -9,13 +9,15 @@ public abstract class AnimationController
 
     protected List<AnimationProperty> mProperties = new List<AnimationProperty>();                    // Reference to the animation properties used for transitions
     protected List<Animation> mAnyTransitions = new List<Animation>();
+    protected List<AnimationProperty> mTriggers = new List<AnimationProperty>();
     protected Animation mCurrentAnimation;
+    public Animation CurrentAnimation => mCurrentAnimation;
 
     public AnimationController(AnimationPlayer mPlayer)
     {
         mAnimator = mPlayer;
         mCurrentAnimation = CreateAnimationTree();                 // Create the tree
-        mCurrentAnimation.PlayAnimation();
+        mCurrentAnimation.ShouldPlay = true;
     } 
 
     public abstract Animation CreateAnimationTree();   
@@ -34,9 +36,12 @@ public abstract class AnimationController
                 {
                     foreach(var transProp in mProperties)
                     {
-                        transitionValid = CompareProperty(animProp, transProp);
-                        if(!transitionValid)
-                            break;
+                        if(transProp.Key == animProp.Key)
+                        {
+                            transitionValid = CompareProperty(animProp, transProp);
+                            if(!transitionValid)
+                                break;
+                        }
                     }
 
                     if(!transitionValid)
@@ -82,7 +87,7 @@ public abstract class AnimationController
             if(transitionValid)
             {
                 mCurrentAnimation = animation;
-                mCurrentAnimation.PlayAnimation();
+                mCurrentAnimation.ShouldPlay = true;
                 return;
             }
         }
@@ -197,7 +202,7 @@ public abstract class AnimationController
         if(anim != null)
         {
             mCurrentAnimation = anim;
-            mCurrentAnimation.PlayAnimation();
+            mCurrentAnimation.ShouldPlay = true;
         }
     }
 }

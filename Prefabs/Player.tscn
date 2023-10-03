@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
 [ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
-[ext_resource type="PackedScene" uid="uid://rdxpmufdvnyp" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
+[ext_resource type="PackedScene" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
 
@@ -23,30 +23,30 @@ mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.169725, 0)
 
 [node name="Skeleton3D" parent="Character/Animated/KayKit Animated Character2" index="0"]
-bones/0/rotation = Quaternion(0, 0.0276761, 0, 0.999617)
-bones/1/rotation = Quaternion(0.00443053, -0.0195097, -0.000449388, 0.9998)
-bones/2/rotation = Quaternion(-0.685118, -0.172948, 0.68592, -0.17383)
-bones/4/position = Vector3(-0.140071, 0.690497, 0.00486301)
-bones/4/rotation = Quaternion(-0.664342, 0.186679, 0.702479, 0.174139)
-bones/5/rotation = Quaternion(0.372877, -0.377078, 0.582074, 0.616413)
+bones/0/rotation = Quaternion(0, 0.310818, 0, 0.950469)
+bones/1/rotation = Quaternion(0.0493712, -0.217404, -0.00500771, 0.974819)
+bones/2/rotation = Quaternion(-0.675298, -0.18471, 0.68636, -0.196888)
+bones/4/position = Vector3(-0.138691, 0.678424, 0.0532372)
+bones/4/rotation = Quaternion(-0.393212, 0.344871, 0.829553, 0.195677)
+bones/5/rotation = Quaternion(0.438621, -0.506023, 0.285437, 0.685623)
 
 [node name="Head" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="1"]
-transform = Transform3D(0.999866, 0.00121577, 0.0163309, -0.00107147, 0.99996, -0.00884175, -0.016341, 0.00882306, 0.999828, 0, 0.711598, 0)
+transform = Transform3D(0.980623, 0.0487166, 0.189752, -0.0312302, 0.995075, -0.0940787, -0.1934, 0.0863297, 0.977314, 0, 0.711598, 0)
 
 [node name="Body" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="2"]
-transform = Transform3D(0.998468, 0, 0.055331, 0, 1, 0, -0.055331, 0, 0.998468, 0, 0, 0)
+transform = Transform3D(0.806784, 0, 0.590846, 0, 1, 0, -0.590846, 0, 0.806784, 0, 0, 0)
 
 [node name="ArmLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="3"]
-transform = Transform3D(-0.0561234, 0.474769, -0.878319, -0.00148736, -0.879744, -0.475445, -0.998423, -0.0253772, 0.0500805, 0.139786, 0.691598, -0.00774634)
+transform = Transform3D(-0.59909, 0.426622, -0.677559, -0.0208035, -0.854235, -0.519471, -0.800412, -0.297114, 0.520638, 0.11295, 0.691598, -0.0827185)
 
 [node name="ArmRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="4"]
-transform = Transform3D(-0.111806, -0.490231, -0.864392, -0.00337943, -0.869653, 0.493652, -0.993724, 0.0581144, 0.0955759, -0.139587, 0.690497, 0.0126058)
+transform = Transform3D(-0.96072, -0.233587, -0.149849, 0.0534341, -0.685549, 0.726063, -0.272328, 0.689536, 0.671102, -0.0804387, 0.678424, 0.124896)
 
 [node name="HandSlotLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="5"]
-transform = Transform3D(-0.998415, 0.0561234, -0.00406146, -0.00398424, 0.00148736, 0.999991, 0.056129, 0.998423, -0.00126143, 0.401346, 0.206928, -0.0217272)
+transform = Transform3D(-0.798696, 0.59909, -0.0563594, -0.0548384, 0.0208035, 0.998279, 0.599231, 0.800412, 0.0162374, 0.347985, 0.220981, -0.246405)
 
 [node name="HandSlotRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="6"]
-transform = Transform3D(-0.99523, 0.0720442, 0.0657816, 0.0641358, -0.0249275, 0.99763, 0.0735132, 0.99709, 0.020188, -0.409666, 0.211386, 0.0446223)
+transform = Transform3D(-0.441406, 0.650011, 0.618584, 0.73896, -0.127736, 0.66153, 0.509018, 0.749112, -0.423949, -0.209127, 0.30074, 0.504776)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)
