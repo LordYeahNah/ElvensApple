@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://rdxpmufdvnyp"]
+[gd_scene load_steps=9 format=3 uid="uid://rdxpmufdvnyp"]
 
 [ext_resource type="Texture2D" uid="uid://b0dl4shybi5s4" path="res://UI/Inventory.png" id="1_66sti"]
 [ext_resource type="Script" path="res://Scripts/Items/InventoryController.cs" id="1_rvljx"]
 [ext_resource type="Texture2D" uid="uid://bpxx3o80fakep" path="res://UI/PlayerPanel.png" id="2_caba4"]
 [ext_resource type="Script" path="res://Scripts/Items/InventoryItem.cs" id="5_43txo"]
+[ext_resource type="Texture2D" uid="uid://bv5lwy5qkbqka" path="res://UI/SelectedIndicator.png" id="5_oobpb"]
+[ext_resource type="Texture2D" uid="uid://bg4yojmhedld4" path="res://UI/CountIndicator.png" id="6_cjvdm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wfj3j"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7f54"]
 bg_color = Color(1, 1, 1, 0.454902)
@@ -16,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rvljx")
-mSlotItems = [NodePath("ItemSlots/TextureButton"), NodePath("ItemSlots/TextureButton2"), NodePath("ItemSlots/TextureButton3"), NodePath("ItemSlots/TextureButton4"), NodePath("ItemSlots/TextureButton5"), NodePath("ItemSlots/TextureButton6"), NodePath("ItemSlots/TextureButton7"), NodePath("ItemSlots/TextureButton8"), NodePath("ItemSlots/TextureButton9"), NodePath("ItemSlots/TextureButton10"), NodePath("ItemSlots/TextureButton11"), NodePath("ItemSlots/TextureButton12"), NodePath("ItemSlots/TextureButton13"), NodePath("ItemSlots/TextureButton14"), NodePath("ItemSlots/TextureButton15"), NodePath("ItemSlots/TextureButton16"), NodePath("ItemSlots/TextureButton17"), NodePath("ItemSlots/TextureButton18"), NodePath("ItemSlots/TextureButton19"), NodePath("ItemSlots/TextureButton20")]
+mSlotItems = [NodePath("ItemSlots/TextureButton")]
 mActionPanel = NodePath("ActionPanel")
 mPanelOffset = Vector2(70, 70)
 
@@ -107,233 +113,33 @@ stretch_mode = 4
 script = ExtResource("5_43txo")
 mController = NodePath("../..")
 
-[node name="TextureButton2" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
+[node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton"]
 layout_mode = 0
-offset_left = 417.0
-offset_top = 188.0
-offset_right = 513.0
-offset_bottom = 284.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 1
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 93.0
+offset_bottom = 92.0
+texture = ExtResource("5_oobpb")
+expand_mode = 1
 
-[node name="TextureButton3" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
+[node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton"]
 layout_mode = 0
-offset_left = 551.0
-offset_top = 188.0
-offset_right = 647.0
-offset_bottom = 284.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 2
+offset_left = 71.0
+offset_top = 2.0
+offset_right = 93.0
+offset_bottom = 24.0
+texture = ExtResource("6_cjvdm")
+expand_mode = 1
 
-[node name="TextureButton4" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
+[node name="CountLabel" type="Label" parent="ItemSlots/TextureButton/EquippedIndicator2"]
 layout_mode = 0
-offset_left = 682.0
-offset_top = 188.0
-offset_right = 778.0
-offset_bottom = 284.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 3
-
-[node name="TextureButton5" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 312.0
-offset_right = 382.0
-offset_bottom = 408.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 4
-
-[node name="TextureButton6" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 312.0
-offset_right = 513.0
-offset_bottom = 408.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 5
-
-[node name="TextureButton7" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 312.0
-offset_right = 647.0
-offset_bottom = 408.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 6
-
-[node name="TextureButton8" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 682.0
-offset_top = 312.0
-offset_right = 778.0
-offset_bottom = 408.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 7
-
-[node name="TextureButton9" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 438.0
-offset_right = 382.0
-offset_bottom = 534.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 8
-
-[node name="TextureButton10" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 438.0
-offset_right = 513.0
-offset_bottom = 534.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 9
-
-[node name="TextureButton11" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 438.0
-offset_right = 647.0
-offset_bottom = 534.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 10
-
-[node name="TextureButton12" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 682.0
-offset_top = 438.0
-offset_right = 778.0
-offset_bottom = 534.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 11
-
-[node name="TextureButton13" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 561.0
-offset_right = 382.0
-offset_bottom = 657.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 12
-
-[node name="TextureButton14" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 561.0
-offset_right = 513.0
-offset_bottom = 657.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 13
-
-[node name="TextureButton15" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 561.0
-offset_right = 647.0
-offset_bottom = 657.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 14
-
-[node name="TextureButton16" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 682.0
-offset_top = 561.0
-offset_right = 778.0
-offset_bottom = 657.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 15
-
-[node name="TextureButton17" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 286.0
-offset_top = 686.0
-offset_right = 382.0
-offset_bottom = 782.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 16
-
-[node name="TextureButton18" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 686.0
-offset_right = 513.0
-offset_bottom = 782.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 17
-
-[node name="TextureButton19" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 686.0
-offset_right = 647.0
-offset_bottom = 782.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 18
-
-[node name="TextureButton20" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
-layout_mode = 0
-offset_left = 682.0
-offset_top = 686.0
-offset_right = 778.0
-offset_bottom = 782.0
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("5_43txo")
-mController = NodePath("../..")
-mIndex = 19
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
+text = "15"
+label_settings = SubResource("LabelSettings_wfj3j")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ActionPanel" type="Panel" parent="."]
 visible = false
@@ -393,25 +199,6 @@ offset_right = 1544.0
 offset_bottom = 67.0
 
 [connection signal="pressed" from="ItemSlots/TextureButton" to="ItemSlots/TextureButton" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton2" to="ItemSlots/TextureButton2" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton3" to="ItemSlots/TextureButton3" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton4" to="ItemSlots/TextureButton4" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton5" to="ItemSlots/TextureButton5" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton6" to="ItemSlots/TextureButton6" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton7" to="ItemSlots/TextureButton7" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton8" to="ItemSlots/TextureButton8" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton9" to="ItemSlots/TextureButton9" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton10" to="ItemSlots/TextureButton10" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton11" to="ItemSlots/TextureButton11" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton12" to="ItemSlots/TextureButton12" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton13" to="ItemSlots/TextureButton13" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton14" to="ItemSlots/TextureButton14" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton15" to="ItemSlots/TextureButton15" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton16" to="ItemSlots/TextureButton16" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton17" to="ItemSlots/TextureButton17" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton18" to="ItemSlots/TextureButton18" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton19" to="ItemSlots/TextureButton19" method="OnPressed"]
-[connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
 [connection signal="pressed" from="ActionPanel/VBoxContainer/Button" to="." method="EquipLeftHand"]
 [connection signal="pressed" from="ActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
 [connection signal="pressed" from="ActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]

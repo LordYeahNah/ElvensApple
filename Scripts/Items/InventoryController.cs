@@ -70,6 +70,10 @@ public partial class InventoryController : Control
         if(mSelectedItem == null || mViewingInv == null)
             return;
 
+        if(mViewingInv.RemoveItem(mSelectedItem))
+        {
+            RedrawInventory();
+        }
     }
 
     public void CloseInventory()
@@ -84,5 +88,18 @@ public partial class InventoryController : Control
 
         mSelectedItem = null;
         mViewingInv = null;
+    }
+
+    private void RedrawInventory()
+    {
+        mActionPanel.Visible = false;
+        foreach(var btn in mSlotItems)
+        {
+            btn.TextureNormal = null;
+        }
+
+        mSelectedItem = null;
+
+        Setup(mViewingInv);
     }
 }
