@@ -154,6 +154,11 @@ public partial class InventoryController : Control
         if(mSelectedItem == null || mViewingInv == null)
             return;
 
+        if(mSelectedItem.Item == mViewingInv.EquippedLeftHand || mSelectedItem.Item == mViewingInv.EquippedRightHand)
+        {
+            OnUnequip();
+        }
+
         if(mViewingInv.RemoveItem(mSelectedItem))
         {
             RedrawInventory();
