@@ -12,10 +12,10 @@ public class BaseAI_Animator : AnimationController
     {
         CreateProperties();
 
-        Animation idleAnim = new Animation("Idle", mAnimator);
+        Animation idleAnim = new Animation("Idle", mAnimator, this);
         idleAnim.RequiredProperties.Add(new AnimationBool("IsMoving", false));
 
-        Animation runAnim = new Animation("Run", mAnimator);
+        Animation runAnim = new Animation("Run", mAnimator, this);
         runAnim.RequiredProperties.Add(new AnimationBool("IsMoving", true));
 
         idleAnim.TransitionAnimations.Add(runAnim);

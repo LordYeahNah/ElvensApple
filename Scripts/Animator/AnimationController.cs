@@ -8,7 +8,7 @@ public abstract class AnimationController
     protected AnimationPlayer mAnimator;                          // Reference to the animation controller
 
     protected List<AnimationProperty> mProperties = new List<AnimationProperty>();                    // Reference to the animation properties used for transitions
-    
+    protected List<Animation> mAnyTransitions = new List<Animation>();
     protected Animation mCurrentAnimation;
 
     public AnimationController(AnimationPlayer mPlayer)
@@ -24,6 +24,34 @@ public abstract class AnimationController
     {
         if(mCurrentAnimation != null)
             mCurrentAnimation.OnUpdate(delta);
+
+        if(mAnyTransitions.Count > 0)
+        {
+            foreach(var anim in mAnyTransitions)
+            {
+                bool transitionValid = true;
+                foreach(var animProp in anim.RequiredProperties)
+                {
+                    foreach(var transProp in mProperties)
+                    {
+                        transitionValid = CompareProperty(animProp, transProp);
+                        if(!transitionValid)
+                            break;
+                    }
+
+                    if(!transitionValid)
+                        break;
+
+                }
+
+                if(transitionValid)
+                {
+                    SetCurrentAnimation(anim);
+                    return;
+                }
+                    
+            }
+        }
     }
 
     public void CheckTransition()
@@ -163,4 +191,13 @@ public abstract class AnimationController
     }
 
     #endregion
+
+    public void SetCurrentAnimation(Animation anim)
+    {
+        if(anim != null)
+        {
+            mCurrentAnimation = anim;
+            mCurrentAnimation.PlayAnimation();
+        }
+    }
 }

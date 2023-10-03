@@ -12,7 +12,7 @@ public class Animation
 {
     protected string mAnimationName;                        // Name of the animation we will play
     protected AnimationPlayer mPlayer;                      // Reference to the animation player to play the animation
-
+    protected AnimationController mAnimController;              // Reference to the controller that owns this animator
     // List of animations we can transition to
     public List<Animation> TransitionAnimations = new List<Animation>();
     // Properties required to transition to this animation
@@ -26,10 +26,11 @@ public class Animation
 
     protected bool mIsPaused = false;                       // if the animation is currently paused 
 
-    public Animation(string animationName, AnimationPlayer animPlayer)
+    public Animation(string animationName, AnimationPlayer animPlayer, AnimationController anim)
     {
         mAnimationName = animationName;
         mPlayer = animPlayer;
+        mAnimController = anim;
     }
 
     public void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
@@ -51,6 +52,7 @@ public class Animation
         mCurrentTime += 1 * delta;
         if(mCurrentTime >= mPlayer.CurrentAnimationLength)
         {
+            AnimationComplete();
             mCurrentTime = 0f;
             foreach(var e in AnimEvents)
                 e.HasPlayed = false;
@@ -74,6 +76,24 @@ public class Animation
             mPlayer.Pause();
         else
         PlayAnimation();
+    }
+
+    protected virtual void AnimationComplete()
+    {
+
+    }
+}
+
+public class TriggerAnimation : Animation
+{
+    public TriggerAnimation(string animationName, AnimationPlayer animPlayer, AnimationController mAnim) : base(animationName, animPlayer, mAnim)
+    {
+    }
+
+    protected override void AnimationComplete()
+    {
+        base.AnimationComplete();
+        mAnimController.SetCurrentAnimation(TransitionAnimations[0]);
     }
 }
 

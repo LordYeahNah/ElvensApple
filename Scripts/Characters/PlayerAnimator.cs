@@ -13,11 +13,11 @@ public class PlayerAnimator : AnimationController
         SetBool("IsMoving", false);                     // Add the property for the movement
 
         // Create the movement animation
-        Animation moveAnimation = new Animation("Run", mAnimator);
+        Animation moveAnimation = new Animation("Run", mAnimator, this);
         moveAnimation.RequiredProperties.Add(new AnimationBool("IsMoving", true));
 
         // Create the idle animation
-        Animation idleAnimation = new Animation("Idle", mAnimator);
+        Animation idleAnimation = new Animation("Idle", mAnimator, this);
         idleAnimation.RequiredProperties.Add(new AnimationBool("IsMoving", false));
 
         // Add the animation transitions
