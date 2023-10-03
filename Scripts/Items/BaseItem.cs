@@ -10,6 +10,8 @@ public abstract class BaseItem
     protected int mCost;                   // The value of the item
     protected Texture2D mIcon;
 
+    public Texture2D Icon => mIcon;
+
     public BaseItem(string itemName, bool isConsumable, string desc, int cost, Texture2D icon)
     {
         mItemName = itemName;

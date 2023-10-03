@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ItemDatabase="*res://Scripts/ItemDatabase.cs"
+ItemDatabase="*res://Scripts/Items/ItemDatabase.cs"
 
 [display]
 
