@@ -336,7 +336,6 @@ mController = NodePath("../..")
 mIndex = 19
 
 [node name="ActionPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 77.0
 offset_top = 162.0
@@ -412,5 +411,7 @@ offset_bottom = 67.0
 [connection signal="pressed" from="ItemSlots/TextureButton18" to="ItemSlots/TextureButton18" method="OnPressed"]
 [connection signal="pressed" from="ItemSlots/TextureButton19" to="ItemSlots/TextureButton19" method="OnPressed"]
 [connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
+[connection signal="pressed" from="ActionPanel/VBoxContainer/Button" to="." method="EquipLeftHand"]
+[connection signal="pressed" from="ActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]
