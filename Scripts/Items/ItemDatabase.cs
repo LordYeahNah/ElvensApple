@@ -15,6 +15,12 @@ public partial class ItemDatabase : Node3D
         LoadWeapons();
     }
 
+    public BaseItem GetRandomWeapon()
+    {
+        RandomNumberGenerator rand = new RandomNumberGenerator();
+        return mWeapons[rand.RandiRange(0, mWeapons.Count - 1)];
+    }
+
     private void LoadWeapons()
     {
         var file = FileAccess.Open(WEAPON_PATH, FileAccess.ModeFlags.Read);             // Open the file

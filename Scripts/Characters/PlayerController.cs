@@ -3,8 +3,14 @@ using Godot;
 
 public partial class PlayerController : CharacterBody3D
 {
+    [ExportGroup("Inventory")]
     [Export] private InventoryController mInventoryPanel;
     private bool mIsInventoryOpen = false;
+    private Inventory mInventory;
+    [Export] private BoneAttachment3D mLeftHand;
+    [Export] private BoneAttachment3D mRightHand;
+
+
     private PlayerAnimator mAnimator;
 
     [ExportGroup("Movement Settings")]
@@ -21,6 +27,10 @@ public partial class PlayerController : CharacterBody3D
         base._Ready();
 
         mAnimator = new PlayerAnimator(mAnimPlayer);
+        mInventory = new Inventory(20, mLeftHand, mRightHand);
+
+        // Debug Inventory
+        Callable.From(ActorSetup).CallDeferred();   
     }
 
 
@@ -34,6 +44,9 @@ public partial class PlayerController : CharacterBody3D
         {
             mIsInventoryOpen = !mIsInventoryOpen;
             mInventoryPanel.Visible = mIsInventoryOpen;
+
+            if(mIsInventoryOpen)
+                mInventoryPanel.Setup(mInventory);
         }
     }
 
@@ -73,6 +86,12 @@ public partial class PlayerController : CharacterBody3D
 
         this.Velocity = moveDirection;                  // apply the movement direction
         MoveAndSlide();
+    }
+
+    private async void ActorSetup()
+    {
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+        bool added = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon());
     }
 
 }

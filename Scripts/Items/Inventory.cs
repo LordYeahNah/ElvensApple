@@ -67,6 +67,7 @@ public class Inventory
             stack.Item = item;                  // Set the item
             stack.CurrentStackSize = 1;                 // Set the current size of the stack
             stack.MaxStackSize = GetMaxStackSize(item);             // Determine the max size of the stack
+            mItems.Add(stack);
             return true;
         }
 

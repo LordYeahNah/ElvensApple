@@ -342,5 +342,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883678, 0.675351)
 light_color = Color(1, 0.560784, 0, 1)
 
 [node name="Skeleton" parent="." instance=ExtResource("13_64pc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492998, 0.014653, 8.39544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492998, 0.0773272, 8.39544)
 mMovementSpeed = 2.5
