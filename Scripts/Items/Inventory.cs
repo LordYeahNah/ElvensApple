@@ -19,6 +19,8 @@ public class Inventory
 
     private BoneAttachment3D mLeftHandAttachment;
     private BoneAttachment3D mRightHandAttachment;
+    private Node3D mInRightHand;
+    private Node3D mInLeftHand;
 
     // Equipped settings
     private Equipable mEquippedLeftHand;
@@ -141,27 +143,32 @@ public class Inventory
 
     public void EquipItem(Equipable item, EAttachmentHand hand)
     {
+        Node3D spawned = item.ItemMesh.Instantiate<Node3D>();
         if(hand == EAttachmentHand.LEFT)
         {
-            if(mEquippedLeftHand != null)
+            if(mInLeftHand != null)
             {
-                // TODO: Remove mesh spawned here
+                mInLeftHand.QueueFree();
             }
 
             if(item != null)
             {
-                // TODO: Spawn new mesh here
+                mEquippedLeftHand = item;
+                mInLeftHand = spawned;
+                mLeftHandAttachment.AddChild(spawned);
             }
         } else 
         {
-            if(mEquippedRight != null)
+            if(mInRightHand != null)
             {
-                // TODO: Remove spawned mesh here
+                mInRightHand.QueueFree();
             }
 
             if(item != null)
             {
-                // TODO: Spawn item mesh here
+                mEquippedRight = item;
+                mInRightHand = spawned;
+                mRightHandAttachment.AddChild(spawned);
             }
         }
     }

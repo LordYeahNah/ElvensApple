@@ -336,6 +336,7 @@ mController = NodePath("../..")
 mIndex = 19
 
 [node name="ActionPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 77.0
 offset_top = 162.0

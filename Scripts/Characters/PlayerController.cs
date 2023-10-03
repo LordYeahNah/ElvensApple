@@ -46,7 +46,14 @@ public partial class PlayerController : CharacterBody3D
             mInventoryPanel.Visible = mIsInventoryOpen;
 
             if(mIsInventoryOpen)
+            {
                 mInventoryPanel.Setup(mInventory);
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+            } else 
+            {
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+                
         }
     }
 
