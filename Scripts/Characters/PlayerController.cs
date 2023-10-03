@@ -4,6 +4,7 @@ using Godot;
 public partial class PlayerController : CharacterBody3D
 {
     [Export] private InventoryController mInventoryPanel;
+    private bool mIsInventoryOpen = false;
     private PlayerAnimator mAnimator;
 
     [ExportGroup("Movement Settings")]
@@ -31,10 +32,8 @@ public partial class PlayerController : CharacterBody3D
 
         if(Input.IsActionJustPressed("Inventory"))
         {
-            mInventoryPanel.Visible = true;
-        } else 
-        {
-            mInventoryPanel.Visible = false;
+            mIsInventoryOpen = !mIsInventoryOpen;
+            mInventoryPanel.Visible = mIsInventoryOpen;
         }
     }
 

@@ -9,9 +9,10 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mInventoryPanel", "mMovementDirection", "mAnimPlayer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 script = ExtResource("1_uqjoj")
+mInventoryPanel = NodePath("CanvasLayer/Inventory")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
 mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
