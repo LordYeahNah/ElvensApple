@@ -3,6 +3,8 @@ using Godot;
 
 public partial class PlayerController : CharacterBody3D
 {
+    public bool IsAttacking = false;                    // Indicator for if the player is currently attacking
+
     [ExportGroup("Inventory")]
     [Export] private InventoryController mInventoryPanel;
     private bool mIsInventoryOpen = false;
@@ -26,7 +28,7 @@ public partial class PlayerController : CharacterBody3D
     {
         base._Ready();
 
-        mAnimator = new PlayerAnimator(mAnimPlayer);
+        mAnimator = new PlayerAnimator(mAnimPlayer, this);
         mInventory = new Inventory(20, mLeftHand, mRightHand);
 
         // Debug Inventory

@@ -4,8 +4,10 @@ using Godot;
 
 public class PlayerAnimator : AnimationController
 {
-    public PlayerAnimator(AnimationPlayer mPlayer) : base(mPlayer)
+    private PlayerController mPlayerController;
+    public PlayerAnimator(AnimationPlayer mPlayer, PlayerController controller) : base(mPlayer)
     {
+        mPlayerController = controller;
     }
 
     public override Animation CreateAnimationTree()
@@ -26,7 +28,30 @@ public class PlayerAnimator : AnimationController
 
         idleAnimation.AnimEvents.Add(new AnimationEvent(0.8f, TestAnimation));
 
+        mAnyTransitions.Add(CreateLightAttack(idleAnimation));
+
         return idleAnimation;                       // Return the idle animation as the root
+    }
+
+    private Animation CreateLightAttack(Animation transitionBack)
+    {
+        TriggerAnimation anim = new TriggerAnimation("Attack(1h)", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool("IsAttacking", false));
+        anim.TransitionAnimations.Add(transitionBack);
+
+        AnimationEvent resetEvent = new AnimationEvent(0.7f, OnResetAttackAnimation);
+        anim.AnimEvents.Add(resetEvent);
+
+        return anim;
+    }
+
+    public void OnResetAttackAnimation()
+    {
+        this.SetBool("IsAttacking", false);                 // Reset the animator
+        
+        // Update the player controller
+        if(mPlayerController != null)
+            mPlayerController.IsAttacking = true;
     }
 
     public void TestAnimation()
