@@ -69,6 +69,7 @@ transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_5fww8")]
+visible = false
 
 [editable path="Character"]
 [editable path="Character/Animated"]

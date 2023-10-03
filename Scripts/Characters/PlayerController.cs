@@ -3,6 +3,7 @@ using Godot;
 
 public partial class PlayerController : CharacterBody3D
 {
+    [Export] private InventoryController mInventoryPanel;
     private PlayerAnimator mAnimator;
 
     [ExportGroup("Movement Settings")]
@@ -27,6 +28,14 @@ public partial class PlayerController : CharacterBody3D
         base._Process(delta);
         if(mAnimator != null)
             mAnimator.OnUpdate((float)delta);
+
+        if(Input.IsActionJustPressed("Inventory"))
+        {
+            mInventoryPanel.Visible = true;
+        } else 
+        {
+            mInventoryPanel.Visible = false;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
