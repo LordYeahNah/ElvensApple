@@ -102,7 +102,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureButton" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController")]
+[node name="TextureButton" type="TextureButton" parent="ItemSlots" node_paths=PackedStringArray("mController", "mEquippedIndicator", "mCountIndicator", "mStackCount")]
 layout_mode = 0
 offset_left = 286.0
 offset_top = 188.0
@@ -112,8 +112,12 @@ ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("5_43txo")
 mController = NodePath("../..")
+mEquippedIndicator = NodePath("EquippedIndicator")
+mCountIndicator = NodePath("EquippedIndicator2")
+mStackCount = NodePath("EquippedIndicator2/CountLabel")
 
 [node name="EquippedIndicator" type="TextureRect" parent="ItemSlots/TextureButton"]
+visible = false
 layout_mode = 0
 offset_left = 71.0
 offset_top = 70.0
@@ -123,6 +127,7 @@ texture = ExtResource("5_oobpb")
 expand_mode = 1
 
 [node name="EquippedIndicator2" type="TextureRect" parent="ItemSlots/TextureButton"]
+visible = false
 layout_mode = 0
 offset_left = 71.0
 offset_top = 2.0
