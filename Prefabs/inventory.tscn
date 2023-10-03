@@ -414,5 +414,6 @@ offset_bottom = 67.0
 [connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
 [connection signal="pressed" from="ActionPanel/VBoxContainer/Button" to="." method="EquipLeftHand"]
 [connection signal="pressed" from="ActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
+[connection signal="pressed" from="ActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]

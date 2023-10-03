@@ -5,7 +5,7 @@ using Godot;
 public partial class InventoryController : Control
 {
     private Inventory mViewingInv;
-    private BaseItem mSelectedItem;
+    private InventoryStack mSelectedItem;
     
     [Export] private TextureButton[] mSlotItems;
 
@@ -20,7 +20,7 @@ public partial class InventoryController : Control
         {
             InventoryItem item = (InventoryItem)mSlotItems[i];
             if(item != null)
-                item.Setup(inv.Items[i].Item);
+                item.Setup(inv.Items[i]);
         }
     }
 
@@ -48,7 +48,7 @@ public partial class InventoryController : Control
         if(mSelectedItem == null || mViewingInv == null)
             return;
 
-        if(mSelectedItem is Equipable eItem)
+        if(mSelectedItem.Item is Equipable eItem)
         {
             mViewingInv.EquipItem(eItem, EAttachmentHand.LEFT);
         }
@@ -59,10 +59,17 @@ public partial class InventoryController : Control
         if(mSelectedItem == null || mViewingInv == null)
             return;
 
-        if(mSelectedItem is Equipable eItem)
+        if(mSelectedItem.Item is Equipable eItem)
         {
             mViewingInv.EquipItem(eItem, EAttachmentHand.RIGHT);
         }
+    }
+
+    public void OnDrop()
+    {
+        if(mSelectedItem == null || mViewingInv == null)
+            return;
+
     }
 
     public void CloseInventory()

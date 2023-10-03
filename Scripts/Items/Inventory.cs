@@ -7,6 +7,8 @@ public class InventoryStack
     public BaseItem Item;
     public int CurrentStackSize;
     public int MaxStackSize;
+
+    public Texture2D Icon => Item.Icon;
 }
 
 public class Inventory
