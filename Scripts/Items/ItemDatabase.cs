@@ -44,7 +44,8 @@ public partial class ItemDatabase : Node3D
     private Weapon CreateWeapon(WeaponData data)
     {
         Texture2D icon = GD.Load<Texture2D>(data.PathToIcon);
-        return new Weapon(data.WeaponName, data.Description, data.Cost, data.DamagePoints, data.CriticalHitChance, icon);
+        PackedScene mesh = GD.Load<PackedScene>(data.PathToItem);
+        return new Weapon(data.WeaponName, data.Description, data.Cost, data.DamagePoints, data.CriticalHitChance, icon, mesh);
     }
 }
 
