@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxgs6u5j1rofb"]
+[gd_scene load_steps=7 format=3 uid="uid://cxgs6u5j1rofb"]
 
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
 [ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
+[ext_resource type="PackedScene" uid="uid://rdxpmufdvnyp" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
 
@@ -64,6 +65,10 @@ spring_length = 5.0
 transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0.238466, -1.261e-09, 0.238466, 0.971151, 0.698779, -0.191362, 5.59386)
 
 [node name="MoveDirection" type="Node3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_5fww8")]
 
 [editable path="Character"]
 [editable path="Character/Animated"]
