@@ -148,7 +148,10 @@ public class Inventory
 
     public void EquipItem(Equipable item, EAttachmentHand hand)
     {
-        Node3D spawned = item.ItemMesh.Instantiate<Node3D>();
+        Node3D spawned = null;
+        if(item != null)
+            spawned = item.ItemMesh.Instantiate<Node3D>();
+
         if(hand == EAttachmentHand.LEFT)
         {
             if(mInLeftHand != null)
@@ -156,12 +159,13 @@ public class Inventory
                 mInLeftHand.QueueFree();
             }
 
-            if(item != null)
+            mEquippedLeftHand = item;
+            if(spawned != null)
             {
-                mEquippedLeftHand = item;
                 mInLeftHand = spawned;
                 mLeftHandAttachment.AddChild(spawned);
             }
+            
         } else 
         {
             if(mInRightHand != null)
@@ -169,12 +173,13 @@ public class Inventory
                 mInRightHand.QueueFree();
             }
 
-            if(item != null)
+            mEquippedRight = item;
+            if(spawned != null)
             {
-                mEquippedRight = item;
                 mInRightHand = spawned;
                 mRightHandAttachment.AddChild(spawned);
             }
+            
         }
     }
 

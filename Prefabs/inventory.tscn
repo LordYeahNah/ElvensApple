@@ -1101,7 +1101,6 @@ text = "View"
 flat = true
 
 [node name="EquippedActionPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1221.0
 offset_top = 245.0
@@ -1177,5 +1176,6 @@ offset_bottom = 67.0
 [connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
+[connection signal="pressed" from="EquippedActionPanel/VBoxContainer/Unequip" to="." method="OnUnequip"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]

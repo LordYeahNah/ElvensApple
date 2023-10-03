@@ -117,7 +117,7 @@ public partial class InventoryController : Control
 
         if(mConsumablePanel != null)
             mConsumablePanel.Visible = false;
-            
+
         if(mEquippedPanel != null)    
             mEquippedPanel.Visible = false;
 
@@ -158,6 +158,19 @@ public partial class InventoryController : Control
         {
             RedrawInventory();
         }
+    }
+
+    public void OnUnequip()
+    {
+        if(mSelectedItem == null || mViewingInv == null)
+            return;
+
+        if(mSelectedItem.Item is Weapon weapon)
+        {
+            mViewingInv.EquipItem(null, EAttachmentHand.RIGHT);
+        }
+
+        RedrawInventory();
     }
 
     public void CloseInventory()
