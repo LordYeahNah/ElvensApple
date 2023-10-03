@@ -56,4 +56,5 @@ public class WeaponData
     [JsonProperty] public float DamagePoints;
     [JsonProperty] public float CriticalHitChance;
     [JsonProperty] public string PathToIcon;
+    [JsonProperty] public string PathToItem;
 }

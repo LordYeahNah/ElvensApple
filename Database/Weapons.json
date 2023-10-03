@@ -5,7 +5,8 @@
 		"Cost": 10,
 		"DamagePoints": 5,
 		"CriticalHitChance": 0.2,
-		"PathToIcon": "res://UI/Icons/upg_sword.png"
+		"PathToIcon": "res://UI/Icons/upg_sword.png",
+		"PathToItem": "res://Prefabs/Weapons/SwordCommon.tscn"
 	},
 	{
 		"WeaponName": "Odin Sword",
@@ -13,6 +14,7 @@
 		"Cost": 23,
 		"DamagePoints": 23,
 		"CriticalHitChance": 0.4,
-		"PathToIcon": "res://UI/Icons/upg_sword.png"
+		"PathToIcon": "res://UI/Icons/upg_sword.png",
+		"PathToItem": "res://Prefabs/Weapons/SwordCommon.tscn"
 	}
 ]
