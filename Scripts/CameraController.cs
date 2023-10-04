@@ -41,7 +41,7 @@ public partial class CameraController : Node3D
     {
         // Get the rotation input
         // Determine the rotation on the X
-        float desiredRotationX = this.RotationDegrees.Z + mMouseDelta.Y;  
+        float desiredRotationX = this.RotationDegrees.Z - mMouseDelta.Y;  
         
         float desiredrotationY = this.RotationDegrees.Y - mMouseDelta.X;
         desiredRotationX = Mathf.Clamp(desiredRotationX, mLookClampMin, mLookClampMax);
