@@ -9,7 +9,7 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mInventoryPanel", "mLeftHand", "mRightHand")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
