@@ -38,6 +38,8 @@ public class FollowTarget : Task
                 }
             }
         }
+
+        return ETaskState.FAILURE;
     }
 
     private void PollLocation(BaseCharacter target, Blackboard board)
