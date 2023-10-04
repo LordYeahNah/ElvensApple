@@ -157,7 +157,19 @@ public class Inventory
             spawned = item.ItemMesh.Instantiate<Node3D>();
             if(spawned is WeaponController weapon)
             {
-                weapon.Setup((Weapon)item, mOwner);
+                if(Owner is BaseAI)
+                {
+                    if(Owner.IsInGroup("Enemy"))
+                    {
+                        weapon.Setup((Weapon)item, mOwner, "Friendly");
+                    } else 
+                    {
+                        weapon.Setup((Weapon)item, mOwner, "Enemy");
+                    }
+                } else 
+                {
+                    weapon.Setup((Weapon)item, mOwner, "Enemy");
+                }
             }
         }
             

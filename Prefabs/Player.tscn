@@ -9,44 +9,47 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mInventoryPanel", "mLeftHand", "mRightHand", "mMovementDirection", "mAnimPlayer")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mInventoryPanel", "mLeftHand", "mRightHand")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 script = ExtResource("1_uqjoj")
-mInventoryPanel = NodePath("CanvasLayer/Inventory")
-mLeftHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
-mRightHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotRight")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
 mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
+mInventoryPanel = NodePath("CanvasLayer/Inventory")
+mLeftHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
+mRightHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotRight")
 
 [node name="Character" parent="." instance=ExtResource("2_lhv5y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.169725, 0)
 
 [node name="Skeleton3D" parent="Character/Animated/KayKit Animated Character2" index="0"]
-bones/0/rotation = Quaternion(0, 0.310818, 0, 0.950469)
-bones/1/rotation = Quaternion(0.0493712, -0.217404, -0.00500771, 0.974819)
-bones/2/rotation = Quaternion(-0.675298, -0.18471, 0.68636, -0.196888)
-bones/4/position = Vector3(-0.138691, 0.678424, 0.0532372)
-bones/4/rotation = Quaternion(-0.393212, 0.344871, 0.829553, 0.195677)
-bones/5/rotation = Quaternion(0.438621, -0.506023, 0.285437, 0.685623)
+bones/0/position = Vector3(9.75162e-18, 0.3495, -0.781859)
+bones/0/rotation = Quaternion(-0.688108, 0, 1.52791e-16, 0.725608)
+bones/1/position = Vector3(1.3644e-17, 0.72639, 0.0235874)
+bones/1/rotation = Quaternion(-0.0724532, -0.2391, -0.00517712, 0.968274)
+bones/2/rotation = Quaternion(-0.23871, -0.404865, 0.762115, -0.445289)
+bones/3/rotation = Quaternion(0.0526669, -0.755349, 0.362423, 0.543437)
+bones/4/rotation = Quaternion(-0.749216, 0.456147, 0.253814, 0.407656)
+bones/5/position = Vector3(-0.135995, 0.81238, 0.297844)
+bones/5/rotation = Quaternion(-0.426497, -0.394214, 0.088809, 0.809202)
 
 [node name="Head" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="1"]
-transform = Transform3D(0.980623, 0.0487166, 0.189752, -0.0312302, 0.995075, -0.0940787, -0.1934, 0.0863297, 0.977314, 0, 0.711598, 0)
+transform = Transform3D(0.885609, 0.0446729, -0.462279, 0.464432, -0.0851847, 0.881502, 1.71363e-07, -0.995363, -0.0961878, -1.42629e-16, 0.411563, -1.50598)
 
 [node name="Body" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="2"]
-transform = Transform3D(0.806784, 0, 0.590846, 0, 1, 0, -0.590846, 0, 0.806784, 0, 0, 0)
+transform = Transform3D(1, -2.21733e-16, -2.10274e-16, 2.21733e-16, 0.0530143, 0.998594, -2.10274e-16, -0.998594, 0.0530143, 9.75162e-18, 0.3495, -0.781859)
 
 [node name="ArmLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="3"]
-transform = Transform3D(-0.59909, 0.426622, -0.677559, -0.0208035, -0.854235, -0.519471, -0.800412, -0.297114, 0.520638, 0.11295, 0.691598, -0.0827185)
+transform = Transform3D(-0.48947, 0.872014, -0.00328508, -0.749129, -0.41856, 0.513433, 0.446345, 0.253771, 0.858124, 0.14, 0.386165, -1.47248)
 
 [node name="ArmRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="4"]
-transform = Transform3D(-0.96072, -0.233587, -0.149849, 0.0534341, -0.685549, 0.726063, -0.272328, 0.689536, 0.671102, -0.0804387, 0.678424, 0.124896)
+transform = Transform3D(0.455017, -0.890443, -0.00842091, -0.776432, -0.392091, -0.493373, 0.436019, 0.231031, -0.869777, -0.14, 0.386165, -1.47248)
 
 [node name="HandSlotLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="5"]
-transform = Transform3D(-0.798696, 0.59909, -0.0563594, -0.0548384, 0.0208035, 0.998279, 0.599231, 0.800412, 0.0162374, 0.347985, 0.220981, -0.246405)
+transform = Transform3D(0.468941, 0.871459, -0.143718, 0.612043, -0.203311, 0.764243, 0.636787, -0.446346, -0.628711, 0.620412, 0.155571, -1.33268)
 
 [node name="HandSlotRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="6"]
-transform = Transform3D(-0.441406, 0.650011, 0.618584, 0.73896, -0.127736, 0.66153, 0.509018, 0.749112, -0.423949, -0.209127, 0.30074, 0.504776)
+transform = Transform3D(-0.125724, -0.458446, -0.879784, -0.988459, -0.0176589, 0.150456, -0.084512, 0.888547, -0.450935, -0.927766, 0.0262802, -1.60315)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)

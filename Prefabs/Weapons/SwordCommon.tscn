@@ -102,4 +102,4 @@ mesh = SubResource("ArrayMesh_u0b1o")
 skeleton = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08092, 0)
+transform = Transform3D(1, 9.31323e-10, 1.49012e-08, 0, 1, 6.98492e-10, 0, -1.16415e-09, 1, 1.86265e-09, 1.08092, -8.84756e-09)

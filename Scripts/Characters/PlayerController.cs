@@ -1,26 +1,10 @@
 using System;
 using Godot;
 
-public partial class PlayerController : CharacterBody3D, ICombat
+public partial class PlayerController : BaseCharacter, ICombat
 {
     public bool IsAttacking = false;                    // Indicator for if the player is currently attacking
     public bool CanAttack = true;                       // if the character can attack
-
-    private CharacterStats mStats;
-    public CharacterStats Stats => mStats;
-
-
-    [ExportGroup("Inventory")]
-    [Export] private InventoryController mInventoryPanel;
-    private bool mIsInventoryOpen = false;
-    private Inventory mInventory;
-    [Export] private BoneAttachment3D mLeftHand;
-    [Export] private BoneAttachment3D mRightHand;
-
-
-
-
-    private AnimationController mAnimator;
 
     [ExportGroup("Movement Settings")]
     [Export] private float mMovementSpeed;                  // How fast the character moves at
@@ -48,8 +32,6 @@ public partial class PlayerController : CharacterBody3D, ICombat
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if(mAnimator != null)
-            mAnimator.OnUpdate((float)delta);
 
         if(Input.IsActionJustPressed("Inventory"))
         {
@@ -130,19 +112,13 @@ public partial class PlayerController : CharacterBody3D, ICombat
         throw new NotImplementedException();
     }
 
-    public void TakeDamage(float dp)
+    public override void TakeDamage(float dp)
     {
         // TODO: Reduce DP by armor
-        if(mStats != null)
+        base.TakeDamage(dp);
+        if(mStats != null && !mStats.IsAlive)
         {
-            mStats.TakeDamage(dp);
-            if(!mStats.IsAlive)
-            {
-                mAnimator.SetBool("IsAlive", false);
-                mCanMove = false;
-
-                // TODO: Respawn at last pole
-            }
+            mCanMove = false;
         }
     }
 }

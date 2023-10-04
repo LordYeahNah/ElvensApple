@@ -9,10 +9,13 @@ public partial class WeaponController : Node3D
 	[Export] private RayCast3D mWeaponCast;						// Reference to the ray cast object
 	public bool CanDealDamage = true;							// If the weapon can deal damage
 
-	public void Setup(Weapon weapon, Node3D owner)
+	public string DamageToGroup;
+
+	public void Setup(Weapon weapon, Node3D owner, string group)
 	{
 		mWeaponDetails = weapon;
 		mOwner = owner;
+		DamageToGroup = group;
 	}
 
     public override void _Ready()
@@ -30,9 +33,13 @@ public partial class WeaponController : Node3D
 			GodotObject collision = mWeaponCast.GetCollider();
 			if(collision != Owner)
 			{
-				if(collision is BaseAI character)
+				if(collision is BaseCharacter character)
 				{
-					GD.Print("Hello World");
+					if(character.IsInGroup(DamageToGroup))
+					{
+						GD.Print("Hit Enemy");
+						character.TakeDamage(mWeaponDetails.GetDamagePoints());
+					}
 				}
 			}
 		}

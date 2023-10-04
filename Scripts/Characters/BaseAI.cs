@@ -2,13 +2,8 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class BaseAI : CharacterBody3D, ICombat
+public partial class BaseAI : BaseCharacter, ICombat
 {
-
-    private CharacterStats mStats;
-    public CharacterStats Stats => mStats;
-
-    private AnimationController mAnim;
 
     [ExportGroup("Movement Settings")]
     [Export] protected NavigationAgent3D mAgent;
@@ -32,7 +27,10 @@ public partial class BaseAI : CharacterBody3D, ICombat
         mTree = new TestBT();
         mTree.OnInitialize(mBlackboard);
         if(mAnimPlayer != null)
-            mAnim = new BaseAI_Animator(mAnimPlayer);
+            mAnimator = new BaseAI_Animator(mAnimPlayer);
+
+        mInventory = new Inventory(5, mLeftHand, mRightHand, this);
+        mStats = new CharacterStats();
     }
 
     public override void _Process(double delta)
@@ -49,16 +47,16 @@ public partial class BaseAI : CharacterBody3D, ICombat
         mAgent.TargetPosition = mTargetPosition;
         CanMove = true;
 
-        if(mAnim != null)
-            mAnim.SetBool("IsMoving", true);
+        if(mAnimator != null)
+            mAnimator.SetBool("IsMoving", true);
     }
 
     public void StopMovement()
     {
         CanMove = false;
         mAgent.TargetPosition = this.Position;
-        if(mAnim != null)
-            mAnim.SetBool("IsMoving", false);
+        if(mAnimator != null)
+            mAnimator.SetBool("IsMoving", false);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -88,27 +86,23 @@ public partial class BaseAI : CharacterBody3D, ICombat
         mBlackboard.SetValue("MoveToLocation", new Vector3(9.6f, 0.015f, 6.8f));
     }
 
-    public void LightAttack()
+    public override void LightAttack()
     {
         throw new NotImplementedException();
     }
 
-    public void HeavyAttack()
+    public override void HeavyAttack()
     {
         throw new NotImplementedException();
     }
 
-    public void TakeDamage(float dp)
+    public override void TakeDamage(float dp)
     {
+        base.TakeDamage(dp);
         // TODO: reduce damage with armor
-        if(mStats != null)
+        if(mStats != null && !mStats.IsAlive)
         {
-            mStats.TakeDamage(dp);
-            if(!mStats.IsAlive)
-            {
-                mAnim.SetBool("IsAlive", false);
-                CanMove = false;
-            }
+            CanMove = false;
         }
     }
 }

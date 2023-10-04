@@ -15,4 +15,25 @@ public partial class Weapon : Equipable
         mCriticalHitChance = critHit;
     }
 
+    private bool IsCriticalHit()
+    {
+        RandomNumberGenerator rand = new RandomNumberGenerator();
+        rand.Randomize();
+        float percentage = rand.Randf();
+        if(percentage < mCriticalHitChance)
+            return true;
+
+        return false;
+    }
+
+    public float GetDamagePoints()
+    {
+        float dp = mDamagePoints;
+        if(IsCriticalHit())
+        {
+            dp *= 1.2f;
+        }
+
+        return dp;
+    }
 }
