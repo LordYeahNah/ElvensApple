@@ -11,6 +11,7 @@ public enum EPlayDirection
 public class Animation
 {
     protected string mAnimationName;                        // Name of the animation we will play
+    public string Name => mAnimationName;
     protected AnimationPlayer mPlayer;                      // Reference to the animation player to play the animation
     protected AnimationController mAnimController;              // Reference to the controller that owns this animator
     // List of animations we can transition to
@@ -50,6 +51,12 @@ public class Animation
         {
             mPlayer.PlayBackwards(mAnimationName);
         }
+    }
+
+    public void StopAnimation()
+    {
+        ShouldPlay = false;
+        IsPlaying = false;
     }
 
     public void OnUpdate(float delta)

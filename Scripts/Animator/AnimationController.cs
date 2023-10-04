@@ -31,6 +31,9 @@ public abstract class AnimationController
         {
             foreach(var anim in mAnyTransitions)
             {
+                if(anim == mCurrentAnimation)
+                    continue;
+
                 bool transitionValid = true;
                 foreach(var animProp in anim.RequiredProperties)
                 {
@@ -49,7 +52,7 @@ public abstract class AnimationController
 
                 }
 
-                if(transitionValid)
+                if(transitionValid && mCurrentAnimation != anim)
                 {
                     SetCurrentAnimation(anim);
                     return;
@@ -66,6 +69,10 @@ public abstract class AnimationController
 
         foreach(var animation in mCurrentAnimation.TransitionAnimations)
         {
+            // Don't check currently playing animation
+            if(animation == mCurrentAnimation)
+                continue;
+
             List<AnimationProperty> transProps = animation.RequiredProperties;
             bool transitionValid = true;
             foreach(var transProp in transProps)
@@ -80,14 +87,13 @@ public abstract class AnimationController
                     }
                 }
 
-                if(transitionValid)
+                if(!transitionValid)
                     break;
             }
 
             if(transitionValid)
             {
-                mCurrentAnimation = animation;
-                mCurrentAnimation.ShouldPlay = true;
+                SetCurrentAnimation(animation);
                 return;
             }
         }
@@ -201,6 +207,9 @@ public abstract class AnimationController
     {
         if(anim != null)
         {
+            if(mCurrentAnimation != null)
+                mCurrentAnimation.StopAnimation();
+
             mCurrentAnimation = anim;
             mCurrentAnimation.ShouldPlay = true;
         }

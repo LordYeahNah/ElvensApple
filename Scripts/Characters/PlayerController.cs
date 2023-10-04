@@ -60,6 +60,8 @@ public partial class PlayerController : CharacterBody3D, ICombat
 
         if(Input.IsActionJustPressed("LightAttack"))
             LightAttack();
+
+
     }
 
     public override void _PhysicsProcess(double delta)
