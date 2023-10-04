@@ -84,8 +84,9 @@ public partial class BaseAI : BaseCharacter, ICombat
     {
         mBlackboard = new Blackboard();
         mBlackboard.SetValue<BaseAI>("Self", this);
-        mBlackboard.SetValue("HasLocation", true);
-        mBlackboard.SetValue("MoveToLocation", new Vector3(9.6f, 0.015f, 6.8f));
+        mBlackboard.SetValue("HasLocation", false);
+        mBlackboard.SetValue("MoveToLocation", Vector3.Zero);
+        mBlackboard.SetValue<BaseCharacter>("Target", null);
     }
 
     public override void LightAttack()
