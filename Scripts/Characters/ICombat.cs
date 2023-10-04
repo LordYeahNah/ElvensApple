@@ -6,5 +6,5 @@ public interface ICombat
 {
     public void LightAttack();
     public void HeavyAttack();
-    public void TakeDamage();
+    public void TakeDamage(float dp);
 }
