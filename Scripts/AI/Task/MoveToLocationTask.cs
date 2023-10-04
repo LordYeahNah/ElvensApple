@@ -3,7 +3,7 @@ using Godot;
 
 public class MoveToLocationTask : Task
 {
-    private const float STOPPING_DISTANCE = 0.5f;
+    private const float STOPPING_DISTANCE = 0.8f;
     private const float POLL_TIME = 1.0f;
     private float mTimeSincePoll = 0.0f;
     private bool mHasPolled = false;

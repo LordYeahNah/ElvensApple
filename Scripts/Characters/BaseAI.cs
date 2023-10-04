@@ -55,6 +55,8 @@ public partial class BaseAI : BaseCharacter, ICombat
     {
         CanMove = false;
         mAgent.TargetPosition = this.Position;
+        mBlackboard.SetValue("HasLocation", false);
+
         if(mAnimator != null)
             mAnimator.SetBool("IsMoving", false);
     }
