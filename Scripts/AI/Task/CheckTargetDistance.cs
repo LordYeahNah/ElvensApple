@@ -18,7 +18,7 @@ public class CheckTargetDistance : Task
         if(board != null)
         {
             BaseCharacter target = board.GetValue<BaseCharacter>("Target");
-            Node3D self = board.GetValue<Node3D>("Self");
+            BaseAI self = board.GetValue<BaseAI>("Self");
 
             if(target != null && self != null)
             {
