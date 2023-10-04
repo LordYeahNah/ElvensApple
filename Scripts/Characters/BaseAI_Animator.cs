@@ -21,11 +21,22 @@ public class BaseAI_Animator : AnimationController
         idleAnim.TransitionAnimations.Add(runAnim);
         runAnim.TransitionAnimations.Add(idleAnim);
 
+        mAnyTransitions.Add(CreateDeathAnim());
+
         return idleAnim;
+    }
+
+    private Animation CreateDeathAnim()
+    {
+        TriggerAnimation anim = new TriggerAnimation("Defeat", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool("IsAlive", false));
+
+        return anim;
     }
 
     protected virtual void CreateProperties()
     {
         this.SetBool("IsMoving", false);
+        this.SetBool("IsAlive", true);
     }
 }

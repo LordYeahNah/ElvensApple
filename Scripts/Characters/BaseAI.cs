@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class BaseAI : CharacterBody3D
+public partial class BaseAI : CharacterBody3D, ICombat
 {
+
+    private CharacterStats mStats;
+    public CharacterStats Stats => mStats;
 
     private AnimationController mAnim;
 
@@ -83,5 +86,29 @@ public partial class BaseAI : CharacterBody3D
         mBlackboard.SetValue<BaseAI>("Self", this);
         mBlackboard.SetValue("HasLocation", true);
         mBlackboard.SetValue("MoveToLocation", new Vector3(9.6f, 0.015f, 6.8f));
+    }
+
+    public void LightAttack()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void HeavyAttack()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void TakeDamage(float dp)
+    {
+        // TODO: reduce damage with armor
+        if(mStats != null)
+        {
+            mStats.TakeDamage(dp);
+            if(!mStats.IsAlive)
+            {
+                mAnim.SetBool("IsAlive", false);
+                CanMove = false;
+            }
+        }
     }
 }

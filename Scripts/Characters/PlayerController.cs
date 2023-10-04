@@ -6,6 +6,10 @@ public partial class PlayerController : CharacterBody3D, ICombat
     public bool IsAttacking = false;                    // Indicator for if the player is currently attacking
     public bool CanAttack = true;                       // if the character can attack
 
+    private CharacterStats mStats;
+    public CharacterStats Stats => mStats;
+
+
     [ExportGroup("Inventory")]
     [Export] private InventoryController mInventoryPanel;
     private bool mIsInventoryOpen = false;
@@ -14,7 +18,9 @@ public partial class PlayerController : CharacterBody3D, ICombat
     [Export] private BoneAttachment3D mRightHand;
 
 
-    private PlayerAnimator mAnimator;
+
+
+    private AnimationController mAnimator;
 
     [ExportGroup("Movement Settings")]
     [Export] private float mMovementSpeed;                  // How fast the character moves at
@@ -31,6 +37,8 @@ public partial class PlayerController : CharacterBody3D, ICombat
 
         mAnimator = new PlayerAnimator(mAnimPlayer, this);
         mInventory = new Inventory(20, mLeftHand, mRightHand, this);
+
+        mStats = new CharacterStats("Player");
 
         // Debug Inventory
         Callable.From(ActorSetup).CallDeferred();   
@@ -122,8 +130,19 @@ public partial class PlayerController : CharacterBody3D, ICombat
         throw new NotImplementedException();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float dp)
     {
-        throw new NotImplementedException();
+        // TODO: Reduce DP by armor
+        if(mStats != null)
+        {
+            mStats.TakeDamage(dp);
+            if(!mStats.IsAlive)
+            {
+                mAnimator.SetBool("IsAlive", false);
+                mCanMove = false;
+
+                // TODO: Respawn at last pole
+            }
+        }
     }
 }

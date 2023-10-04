@@ -118,7 +118,13 @@ public class TriggerAnimation : Animation
     protected override void AnimationComplete()
     {
         base.AnimationComplete();
-        mAnimController.SetCurrentAnimation(TransitionAnimations[0]);
+        if(TransitionAnimations.Count > 0)
+        {
+            mAnimController.SetCurrentAnimation(TransitionAnimations[0]);
+        } else 
+        {
+            StopAnimation();
+        }
     }
 }
 

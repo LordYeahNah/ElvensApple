@@ -14,6 +14,7 @@ public class PlayerAnimator : AnimationController
     {
         SetBool("IsMoving", false);                     // Add the property for the movement
         SetBool("IsAttacking", false);
+        SetBool("IsAlive", true);
 
         // Create the movement animation
         Animation moveAnimation = new Animation("Run", mAnimator, this);
@@ -30,6 +31,7 @@ public class PlayerAnimator : AnimationController
         moveAnimation.TransitionAnimations.Add(idleAnimation);
 
         mAnyTransitions.Add(CreateLightAttack(idleAnimation));
+        mAnyTransitions.Add(CreateDeathAnimation());
 
         return idleAnimation;                       // Return the idle animation as the root
     }
@@ -43,6 +45,14 @@ public class PlayerAnimator : AnimationController
         AnimationEvent resetEvent = new AnimationEvent(0.7f, OnResetAttackAnimation);
         anim.AnimEvents.Add(resetEvent);
 
+        return anim;
+    }
+
+    private Animation CreateDeathAnimation()
+    {
+        TriggerAnimation anim = new TriggerAnimation("Defeat", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool("IsAlive", false));
+        
         return anim;
     }
 
