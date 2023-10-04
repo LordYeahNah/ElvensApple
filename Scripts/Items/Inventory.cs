@@ -13,6 +13,8 @@ public class InventoryStack
 
 public class Inventory
 {
+    private Node3D mOwner;
+    public Node3D Owner => mOwner;
     private List<InventoryStack> mItems = new List<InventoryStack>();                   // List of sttack items
     public List<InventoryStack> Items => mItems;
 
@@ -31,11 +33,12 @@ public class Inventory
     public BaseItem EquippedRightHand => mEquippedRight;
     public BaseItem EquippedLeftHand => mEquippedLeftHand;
 
-    public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand)
+    public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand, Node3D owner)
     {
         mMaxInventorySize = inventorySize;
         mLeftHandAttachment = leftHand;
         mRightHandAttachment = rightHand;
+        mOwner = owner;
     }
     
     /// <summary>
@@ -150,7 +153,14 @@ public class Inventory
     {
         Node3D spawned = null;
         if(item != null)
+        {
             spawned = item.ItemMesh.Instantiate<Node3D>();
+            if(spawned is WeaponController weapon)
+            {
+                weapon.Setup((Weapon)item, mOwner);
+            }
+        }
+            
 
         if(hand == EAttachmentHand.LEFT)
         {

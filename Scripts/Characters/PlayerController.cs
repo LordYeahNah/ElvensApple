@@ -30,7 +30,7 @@ public partial class PlayerController : CharacterBody3D, ICombat
         base._Ready();
 
         mAnimator = new PlayerAnimator(mAnimPlayer, this);
-        mInventory = new Inventory(20, mLeftHand, mRightHand);
+        mInventory = new Inventory(20, mLeftHand, mRightHand, this);
 
         // Debug Inventory
         Callable.From(ActorSetup).CallDeferred();   
