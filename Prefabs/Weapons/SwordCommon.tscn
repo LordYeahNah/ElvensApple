@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr5i28taf70xd"]
+[gd_scene load_steps=7 format=3 uid="uid://cr5i28taf70xd"]
+
+[ext_resource type="Script" path="res://Scripts/Items/WeaponController.cs" id="1_nfulx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqtdc"]
 resource_name = "Stone"
@@ -90,8 +92,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0a6mf")
 
-[node name="sword_common_gltf" type="Node3D"]
+[node name="sword_common_gltf" type="Node3D" node_paths=PackedStringArray("mWeaponCast")]
 transform = Transform3D(-0.165985, -0.112779, -0.979658, -0.00693638, 0.993548, -0.113203, 0.986104, -0.0119948, -0.165697, 0, 0, 0)
+script = ExtResource("1_nfulx")
+mWeaponCast = NodePath("RayCast3D")
 
 [node name="sword_common" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_u0b1o")
