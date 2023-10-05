@@ -98,18 +98,20 @@ public partial class PlayerController : BaseCharacter, ICombat
         bool added = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon());
     }
 
-    public void LightAttack()
+    public override void LightAttack()
     {
         if(!CanAttack || IsAttacking)
             return;
 
-        if(mAnimator != null)
-            mAnimator.SetBool("IsAttacking", true);
+        base.LightAttack();
     }
 
-    public void HeavyAttack()
+    public override void HeavyAttack()
     {
-        throw new NotImplementedException();
+        if(!CanAttack || IsAttacking)
+            return;
+
+        base.HeavyAttack();
     }
 
     public override void TakeDamage(float dp)
