@@ -14,13 +14,13 @@ public class FollowTarget : Task
     public override ETaskState RunTask(float delta)
     {
         if(mTree == null)
-            return ETaskState.SUCCESS;
+            return ETaskState.FAILURE;
 
         Blackboard board = mTree.GetBlackboard();
         if(board != null)
         {
             BaseCharacter target = board.GetValue<BaseCharacter>("Target");                 // Get reference to the target
-            Node3D self = board.GetValue<Node3D>("Self");
+            BaseAI self = board.GetValue<BaseAI>("Self");
             if(target != null && self != null)
             {
                 if(!mHasPolled)
