@@ -9,6 +9,7 @@ public class BaseAI_Animator : AnimationController
     public const string IS_MOVING = "IsMoving";
     public const string ATTACK_TYPE = "AttackType";
     public const string IS_ALIVE = "IsAlive";
+    public const string IS_BLOCKING = "IsBlocking";
 
 
     public BaseAI_Animator(AnimationPlayer mPlayer) : base(mPlayer)
@@ -31,6 +32,7 @@ public class BaseAI_Animator : AnimationController
         mAnyTransitions.Add(CreateDeathAnim());
         mAnyTransitions.Add(CreateLightAttack(idleAnim));
         mAnyTransitions.Add(CreateHeavyAttack(idleAnim));
+        mAnyTransitions.Add(CreateBlock(idleAnim));
 
         return idleAnim;
     }
@@ -39,7 +41,7 @@ public class BaseAI_Animator : AnimationController
     {
         TriggerAnimation anim = new TriggerAnimation("Defeat", mAnimator, this);
         anim.RequiredProperties.Add(new AnimationBool(IS_ALIVE, false));
-        
+
         return anim;
     }
 
@@ -66,17 +68,33 @@ public class BaseAI_Animator : AnimationController
         return anim;
     }
 
+    private Animation CreateBlock(Animation returnAnimation)
+    {
+        TriggerAnimation anim = new TriggerAnimation("Block", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
+        
+        AnimationEvent animEvent = new AnimationEvent(1.1f, ResetBlocking);
+
+        anim.AnimEvents.Add(animEvent);
+        anim.TransitionAnimations.Add(returnAnimation);
+
+        return anim;
+    }
+
     protected virtual void CreateProperties()
     {
-        this.SetBool("IsMoving", false);
-        this.SetBool("IsAlive", true);
-        this.SetBool("IsAttacking", false);
-        this.SetInt("AttackType", 0);
+        this.SetBool(IS_MOVING, false);
+        this.SetBool(IS_ALIVE, true);
+        this.SetBool(IS_ATTACKING, false);
+        this.SetInt(ATTACK_TYPE, 0);
+        this.SetBool(IS_BLOCKING, false);
     }
 
     public void ResetAttack()
     {
-        this.SetBool("IsAttacking", false);
-        this.SetInt("AttackType", 0);
+        this.SetBool(IS_ATTACKING, false);
+        this.SetInt(ATTACK_TYPE, 0);
     }
+
+    public void ResetBlocking() => this.SetBool(IS_BLOCKING, false);
 }
