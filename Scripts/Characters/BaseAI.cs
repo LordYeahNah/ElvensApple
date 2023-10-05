@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+public enum EActionDecision
+{
+    BLOCK = 0,
+    ATTACK = 1,
+}
+
 public partial class BaseAI : BaseCharacter, ICombat
 {
 
@@ -30,7 +36,6 @@ public partial class BaseAI : BaseCharacter, ICombat
             mAnimator = new BaseAI_Animator(mAnimPlayer);
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
-        mStats = new CharacterStats();
 
         // Debug //
         BaseCharacter player = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");

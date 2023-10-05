@@ -6,6 +6,10 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
 {
     protected CharacterStats mStats;
     public CharacterStats Stats => mStats;
+     public float CurrentHealth => mStats.CurrentHealth;
+
+    // === CURRENT STATE === //
+    public bool IsBlocking;
 
     [ExportGroup("Inventory")]
     [Export] protected InventoryController mInventoryPanel;
@@ -15,6 +19,12 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     [Export] protected BoneAttachment3D mRightHand;
 
     protected AnimationController mAnimator;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        mStats = new CharacterStats();
+    }
 
     public override void _Process(double delta)
     {
@@ -44,5 +54,10 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
                 mAnimator.SetBool("IsAlive", false);
             }
         }
+    }
+
+    public void Block()
+    {
+        throw new NotImplementedException();
     }
 }
