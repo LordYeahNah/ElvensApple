@@ -36,7 +36,11 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
 
     public virtual void LightAttack()
     {
-        throw new NotImplementedException();
+        if(mAnimator != null)
+        {
+            mAnimator.SetBool("IsAttacking", true),
+            mAnimator.SetInt("AttackType", (int)EAttackType.LIGHT);
+        }
     }
 
     public virtual void HeavyAttack()

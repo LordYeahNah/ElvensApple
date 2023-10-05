@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
+public enum EAttackType
+{
+    NONE = 0,
+    LIGHT = 1,
+    HEAVY = 2,
+}
+
 public interface ICombat
 {
     public void LightAttack();
