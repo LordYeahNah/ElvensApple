@@ -23,19 +23,8 @@ public class FollowTarget : Task
             BaseAI self = board.GetValue<BaseAI>("Self");
             if(target != null && self != null)
             {
-                if(!mHasPolled)
-                {
-                    PollLocation(target, board);
-                    return ETaskState.SUCCESS;
-                } else 
-                {
-                    mCurrentTime += 1 * delta;
-                    if(mCurrentTime > POLL_TIME)
-                    {
-                        PollLocation(target, board);
-                        return ETaskState.SUCCESS;
-                    }
-                }
+                board.SetValue("MoveToLocation", target.Position);
+                return ETaskState.SUCCESS;
             }
         }
 
