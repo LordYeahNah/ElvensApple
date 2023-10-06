@@ -33,6 +33,7 @@ public class Inventory
 
     public BaseItem EquippedRightHand => mEquippedRight;
     public BaseItem EquippedLeftHand => mEquippedLeftHand;
+    public BaseItem EquippedArmor => mArmor;
 
     public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand, Node3D owner)
     {
@@ -199,7 +200,7 @@ public class Inventory
                 mLeftHandAttachment.AddChild(spawned);
             }
             
-        } else 
+        } else if(hand == EAttachmentHand.RIGHT)
         {
             if(mInRightHand != null)
             {

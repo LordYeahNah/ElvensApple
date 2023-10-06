@@ -51,6 +51,9 @@ public partial class InventoryItem : TextureButton
             if(Item.Item is Weapon)
             {
                 mController.SelectItem(mIndex, EItemType.WEAPON);
+            } else if(Item.Item is Armor)
+            {
+                mController.SelectItem(mIndex, EItemType.ARMOR);
             }
         }
     }

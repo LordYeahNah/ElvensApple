@@ -7,7 +7,8 @@ public enum EItemType
 {
     WEAPON = 0,
     CONSUMABLE = 1,
-    EQUIPPED = 2
+    EQUIPPED = 2,
+    ARMOR = 3,
 }
 
 public partial class InventoryController : Control
@@ -28,6 +29,7 @@ public partial class InventoryController : Control
     [Export] private Panel mActionPanel;
     [Export] private Panel mConsumablePanel;
     [Export] private Panel mEquippedPanel;
+    [Export] private Panel mArmorPanel;
     [Export] private Vector2 mPanelOffset;
 
     public void Setup(Inventory inv)
@@ -36,12 +38,14 @@ public partial class InventoryController : Control
         // Get the current equipped items
         BaseItem eRightHand = mViewingInv.EquippedRightHand;
         BaseItem eLeftHand = mViewingInv.EquippedLeftHand;
+        BaseItem eArmor = mViewingInv.EquippedArmor;
 
-        bool isEquipped = false;
+        
 
         // Loop through each item in the inventory
         for(int i = 0; i < inv.Items.Count; ++i)
         {
+            bool isEquipped = false;
             BaseItem item = inv.Items[i].Item;                  // Get the base item of the stack
 
             // Check if equipped
@@ -52,6 +56,10 @@ public partial class InventoryController : Control
             } else if(item == eLeftHand)
             {
                 mEquippedLeftHand.Setup(inv.Items[i]);
+                isEquipped = true;
+            } else if(item == eArmor)
+            {
+                mEquippedArmor.Setup(inv.Items[i]);
                 isEquipped = true;
             }
 
@@ -68,7 +76,7 @@ public partial class InventoryController : Control
         mSelectedItem = item;
         HideAllPanels();
         mEquippedPanel.Visible = true;
-        mEquippedPanel.Position = slot.Position + mPanelOffset;
+        mEquippedPanel.Position = slot.GlobalPosition + mPanelOffset;
     }
 
 
@@ -89,21 +97,28 @@ public partial class InventoryController : Control
                     if(mActionPanel != null)
                     {
                         mActionPanel.Visible = true;
-                        mActionPanel.Position = selected.Position + mPanelOffset;
+                        mActionPanel.Position = selected.GlobalPosition + mPanelOffset;
                     }
                     break;
                 case EItemType.EQUIPPED:
                     if(mEquippedPanel != null)
                     {
                         mEquippedPanel.Visible = true;
-                        mEquippedPanel.Position = selected.Position + mPanelOffset;
+                        mEquippedPanel.Position = selected.GlobalPosition + mPanelOffset;
                     }
                     break;
                 case EItemType.CONSUMABLE:
                     if(mConsumablePanel != null)
                     {
                         mConsumablePanel.Visible = true;
-                        mConsumablePanel.Position = selected.Position + mPanelOffset;
+                        mConsumablePanel.Position = selected.GlobalPosition + mPanelOffset;
+                    }
+                    break;
+                case EItemType.ARMOR:
+                    if(mArmorPanel != null)
+                    {
+                        mArmorPanel.Visible = true;
+                        mArmorPanel.Position = selected.GlobalPosition + mPanelOffset;
                     }
                     break;
             }
@@ -146,6 +161,19 @@ public partial class InventoryController : Control
         {
             mViewingInv.EquipItem(eItem, EAttachmentHand.RIGHT);
         }
+        RedrawInventory();
+    }
+
+    public void EquipArmor()
+    {
+        if(mSelectedItem == null || mViewingInv == null)
+            return;
+
+        if(mSelectedItem.Item is Equipable eItem)
+        {
+            mViewingInv.EquipItem(eItem, EAttachmentHand.BODY);
+        }
+
         RedrawInventory();
     }
 

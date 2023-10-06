@@ -36,8 +36,8 @@ public partial class BaseAI : BaseCharacter, ICombat
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
         
-        BaseCharacter player = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
-        mBlackboard.SetValue("Target", player);
+        // BaseCharacter player = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
+        // mBlackboard.SetValue("Target", player);
         Callable.From(ActorSetup).CallDeferred();
     }
 

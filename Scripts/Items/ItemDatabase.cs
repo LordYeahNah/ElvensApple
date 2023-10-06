@@ -15,6 +15,7 @@ public partial class ItemDatabase : Node3D
     {
         base._Ready();
         LoadWeapons();
+        LoadArmor();
     }
 
     public BaseItem GetRandomWeapon()

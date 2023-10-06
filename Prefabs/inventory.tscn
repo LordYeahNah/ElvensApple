@@ -14,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7f54"]
 bg_color = Color(1, 1, 1, 0.454902)
 
-[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mEquippedLeftHand", "mEquippedRightHand", "mEquippedArmor", "mQuickAccessLeft", "mQuickAccessRight", "mActionPanel", "mConsumablePanel", "mEquippedPanel")]
+[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mEquippedLeftHand", "mEquippedRightHand", "mEquippedArmor", "mQuickAccessLeft", "mQuickAccessRight", "mActionPanel", "mConsumablePanel", "mEquippedPanel", "mArmorPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,7 @@ mQuickAccessRight = NodePath("EquippedSlots/TextureButton5")
 mActionPanel = NodePath("ItemActionPanel")
 mConsumablePanel = NodePath("ConsumableActionPanel")
 mEquippedPanel = NodePath("EquippedActionPanel")
+mArmorPanel = NodePath("ArmorActionPanel")
 mPanelOffset = Vector2(70, 70)
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -1064,6 +1065,42 @@ theme_override_font_sizes/font_size = 11
 text = "View"
 flat = true
 
+[node name="ArmorActionPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 77.0
+offset_top = 193.0
+offset_right = 200.0
+offset_bottom = 276.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g7f54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ArmorActionPanel"]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 82.0
+alignment = 1
+
+[node name="Button2" type="Button" parent="ArmorActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Equip Armor"
+flat = true
+
+[node name="Button3" type="Button" parent="ArmorActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Drop"
+flat = true
+
+[node name="Button4" type="Button" parent="ArmorActionPanel/VBoxContainer"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "View"
+flat = true
+
 [node name="ConsumableActionPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
@@ -1101,6 +1138,7 @@ text = "View"
 flat = true
 
 [node name="EquippedActionPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1221.0
 offset_top = 245.0
@@ -1176,6 +1214,8 @@ offset_bottom = 67.0
 [connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
+[connection signal="pressed" from="ArmorActionPanel/VBoxContainer/Button2" to="." method="EquipArmor"]
+[connection signal="pressed" from="ArmorActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
 [connection signal="pressed" from="EquippedActionPanel/VBoxContainer/Unequip" to="." method="OnUnequip"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]

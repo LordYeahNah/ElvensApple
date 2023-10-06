@@ -104,6 +104,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     {
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
         bool added = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon());
+        bool addedArmor = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomArmor());
     }
 
     public override void LightAttack()
