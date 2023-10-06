@@ -67,7 +67,7 @@ public partial class PlayerController : BaseCharacter, ICombat
 
     private void HandleMovement(float delta)
     {
-        Vector3 moveDirection = Vector3.Zero;                       // Initialize the movement direction for this frame
+        Vector3 moveDirection = Vector3.Zero;                       // Initialize thew movement direction for this frame
 
         if(mCanMove)
         {

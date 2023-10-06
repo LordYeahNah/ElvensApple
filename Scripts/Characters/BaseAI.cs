@@ -36,7 +36,8 @@ public partial class BaseAI : BaseCharacter, ICombat
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
         
-
+        BaseCharacter player = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
+        mBlackboard.SetValue("Target", player);
         Callable.From(ActorSetup).CallDeferred();
     }
 
@@ -49,7 +50,7 @@ public partial class BaseAI : BaseCharacter, ICombat
         mTree = new TestBT();
         mTree.OnInitialize(mBlackboard);
         if(mAnimPlayer != null)
-            mAnimator = new BaseAI_Animator(mAnimPlayer);
+            mAnimator = new BaseAI_Animator(mAnimPlayer, this);
     }
 
     /// <summary>
@@ -73,6 +74,25 @@ public partial class BaseAI : BaseCharacter, ICombat
         // Update the behaviour tree
         if(mTree != null)
             mTree.OnUpdate((float)delta);
+
+        HandleLookAt();
+
+        
+    }
+
+    protected void HandleLookAt()
+    {
+        if(mBlackboard.GetValue<BaseCharacter>("Target") != null)
+        {
+            Vector3 lookAt = mBlackboard.GetValue<BaseCharacter>("Target").Position;
+            this.LookAt(lookAt);
+        } else 
+        {
+            if(mBlackboard.GetValue<bool>("HasLocation"))
+            {
+                this.LookAt(mBlackboard.GetValue<Vector3>("MoveToLocation"));
+            }
+        }
     }
 
     /// <summary>
@@ -108,7 +128,7 @@ public partial class BaseAI : BaseCharacter, ICombat
     {
         base._PhysicsProcess(delta);
         // Check that we have a location and can move
-        if(mAgent.IsNavigationFinished() || !CanMove)
+        if(mAgent.IsNavigationFinished() || !CanMove || IsBlocking)
             return;
         // Determine the path to take
         Vector3 currentAgentPosition = this.GlobalTransform.Origin;
@@ -153,6 +173,12 @@ public partial class BaseAI : BaseCharacter, ICombat
         {
             CanMove = false;
         }
+    }
+
+    public override void StopBlocking()
+    {
+        base.StopBlocking();
+
     }
 
     private async void ActorSetup()

@@ -4,6 +4,7 @@ using Godot;
 
 public class BaseAI_Animator : AnimationController
 {
+    private BaseAI mController;
     // === PROPERTY KEYS === //
     public const string IS_ATTACKING = "IsAttacking";
     public const string IS_MOVING = "IsMoving";
@@ -12,8 +13,9 @@ public class BaseAI_Animator : AnimationController
     public const string IS_BLOCKING = "IsBlocking";
 
 
-    public BaseAI_Animator(AnimationPlayer mPlayer) : base(mPlayer)
+    public BaseAI_Animator(AnimationPlayer mPlayer, BaseAI character) : base(mPlayer)
     {
+        mController = character;
     }
 
     public override Animation CreateAnimationTree()
@@ -32,6 +34,8 @@ public class BaseAI_Animator : AnimationController
 
         Animation blockAnim = new Animation("Block", mAnimator, this);
         blockAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
+        AnimationEvent finishEvent = new AnimationEvent(1.3f, ResetBlocking);
+        blockAnim.AnimEvents.Add(finishEvent);
 
 
         idleAnim.TransitionAnimations.Add(runAnim);
@@ -98,5 +102,7 @@ public class BaseAI_Animator : AnimationController
     public void ResetBlocking() 
     {
         this.SetBool(IS_BLOCKING, false);
+        if(mController != null)
+            mController.StopBlocking();
     } 
 }

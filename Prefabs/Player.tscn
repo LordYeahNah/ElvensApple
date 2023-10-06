@@ -11,6 +11,8 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
@@ -25,11 +27,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.1
 [node name="Skeleton3D" parent="Character/Animated/KayKit Animated Character2" index="0"]
 bones/0/rotation = Quaternion(3.78095e-08, -0.281407, -1.67732e-07, 0.959589)
 bones/1/rotation = Quaternion(0.0893052, 0.25336, -0.0289229, 0.962807)
-bones/2/position = Vector3(0.201124, 0.634387, -0.0165645)
 bones/2/rotation = Quaternion(-0.482303, 0.310015, 0.622264, -0.532975)
-bones/3/position = Vector3(-0.00188668, 0.559534, -0.0019346)
 bones/3/rotation = Quaternion(0.74363, -0.654563, 0.13521, 0.0167426)
-bones/3/scale = Vector3(1.1, 1.1, 1.1)
 bones/4/rotation = Quaternion(-0.844611, 0.119616, 0.476915, 0.211839)
 bones/5/rotation = Quaternion(0.36334, -0.36334, 0.606617, 0.606617)
 
