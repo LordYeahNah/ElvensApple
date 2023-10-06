@@ -24,6 +24,10 @@ public partial class BaseAI : BaseCharacter, ICombat
     [ExportGroup("Components")]
     [Export] protected AnimationPlayer mAnimPlayer;
 
+    [ExportGroup("Inventory")]
+    [Export] private bool mRandomInventory;
+    [Export] private string mWeaponName;
+ 
     public override void _Ready()
     {
         base._Ready();
@@ -36,10 +40,25 @@ public partial class BaseAI : BaseCharacter, ICombat
             mAnimator = new BaseAI_Animator(mAnimPlayer);
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
+        
 
         // Debug
         BaseCharacter target = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
         mBlackboard.SetValue("Target", target);
+
+        Callable.From(ActorSetup).CallDeferred();
+    }
+
+    private void CreateInventory()
+    {
+        if(!mRandomInventory)
+            return;
+
+        Weapon weapon = (Weapon)GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon();
+        if(mInventory.AddItem(weapon))
+        {
+            mInventory.EquipItem(weapon, EAttachmentHand.RIGHT);
+        }
     }
 
     public override void _Process(double delta)
@@ -116,5 +135,11 @@ public partial class BaseAI : BaseCharacter, ICombat
         {
             CanMove = false;
         }
+    }
+
+    private async void ActorSetup()
+    {
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+        CreateInventory();
     }
 }
