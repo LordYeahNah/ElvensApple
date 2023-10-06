@@ -29,6 +29,7 @@ public class Inventory
     // Equipped settings
     private Equipable mEquippedLeftHand;
     private Equipable mEquippedRight;
+    private Equipable mArmor;
 
     public BaseItem EquippedRightHand => mEquippedRight;
     public BaseItem EquippedLeftHand => mEquippedLeftHand;
@@ -94,7 +95,11 @@ public class Inventory
         if(item is Weapon)
         {
             return 1;
-        } else 
+        } else if(item is Armor)
+        {
+            return 1;
+        }
+         else 
         {
             return 15;
         }
@@ -154,22 +159,28 @@ public class Inventory
         Node3D spawned = null;
         if(item != null)
         {
-            spawned = item.ItemMesh.Instantiate<Node3D>();
-            if(spawned is WeaponController weapon)
+            if(item is Weapon)
             {
-                if(Owner is BaseAI)
+                spawned = item.ItemMesh.Instantiate<Node3D>();
+                if(spawned is WeaponController weapon)
                 {
-                    if(Owner.IsInGroup("Enemy"))
+                    if(Owner is BaseAI)
                     {
-                        weapon.Setup((Weapon)item, mOwner, "Friendly");
+                        if(Owner.IsInGroup("Enemy"))
+                        {
+                            weapon.Setup((Weapon)item, mOwner, "Friendly");
+                        } else 
+                        {
+                            weapon.Setup((Weapon)item, mOwner, "Enemy");
+                        }
                     } else 
                     {
                         weapon.Setup((Weapon)item, mOwner, "Enemy");
                     }
-                } else 
-                {
-                    weapon.Setup((Weapon)item, mOwner, "Enemy");
                 }
+            } else if(item is Armor)
+            {
+                mArmor = item;
             }
         }
             
