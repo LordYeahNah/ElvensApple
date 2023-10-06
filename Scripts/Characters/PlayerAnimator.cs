@@ -24,6 +24,7 @@ public class PlayerAnimator : AnimationController
         SetBool(IS_ATTACKING, false);
         SetBool(IS_ALIVE, true);
         SetInt(ATTACK_TYPE, 0);
+        SetBool(IS_BLOCKING, false);
 
         // Create the movement animation
         Animation moveAnimation = new Animation("Run", mAnimator, this);
