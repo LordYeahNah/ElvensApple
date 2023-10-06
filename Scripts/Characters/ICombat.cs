@@ -15,4 +15,5 @@ public interface ICombat
     public void HeavyAttack();
     public void TakeDamage(float dp);
     public void Block();
+    public void StopBlocking();
 }

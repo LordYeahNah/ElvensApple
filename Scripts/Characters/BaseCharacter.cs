@@ -60,8 +60,17 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
         }
     }
 
-    public void Block()
+    public virtual void Block()
     {
-        throw new NotImplementedException();
+        IsBlocking = true;
+        if(mAnimator != null)
+            mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, true);
+    }
+
+    public virtual void StopBlocking()
+    {
+        IsBlocking = false;
+        if(mAnimator != null)
+            mAnimator.SetBool("IsBlocking", false);
     }
 }

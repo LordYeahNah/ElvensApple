@@ -51,6 +51,11 @@ public partial class PlayerController : BaseCharacter, ICombat
         if(Input.IsActionJustPressed("LightAttack"))
             LightAttack();
 
+        if(Input.IsActionJustPressed("Block"))
+            Block();
+
+        if(Input.IsActionJustReleased("Block"))
+            StopBlocking();
 
     }
 
