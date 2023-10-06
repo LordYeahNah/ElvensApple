@@ -85,12 +85,13 @@ public partial class BaseAI : BaseCharacter, ICombat
         if(mBlackboard.GetValue<BaseCharacter>("Target") != null)
         {
             Vector3 lookAt = mBlackboard.GetValue<BaseCharacter>("Target").Position;
-            this.LookAt(lookAt);
+            this.LookAt(new Vector3(lookAt.X, lookAt.Y, lookAt.Z), Vector3.Up);
         } else 
         {
             if(mBlackboard.GetValue<bool>("HasLocation"))
             {
-                this.LookAt(mBlackboard.GetValue<Vector3>("MoveToLocation"));
+                Vector3 moveToLocation = mTargetPosition;
+                this.LookAt(new Vector3(moveToLocation.X, 0f, moveToLocation.Z), Vector3.Up);
             }
         }
     }
