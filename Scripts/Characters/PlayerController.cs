@@ -123,7 +123,7 @@ public partial class PlayerController : BaseCharacter, ICombat
         base.HeavyAttack();
     }
 
-    public override void TakeDamage(float dp)
+    public override void TakeDamage(float dp, bool armorReduction = true)
     {
         // TODO: Reduce DP by armor
         base.TakeDamage(dp);

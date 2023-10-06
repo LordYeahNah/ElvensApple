@@ -165,7 +165,7 @@ public partial class BaseAI : BaseCharacter, ICombat
         base.HeavyAttack();
     }
 
-    public override void TakeDamage(float dp)
+    public override void TakeDamage(float dp, bool armorReduction = true)
     {
         base.TakeDamage(dp);
         // TODO: reduce damage with armor
