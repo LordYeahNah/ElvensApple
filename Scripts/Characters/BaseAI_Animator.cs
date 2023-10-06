@@ -22,10 +22,12 @@ public class BaseAI_Animator : AnimationController
 
         Animation idleAnim = new Animation("Idle", mAnimator, this);
         idleAnim.RequiredProperties.Add(new AnimationBool(IS_MOVING, false));
+        idleAnim.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
         idleAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
 
         Animation runAnim = new Animation("Run", mAnimator, this);
         runAnim.RequiredProperties.Add(new AnimationBool(IS_MOVING, true));
+        runAnim.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
         runAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
 
         Animation blockAnim = new Animation("Block", mAnimator, this);
