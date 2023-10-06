@@ -5,7 +5,8 @@ using Godot;
 public enum EAttachmentHand
 {
     LEFT = 0,
-    RIGHT = 1
+    RIGHT = 1,
+    BODY = 2
 }
 
 public abstract class Equipable : BaseItem
