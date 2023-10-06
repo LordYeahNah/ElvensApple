@@ -65,7 +65,7 @@ public class DetermineAction : Task
                 if(chanceValue < chanceOfHeavy)
                     self.HeavyAttack();
                 else
-                    self.LightAttack
+                    self.LightAttack();
             }
         }
 
