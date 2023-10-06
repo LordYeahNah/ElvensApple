@@ -59,8 +59,16 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     /// handles the character taking damage
     /// </summary>
     /// <param name="dp"></param>
-    public virtual void TakeDamage(float dp)
+    public virtual void TakeDamage(float dp, bool armorReduction = true)
     {
+        // If armor equipped apply the duction on take damage
+        if(mInventory != null && mInventory.EquippedArmor != null)
+        {
+            Armor equippedArmor = (Armor)mInventory.EquippedArmor;
+            if(equippedArmor != null)
+                dp *= equippedArmor.ReductionModifier;
+        }
+        // Take damage from the character stats
         if(mStats != null)
         {
             mStats.TakeDamage(dp);
