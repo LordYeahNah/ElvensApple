@@ -97,6 +97,9 @@ public class BaseAI_Animator : AnimationController
     {
         this.SetBool(IS_ATTACKING, false);
         this.SetInt(ATTACK_TYPE, 0);
+        
+        if(mController != null)
+            mController.IsAttacking = false;
     }
 
     public void ResetBlocking() 

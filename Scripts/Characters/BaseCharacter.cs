@@ -7,10 +7,13 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     // === CHARACTER STATS === //
     protected CharacterStats mStats;
     public CharacterStats Stats => mStats;
-     public float CurrentHealth => mStats.CurrentHealth;
+    public float CurrentHealth => mStats.CurrentHealth;
+
+    public event Action ATakeDamage;
 
     // === CURRENT STATE === //
     public bool IsBlocking;
+    public bool IsAttacking;
 
     [ExportGroup("Inventory")]
     [Export] protected InventoryController mInventoryPanel;
@@ -40,6 +43,10 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     /// </summary>
     public virtual void LightAttack()
     {
+        if(mInventory.EquippedRightHand == null || IsAttacking)
+            return;
+
+
         if(mAnimator != null)
         {
             mAnimator.SetBool("IsAttacking", true);
@@ -52,7 +59,20 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     /// </summary>
     public virtual void HeavyAttack()
     {
-        throw new NotImplementedException();
+        if(mInventory.EquippedRightHand == null || IsAttacking)
+            return;
+
+        if(mAnimator != null)
+        {
+            mAnimator.SetBool("IsAttacking", true);
+            mAnimator.SetInt("AttackType", (int)EAttackType.HEAVY);
+        }
+
+        // Trigger heavy attack
+        if(mInventory.EquippedRightHand is Weapon w)
+        {
+            w.IsHeavyAttack = true;
+        }
     }
 
     /// <summary>
@@ -77,6 +97,8 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
                 mAnimator.SetBool("IsAlive", false);
             }
         }
+
+        ATakeDamage?.Invoke();
     }
 
     /// <summary>

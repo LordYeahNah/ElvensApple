@@ -3,7 +3,6 @@ using Godot;
 
 public partial class PlayerController : BaseCharacter, ICombat
 {
-    public bool IsAttacking = false;                    // Indicator for if the player is currently attacking
     public bool CanAttack = true;                       // if the character can attack
 
     [ExportGroup("Movement Settings")]
@@ -15,6 +14,10 @@ public partial class PlayerController : BaseCharacter, ICombat
     [ExportGroup("Components")]
     [Export] private AnimationPlayer mAnimPlayer;
 
+    [ExportGroup("Stat Components")]
+    [Export] private TextureProgressBar mHealthBar;
+    [Export] private TextureProgressBar mManaBar;
+
     public override void _Ready()
     {
         base._Ready();
@@ -23,6 +26,8 @@ public partial class PlayerController : BaseCharacter, ICombat
         mInventory = new Inventory(20, mLeftHand, mRightHand, this);            // Create the inventory
 
         mStats = new CharacterStats("Player");
+
+        mHealthBar.Value = mStats.CurrentHealth;
 
         // Debug Inventory
         Callable.From(ActorSetup).CallDeferred();   
@@ -131,6 +136,8 @@ public partial class PlayerController : BaseCharacter, ICombat
         {
             mCanMove = false;
         }
+
+        mHealthBar.Value = mStats.CurrentHealth;
     }
 
     public override void Block()
