@@ -42,7 +42,7 @@ public class DetermineAction : Task
         rand.Randomize();
 
         float randValue = rand.Randf();
-        float chanceOfBlock = 0.3f;
+        float chanceOfBlock = 1.0f;
 
         if(self.CurrentHealth < 0.3)
             chanceOfBlock = 0.7f;

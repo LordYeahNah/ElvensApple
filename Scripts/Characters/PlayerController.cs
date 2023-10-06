@@ -69,28 +69,31 @@ public partial class PlayerController : BaseCharacter, ICombat
     {
         Vector3 moveDirection = Vector3.Zero;                       // Initialize the movement direction for this frame
 
-        // Get the movement axis
-        Vector2 movementInput = Input.GetVector("MoveLeft", "MoveRight", "MoveBack", "MoveForward");
-        
-        // Check that we are moving
-        if(movementInput.Length() > 0.1)
+        if(mCanMove)
         {
-            // Calculate movement directions
-            Vector3 forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
-            Vector3 right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
-
-            // Apply the movement
-            moveDirection = (forward + right) * delta;
-            IsMoving = true;
-            if(mAnimator != null)
+            // Get the movement axis
+            Vector2 movementInput = Input.GetVector("MoveLeft", "MoveRight", "MoveBack", "MoveForward");
+            
+            // Check that we are moving
+            if(movementInput.Length() > 0.1)
             {
-                mAnimator.SetBool("IsMoving", true);
+                // Calculate movement directions
+                Vector3 forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
+                Vector3 right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
+
+                // Apply the movement
+                moveDirection = (forward + right) * delta;
+                IsMoving = true;
+                if(mAnimator != null)
+                {
+                    mAnimator.SetBool("IsMoving", true);
+                }
+            } else 
+            {
+                IsMoving = false;
+                if(mAnimator != null)
+                    mAnimator.SetBool("IsMoving", false);
             }
-        } else 
-        {
-            IsMoving = false;
-            if(mAnimator != null)
-                mAnimator.SetBool("IsMoving", false);
         }
 
         this.Velocity = moveDirection;                  // apply the movement direction
@@ -127,5 +130,20 @@ public partial class PlayerController : BaseCharacter, ICombat
         {
             mCanMove = false;
         }
+    }
+
+    public override void Block()
+    {
+        base.Block();
+        mCanMove = false;
+    }
+
+    public override void StopBlocking()
+    {
+        base.StopBlocking();
+        if(mAnimator != null && mAnimator is PlayerAnimator pAnim)
+            pAnim.ResumeBlockAnim();
+
+        mCanMove = true;
     }
 }

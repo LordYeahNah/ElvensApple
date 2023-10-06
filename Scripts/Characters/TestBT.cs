@@ -15,7 +15,8 @@ public class TestBT : BehaviorTree
                 {
                     new Sequence(this, new List<Task>
                     {
-                        new CheckTargetDistance(this)
+                        new CheckTargetDistance(this),
+                        new DetermineAction(this),
                     }),
                     new Sequence(this, new List<Task>
                     {

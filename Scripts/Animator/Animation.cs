@@ -55,12 +55,17 @@ public class Animation
 
     public void StopAnimation()
     {
+        if(mAnimationName == "Block")
+            GD.Print("Stopping Block Animation");
+
         ShouldPlay = false;
         IsPlaying = false;
     }
 
     public void OnUpdate(float delta)
     {
+
+
         if(ShouldPlay)
         {
             if(!IsPlaying)

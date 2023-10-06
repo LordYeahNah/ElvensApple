@@ -36,6 +36,10 @@ public partial class BaseAI : BaseCharacter, ICombat
             mAnimator = new BaseAI_Animator(mAnimPlayer);
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
+
+        // Debug
+        BaseCharacter target = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
+        mBlackboard.SetValue("Target", target);
     }
 
     public override void _Process(double delta)

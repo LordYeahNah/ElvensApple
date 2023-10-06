@@ -62,6 +62,7 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
 
     public virtual void Block()
     {
+        GD.Print("Is Blocking");
         IsBlocking = true;
         if(mAnimator != null)
             mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, true);
@@ -71,6 +72,6 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     {
         IsBlocking = false;
         if(mAnimator != null)
-            mAnimator.SetBool("IsBlocking", false);
+            mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, false);
     }
 }

@@ -4,7 +4,7 @@ using Godot;
 
 public class CheckTargetDistance : Task
 {
-    private const float MIN_TARGET_DISTANCE = 0.8f;
+    private const float MIN_TARGET_DISTANCE = 1.2f;
     public CheckTargetDistance(BehaviorTree bTree) : base(bTree)
     {
     }

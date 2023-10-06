@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Godot;
 
 public class PlayerAnimator : AnimationController
@@ -21,7 +22,7 @@ public class PlayerAnimator : AnimationController
 
     private void CreateProperties()
     {
-        SetBool(IS_MOVING, false);
+        SetBool(IS_MOVING, false);  
         SetBool(IS_ATTACKING, false);
         SetBool(IS_ALIVE, true);
         SetInt(ATTACK_TYPE, 0);
@@ -36,21 +37,32 @@ public class PlayerAnimator : AnimationController
         Animation moveAnimation = new Animation("Run", mAnimator, this);
         moveAnimation.RequiredProperties.Add(new AnimationBool(IS_MOVING, true));
         moveAnimation.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
+        moveAnimation.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
 
         // Create the idle animation
         Animation idleAnimation = new Animation("Idle", mAnimator, this);
         idleAnimation.RequiredProperties.Add(new AnimationBool(IS_MOVING, false));
         idleAnimation.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
+        idleAnimation.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
+
+        Animation blockAnim = new Animation("Block", mAnimator, this);
+        blockAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
+        AnimationEvent pauseEvent = new AnimationEvent(1.2f, PauseBlockAnim);
+        blockAnim.AnimEvents.Add(pauseEvent);
 
         // Add the animation transitions
         idleAnimation.TransitionAnimations.Add(moveAnimation);
+        idleAnimation.TransitionAnimations.Add(blockAnim);
         moveAnimation.TransitionAnimations.Add(idleAnimation);
+        moveAnimation.TransitionAnimations.Add(blockAnim);
+        blockAnim.TransitionAnimations.Add(moveAnimation);
+        blockAnim.TransitionAnimations.Add(idleAnimation);
+
 
         // Animation that can be triggered at any time
         mAnyTransitions.Add(CreateLightAttack(idleAnimation));
         mAnyTransitions.Add(CreateDeathAnimation());
         mAnyTransitions.Add(CreateHeavyAttack(idleAnimation));
-        mAnyTransitions.Add(CreateBlock(idleAnimation));
 
         return idleAnimation;                       // Return the idle animation as the root
     }
@@ -82,19 +94,6 @@ public class PlayerAnimator : AnimationController
 
     }
 
-    private Animation CreateBlock(Animation animTrans)
-    {
-        TriggerAnimation anim = new TriggerAnimation("Block", mAnimator, this);
-        anim.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
-        anim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
-
-        AnimationEvent animEvent = new AnimationEvent(1.1f, ResetBlock);
-        anim.AnimEvents.Add(animEvent);
-        animTrans.TransitionAnimations.Add(animTrans);
-
-        return anim;
-    }
-
     private Animation CreateDeathAnimation()
     {
         TriggerAnimation anim = new TriggerAnimation("Defeat", mAnimator, this);
@@ -112,7 +111,15 @@ public class PlayerAnimator : AnimationController
             mPlayerController.IsAttacking = false;
     }
 
-    public void ResetBlock() => this.SetBool(IS_BLOCKING, false);
+    public void PauseBlockAnim()
+    {
+        mAnimator.Pause();
+    }
+
+    public void ResumeBlockAnim()
+    {
+        mAnimator.Play();
+    }
 
     public void TestAnimation()
     {

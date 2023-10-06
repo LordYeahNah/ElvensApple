@@ -22,17 +22,27 @@ public class BaseAI_Animator : AnimationController
 
         Animation idleAnim = new Animation("Idle", mAnimator, this);
         idleAnim.RequiredProperties.Add(new AnimationBool(IS_MOVING, false));
+        idleAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
 
         Animation runAnim = new Animation("Run", mAnimator, this);
         runAnim.RequiredProperties.Add(new AnimationBool(IS_MOVING, true));
+        runAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
+
+        Animation blockAnim = new Animation("Block", mAnimator, this);
+        blockAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
+
 
         idleAnim.TransitionAnimations.Add(runAnim);
+        idleAnim.TransitionAnimations.Add(blockAnim);
         runAnim.TransitionAnimations.Add(idleAnim);
+        runAnim.TransitionAnimations.Add(blockAnim);
+        blockAnim.TransitionAnimations.Add(idleAnim);
+        blockAnim.TransitionAnimations.Add(runAnim);
+
 
         mAnyTransitions.Add(CreateDeathAnim());
         mAnyTransitions.Add(CreateLightAttack(idleAnim));
         mAnyTransitions.Add(CreateHeavyAttack(idleAnim));
-        mAnyTransitions.Add(CreateBlock(idleAnim));
 
         return idleAnim;
     }
@@ -74,7 +84,7 @@ public class BaseAI_Animator : AnimationController
         anim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
         
         AnimationEvent animEvent = new AnimationEvent(1.1f, ResetBlocking);
-
+        
         anim.AnimEvents.Add(animEvent);
         anim.TransitionAnimations.Add(returnAnimation);
 
@@ -96,5 +106,8 @@ public class BaseAI_Animator : AnimationController
         this.SetInt(ATTACK_TYPE, 0);
     }
 
-    public void ResetBlocking() => this.SetBool(IS_BLOCKING, false);
+    public void ResetBlocking() 
+    {
+        this.SetBool(IS_BLOCKING, false);
+    } 
 }
