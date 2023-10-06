@@ -1,0 +1,9 @@
+[
+	{
+		"ArmorName": "Test Armor",
+		"Description": "This is test armor",
+		"Cost": 25,
+		"ReductionPercentage": "0.5",
+		"PathToIcon": "res://UI/Icons/armor.png",
+	}
+]
