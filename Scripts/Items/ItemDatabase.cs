@@ -23,6 +23,13 @@ public partial class ItemDatabase : Node3D
         return mWeapons[rand.RandiRange(0, mWeapons.Count - 1)];
     }
 
+    public BaseItem GetRandomArmor()
+    {
+        RandomNumberGenerator rand = new RandomNumberGenerator();
+        rand.Randomize();
+        return mArmor[rand.RandiRange(0, mArmor.Count - 1)];
+    }
+
     private void LoadArmor()
     {
         var file = FileAccess.Open(ARMOR_PATH, FileAccess.ModeFlags.Read);
