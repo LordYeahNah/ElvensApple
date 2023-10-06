@@ -38,7 +38,7 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     {
         if(mAnimator != null)
         {
-            mAnimator.SetBool("IsAttacking", true),
+            mAnimator.SetBool("IsAttacking", true);
             mAnimator.SetInt("AttackType", (int)EAttackType.LIGHT);
         }
     }
