@@ -16,15 +16,21 @@ public class PlayerAnimator : AnimationController
     public PlayerAnimator(AnimationPlayer mPlayer, PlayerController controller) : base(mPlayer)
     {
         mPlayerController = controller;
+        CreateProperties();
     }
 
-    public override Animation CreateAnimationTree()
+    private void CreateProperties()
     {
-        SetBool(IS_MOVING, false);                     // Add the property for the movement
+        SetBool(IS_MOVING, false);
         SetBool(IS_ATTACKING, false);
         SetBool(IS_ALIVE, true);
         SetInt(ATTACK_TYPE, 0);
         SetBool(IS_BLOCKING, false);
+    }
+
+    public override Animation CreateAnimationTree()
+    {
+        
 
         // Create the movement animation
         Animation moveAnimation = new Animation("Run", mAnimator, this);
