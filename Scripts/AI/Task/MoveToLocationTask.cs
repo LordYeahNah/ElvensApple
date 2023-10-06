@@ -41,7 +41,6 @@ public class MoveToLocationTask : Task
     private ETaskState PollLocation(float distance, Blackboard board)
     {
         BaseAI ai = board.GetValue<BaseAI>("Self");
-        GD.Print(distance);
         if(distance > STOPPING_DISTANCE)
         {
             if(ai != null)

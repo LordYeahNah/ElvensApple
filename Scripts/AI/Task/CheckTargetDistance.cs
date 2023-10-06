@@ -4,7 +4,7 @@ using Godot;
 
 public class CheckTargetDistance : Task
 {
-    private const float MIN_TARGET_DISTANCE = 1.2f;
+    private const float MIN_TARGET_DISTANCE = 1.8f;
     public CheckTargetDistance(BehaviorTree bTree) : base(bTree)
     {
     }
@@ -24,12 +24,13 @@ public class CheckTargetDistance : Task
             if(target != null && self != null)
             {
                 float distance = self.Position.DistanceTo(target.Position);                 // Get the distance to the target
-
+                GD.Print(distance);
                 if(distance > MIN_TARGET_DISTANCE)
                 {
                     return ETaskState.FAILURE;
                 } else 
                 {
+                    self.StopMovement();
                     return ETaskState.SUCCESS;
                 }
             }

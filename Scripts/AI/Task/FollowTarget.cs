@@ -23,7 +23,7 @@ public class FollowTarget : Task
             BaseAI self = board.GetValue<BaseAI>("Self");
             if(target != null && self != null)
             {
-                board.SetValue("MoveToLocation", target.Position);
+                PollLocation(target, board, self);
                 return ETaskState.SUCCESS;
             }
         }
@@ -31,9 +31,10 @@ public class FollowTarget : Task
         return ETaskState.FAILURE;
     }
 
-    private void PollLocation(BaseCharacter target, Blackboard board)
+    private void PollLocation(BaseCharacter target, Blackboard board, BaseAI self)
     {
         Vector3 targetLocation = target.Position;                   // Get reference to the target location
+        self.SetTargetPosition(targetLocation);
         board.SetValue("MoveToLocation", targetLocation);
         mCurrentTime = 0.0f;
         mHasPolled = true;

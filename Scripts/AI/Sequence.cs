@@ -27,6 +27,6 @@ public class Sequence : Task
             }
         }
 
-        return ETaskState.FAILURE;
+        return ETaskState.RUNNING;
     }
 }

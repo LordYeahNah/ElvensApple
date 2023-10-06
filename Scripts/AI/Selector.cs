@@ -27,6 +27,6 @@ public class Selector : Task
             }
         }
 
-        return ETaskState.FAILURE;
+        return ETaskState.RUNNING;
     }
 }
