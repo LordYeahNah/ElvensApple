@@ -19,8 +19,8 @@ public partial class PlayerController : BaseCharacter, ICombat
     {
         base._Ready();
 
-        mAnimator = new PlayerAnimator(mAnimPlayer, this);
-        mInventory = new Inventory(20, mLeftHand, mRightHand, this);
+        mAnimator = new PlayerAnimator(mAnimPlayer, this);              // Create a new animator
+        mInventory = new Inventory(20, mLeftHand, mRightHand, this);            // Create the inventory
 
         mStats = new CharacterStats("Player");
 

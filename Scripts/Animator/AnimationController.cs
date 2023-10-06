@@ -8,9 +8,9 @@ public abstract class AnimationController
     protected AnimationPlayer mAnimator;                          // Reference to the animation controller
 
     protected List<AnimationProperty> mProperties = new List<AnimationProperty>();                    // Reference to the animation properties used for transitions
-    protected List<Animation> mAnyTransitions = new List<Animation>();
-    protected List<AnimationProperty> mTriggers = new List<AnimationProperty>();
-    protected Animation mCurrentAnimation;
+    protected List<Animation> mAnyTransitions = new List<Animation>();                  // Transitions that can happen anytime
+    protected List<AnimationProperty> mTriggers = new List<AnimationProperty>();                // List of properties for trigger
+    protected Animation mCurrentAnimation;                      // The animation that is currently playing.
     public Animation CurrentAnimation => mCurrentAnimation;
 
     public AnimationController(AnimationPlayer mPlayer)
@@ -22,6 +22,10 @@ public abstract class AnimationController
 
     public abstract Animation CreateAnimationTree();   
 
+    /// <summary>
+    /// Called each frame to update the animation and check if any transitions are required
+    /// </summary>
+    /// <param name="delta">Delta time</param>
     public void OnUpdate(float delta)
     {
         if(mCurrentAnimation != null)
@@ -62,6 +66,9 @@ public abstract class AnimationController
         }
     }
 
+    /// <summary>
+    /// Checks if there are any transitions to be called. (Only called when params are updated)
+    /// </summary>
     public void CheckTransition()
     {
         if(mCurrentAnimation == null || mCurrentAnimation.TransitionAnimations.Count == 0)
@@ -99,6 +106,12 @@ public abstract class AnimationController
         }
     }
 
+    /// <summary>
+    /// Checks of the two parameters are equal
+    /// </summary>
+    /// <param name="a">Param A</param>
+    /// <param name="b">Param B</param>
+    /// <returns>Parameters are equal</returns>
     private bool CompareProperty(AnimationProperty a, AnimationProperty b)
     {
         if(a is AnimationBool aBool && b is AnimationBool bBool)
@@ -203,6 +216,10 @@ public abstract class AnimationController
 
     #endregion
 
+    /// <summary>
+    /// Hard sets the current animation that is playing
+    /// </summary>
+    /// <param name="anim">Animation to play</param>
     public void SetCurrentAnimation(Animation anim)
     {
         if(anim != null)

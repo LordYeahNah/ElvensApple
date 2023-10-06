@@ -15,7 +15,7 @@ public class Animation
     protected AnimationPlayer mPlayer;                      // Reference to the animation player to play the animation
     protected AnimationController mAnimController;              // Reference to the controller that owns this animator
     // List of animations we can transition to
-    public List<Animation> TransitionAnimations = new List<Animation>();
+    public List<Animation> TransitionAnimations = new List<Animation>();                // List of animations that this animation can transition to
     // Properties required to transition to this animation
     protected List<AnimationProperty> mRequiredProperties = new List<AnimationProperty>();   
     public List<AnimationProperty> RequiredProperties => mRequiredProperties;    
@@ -37,6 +37,10 @@ public class Animation
         mAnimController = anim;
     }
 
+    /// <summary>
+    /// Plays the animation
+    /// </summary>
+    /// <param name="playDirection"></param>
     protected virtual void PlayAnimation(EPlayDirection playDirection = EPlayDirection.FORWARD)
     {
         if(mPlayer == null || mIsPaused)

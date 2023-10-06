@@ -4,6 +4,7 @@ using Godot;
 
 public partial class BaseCharacter : CharacterBody3D, ICombat
 {
+    // === CHARACTER STATS === //
     protected CharacterStats mStats;
     public CharacterStats Stats => mStats;
      public float CurrentHealth => mStats.CurrentHealth;
@@ -34,6 +35,9 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
             mAnimator.OnUpdate((float)delta);
     }
 
+    /// <summary>
+    /// Performs the light attack
+    /// </summary>
     public virtual void LightAttack()
     {
         if(mAnimator != null)
@@ -43,11 +47,18 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
         }
     }
 
+    /// <summary>
+    /// Performs the heavy attack
+    /// </summary>
     public virtual void HeavyAttack()
     {
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// handles the character taking damage
+    /// </summary>
+    /// <param name="dp"></param>
     public virtual void TakeDamage(float dp)
     {
         if(mStats != null)
@@ -60,9 +71,11 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
         }
     }
 
+    /// <summary>
+    /// Performs block
+    /// </summary>
     public virtual void Block()
     {
-        GD.Print("Is Blocking");
         IsBlocking = true;
         if(mAnimator != null)
             mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, true);

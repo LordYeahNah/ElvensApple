@@ -31,25 +31,31 @@ public partial class BaseAI : BaseCharacter, ICombat
     public override void _Ready()
     {
         base._Ready();
+        
+        CreateAI();
 
-        // Debug blackboard setup
+        mInventory = new Inventory(5, mLeftHand, mRightHand, this);
+        
+
+        Callable.From(ActorSetup).CallDeferred();
+    }
+
+    /// <summary>
+    /// Creates the properties for the AI
+    /// </summary>
+    protected virtual void CreateAI()
+    {
         CreateBlackboard();
         mTree = new TestBT();
         mTree.OnInitialize(mBlackboard);
         if(mAnimPlayer != null)
             mAnimator = new BaseAI_Animator(mAnimPlayer);
-
-        mInventory = new Inventory(5, mLeftHand, mRightHand, this);
-        
-
-        // Debug
-        BaseCharacter target = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
-        mBlackboard.SetValue("Target", target);
-
-        Callable.From(ActorSetup).CallDeferred();
     }
 
-    private void CreateInventory()
+    /// <summary>
+    /// Handles generating the inventory on spawn
+    /// </summary>
+    protected void CreateInventory()
     {
         if(!mRandomInventory)
             return;
@@ -64,27 +70,36 @@ public partial class BaseAI : BaseCharacter, ICombat
     public override void _Process(double delta)
     {
         base._Process(delta);
+        // Update the behaviour tree
         if(mTree != null)
             mTree.OnUpdate((float)delta);
     }
 
+    /// <summary>
+    /// Sets the location for the agent to move to
+    /// </summary>
+    /// <param name="targetLocation">Location to set for the agent</param>
     public void SetTargetPosition(Vector3 targetLocation)
     {
-        GD.Print(targetLocation);
-        mTargetPosition = targetLocation;
-        mAgent.TargetPosition = mTargetPosition;
-        CanMove = true;
+        mTargetPosition = targetLocation;                   // Set the target location on this controller
+        mAgent.TargetPosition = mTargetPosition;                // Update the location on the agent
+        CanMove = true;                 // Enable movement
 
+        // Update animator
         if(mAnimator != null)
             mAnimator.SetBool("IsMoving", true);
     }
 
+    /// <summary>
+    /// Stops the agent from moving
+    /// </summary>
     public void StopMovement()
     {
-        CanMove = false;
-        mAgent.TargetPosition = this.Position;
-        mBlackboard.SetValue("HasLocation", false);
+        CanMove = false;                        // Disable movement
+        mAgent.TargetPosition = this.Position;              // Update the agents position
+        mBlackboard.SetValue("HasLocation", false);             // Update the blackboard
 
+        // Update the animator
         if(mAnimator != null)
             mAnimator.SetBool("IsMoving", false);
     }
@@ -92,15 +107,18 @@ public partial class BaseAI : BaseCharacter, ICombat
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+        // Check that we have a location and can move
         if(mAgent.IsNavigationFinished() || !CanMove)
             return;
-
+        // Determine the path to take
         Vector3 currentAgentPosition = this.GlobalTransform.Origin;
         Vector3 nextPathPoint = mAgent.GetNextPathPosition();
 
+        // Determine the velocity the agent requires & add the movement speed
         Vector3 createdVelocity = (nextPathPoint - currentAgentPosition).Normalized();
         createdVelocity *= mMovementSpeed;
 
+        // Apply the velocity
         this.Velocity = createdVelocity;
         MoveAndSlide();
     }
@@ -119,12 +137,12 @@ public partial class BaseAI : BaseCharacter, ICombat
 
     public override void LightAttack()
     {
-        throw new NotImplementedException();
+        base.LightAttack();
     }
 
     public override void HeavyAttack()
     {
-        throw new NotImplementedException();
+        base.HeavyAttack();
     }
 
     public override void TakeDamage(float dp)
