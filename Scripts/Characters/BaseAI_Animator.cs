@@ -78,19 +78,6 @@ public class BaseAI_Animator : AnimationController
         return anim;
     }
 
-    private Animation CreateBlock(Animation returnAnimation)
-    {
-        TriggerAnimation anim = new TriggerAnimation("Block", mAnimator, this);
-        anim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
-        
-        AnimationEvent animEvent = new AnimationEvent(1.1f, ResetBlocking);
-        
-        anim.AnimEvents.Add(animEvent);
-        anim.TransitionAnimations.Add(returnAnimation);
-
-        return anim;
-    }
-
     protected virtual void CreateProperties()
     {
         this.SetBool(IS_MOVING, false);
