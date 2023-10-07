@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
 [ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
-[ext_resource type="PackedScene" uid="uid://rdxpmufdvnyp" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
-[ext_resource type="PackedScene" uid="uid://bnc68xxvljgok" path="res://Prefabs/HealthBar.tscn" id="5_4hc7f"]
+[ext_resource type="PackedScene" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
+[ext_resource type="PackedScene" path="res://Prefabs/HealthBar.tscn" id="5_4hc7f"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 collision_layer = 2
 collision_mask = 2
@@ -18,8 +18,6 @@ script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
 mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
-mHealthBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/HealthBar")
-mManaBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/ManaBar")
 mInventoryPanel = NodePath("CanvasLayer/Inventory")
 mLeftHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
 mRightHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotRight")
@@ -36,19 +34,19 @@ bones/4/rotation = Quaternion(-0.844611, 0.119616, 0.476915, 0.211839)
 bones/5/rotation = Quaternion(0.36334, -0.36334, 0.606617, 0.606617)
 
 [node name="Head" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="1"]
-transform = Transform3D(0.998438, 2.30968e-07, -0.0558632, -0.0104419, 0.982376, -0.186623, 0.0548787, 0.186915, 0.980842, 2.13926e-07, 0.711598, 1.18812e-07)
+transform = Transform3D(0.998438, 2.30968e-07, -0.0558633, -0.0104419, 0.982376, -0.186623, 0.0548787, 0.186915, 0.980842, 2.13926e-07, 0.711598, 1.18812e-07)
 
 [node name="Body" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="2"]
 transform = Transform3D(0.84162, 3.00628e-07, -0.54007, -3.43187e-07, 1, 2.18387e-08, 0.54007, 1.66965e-07, 0.84162, 0, 0, 0)
 
 [node name="ArmLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="3"]
-transform = Transform3D(0.173773, -0.179458, -0.968296, -0.962344, -0.239657, -0.128288, -0.209037, 0.954127, -0.214346, 0.178216, 0.634387, 0.09468)
+transform = Transform3D(0.173773, -0.179458, -0.968296, -0.962344, -0.239657, -0.128288, -0.209037, 0.954127, -0.214346, 0.117827, 0.691598, 0.0756099)
 
 [node name="ArmRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="4"]
 transform = Transform3D(0.897145, -0.208471, -0.389448, 2.2128e-07, -0.881632, 0.471937, -0.441736, -0.423396, -0.790952, -0.117827, 0.691598, -0.0756096)
 
 [node name="HandSlotLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="5"]
-transform = Transform3D(-0.0258911, 0.00319806, 1.09969, 0.111202, 1.09436, -0.000564486, -1.09406, 0.111157, -0.0260817, 0.0793488, 0.502355, 0.629356)
+transform = Transform3D(-0.0235374, 0.00290732, 0.999719, 0.101093, 0.994877, -0.000513166, -0.994598, 0.101052, -0.0237107, 0.0189598, 0.559566, 0.60126)
 
 [node name="HandSlotRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="6"]
 transform = Transform3D(-0.441735, -0.897145, 1.49012e-07, 6.85453e-07, -2.2128e-07, 1, -0.897145, 0.441736, 7.15256e-07, -0.232678, 0.205887, -0.308868)

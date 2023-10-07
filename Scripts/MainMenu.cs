@@ -19,6 +19,17 @@ public partial class MainMenu : CanvasLayer
 		mSplashFadeOutTimer = new Timer(1.0f, false, StartMenuFadeIn, false);
 	}
 
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		
+		if(mSplashTimer != null)
+			mSplashTimer.OnUpdate((float)delta);
+
+		if (mSplashFadeOutTimer != null)
+			mSplashFadeOutTimer.OnUpdate((float)delta);
+	}
+
 
 	private void StartSplashFadeOut()
 	{

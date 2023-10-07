@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://q1w8v3c3nwca"]
+[gd_scene load_steps=17 format=3 uid="uid://q1w8v3c3nwca"]
 
 [ext_resource type="Texture2D" uid="uid://ddu577gwxrqsc" path="res://UI/MenuBackground.png" id="1_2dagq"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_u6773"]
 [ext_resource type="Texture2D" uid="uid://csogh48xeg0yu" path="res://UI/GameNameLogo.png" id="2_paxuk"]
 [ext_resource type="Texture2D" uid="uid://ncq467flliyt" path="res://UI/YeahNahLogo.png" id="3_wes3g"]
 [ext_resource type="Texture2D" uid="uid://c7i4hssgaqx7y" path="res://UI/GodotLogo.png" id="4_s8mot"]
@@ -112,7 +113,12 @@ _data = {
 "FadeIn": SubResource("Animation_h3n3s")
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("mSplashAnim", "mMenuFadeIn", "mSplashScreen", "mMainMenu")]
+script = ExtResource("1_u6773")
+mSplashAnim = NodePath("SplashScreen/AnimationPlayer")
+mMenuFadeIn = NodePath("Control/AnimationPlayer")
+mSplashScreen = NodePath("SplashScreen")
+mMainMenu = NodePath("Control")
 metadata/_edit_horizontal_guides_ = [1048.0]
 
 [node name="MenuBackground" type="TextureRect" parent="."]
