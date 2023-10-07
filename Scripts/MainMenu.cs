@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Node
+public partial class MainMenu : CanvasLayer
 {
 	private Timer mSplashTimer;
 	private Timer mSplashFadeOutTimer;

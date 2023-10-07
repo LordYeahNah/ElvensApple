@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx0iyf74ds0pv"]
+[gd_scene load_steps=16 format=3 uid="uid://q1w8v3c3nwca"]
 
 [ext_resource type="Texture2D" uid="uid://ddu577gwxrqsc" path="res://UI/MenuBackground.png" id="1_2dagq"]
 [ext_resource type="Texture2D" uid="uid://csogh48xeg0yu" path="res://UI/GameNameLogo.png" id="2_paxuk"]
 [ext_resource type="Texture2D" uid="uid://ncq467flliyt" path="res://UI/YeahNahLogo.png" id="3_wes3g"]
 [ext_resource type="Texture2D" uid="uid://c7i4hssgaqx7y" path="res://UI/GodotLogo.png" id="4_s8mot"]
 [ext_resource type="Texture2D" uid="uid://hfpnatfahkr4" path="res://UI/KayKitLogo.png" id="5_g6ymn"]
+[ext_resource type="Texture2D" uid="uid://dft0od3v17fla" path="res://UI/MenuButtons/NewGameNormal.png" id="6_j6axb"]
+[ext_resource type="Texture2D" uid="uid://c6tx5egsp4pk0" path="res://UI/MenuButtons/NewGameHighlight.png" id="7_y60rd"]
+[ext_resource type="Texture2D" uid="uid://bdw3qbuxrowc6" path="res://UI/MenuButtons/LoadGameNormal.png" id="8_c35xf"]
+[ext_resource type="Texture2D" uid="uid://d0x6vtwnfi4eh" path="res://UI/MenuButtons/LoadGameHighlight.png" id="9_lujfk"]
+[ext_resource type="Texture2D" uid="uid://df4nuxn83cswt" path="res://UI/MenuButtons/SettingsNormal.png" id="10_t8nla"]
+[ext_resource type="Texture2D" uid="uid://nuhaddxa0by0" path="res://UI/MenuButtons/SettingsHighlighted.png" id="11_4vaxt"]
 
 [sub_resource type="Animation" id="Animation_kch41"]
 resource_name = "SplashFadeOut"
@@ -50,12 +56,74 @@ _data = {
 "SplashFadeOut": SubResource("Animation_kch41")
 }
 
+[sub_resource type="Animation" id="Animation_h3n3s"]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureButton:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureButton3:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureButton2:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureButton4:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1td5"]
+_data = {
+"FadeIn": SubResource("Animation_h3n3s")
+}
+
 [node name="CanvasLayer" type="CanvasLayer"]
+metadata/_edit_horizontal_guides_ = [1048.0]
 
 [node name="MenuBackground" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_2dagq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_paxuk")
 
 [node name="SplashScreen" type="Control" parent="."]
 layout_mode = 3
@@ -63,12 +131,6 @@ anchor_right = 0.998
 anchor_bottom = 0.998
 offset_right = 0.839966
 offset_bottom = 0.159912
-
-[node name="TextureRect" type="TextureRect" parent="SplashScreen"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_paxuk")
 
 [node name="TextureRect2" type="TextureRect" parent="SplashScreen"]
 layout_mode = 0
@@ -103,12 +165,53 @@ libraries = {
 }
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1917.0
 offset_bottom = 1079.0
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureButton" type="TextureButton" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 128.0
+offset_top = 924.0
+offset_right = 494.0
+offset_bottom = 1044.0
+texture_normal = ExtResource("6_j6axb")
+texture_hover = ExtResource("7_y60rd")
+
+[node name="TextureButton2" type="TextureButton" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 565.0
+offset_top = 926.0
+offset_right = 931.0
+offset_bottom = 1046.0
+texture_normal = ExtResource("8_c35xf")
+texture_hover = ExtResource("9_lujfk")
+
+[node name="TextureButton3" type="TextureButton" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 987.0
+offset_top = 926.0
+offset_right = 1353.0
+offset_bottom = 1046.0
+texture_normal = ExtResource("10_t8nla")
+texture_hover = ExtResource("11_4vaxt")
+
+[node name="TextureButton4" type="TextureButton" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1380.0
+offset_top = 925.0
+offset_right = 1746.0
+offset_bottom = 1045.0
+texture_normal = ExtResource("10_t8nla")
+texture_hover = ExtResource("11_4vaxt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+"": SubResource("AnimationLibrary_p1td5")
+}
