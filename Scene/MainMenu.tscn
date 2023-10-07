@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx0iyf74ds0pv"]
+
+[ext_resource type="Texture2D" uid="uid://ddu577gwxrqsc" path="res://UI/MenuBackground.png" id="1_2dagq"]
+[ext_resource type="Texture2D" uid="uid://csogh48xeg0yu" path="res://UI/GameNameLogo.png" id="2_paxuk"]
+[ext_resource type="Texture2D" uid="uid://ncq467flliyt" path="res://UI/YeahNahLogo.png" id="3_wes3g"]
+[ext_resource type="Texture2D" uid="uid://c7i4hssgaqx7y" path="res://UI/GodotLogo.png" id="4_s8mot"]
+[ext_resource type="Texture2D" uid="uid://hfpnatfahkr4" path="res://UI/KayKitLogo.png" id="5_g6ymn"]
+
+[sub_resource type="Animation" id="Animation_2l1l5"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fprwf"]
+_data = {
+"FadeOut": SubResource("Animation_2l1l5")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MenuBackground" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_2dagq")
+
+[node name="SplashScreen" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchor_right = 0.998
+anchor_bottom = 0.998
+offset_right = 0.839966
+offset_bottom = 0.159912
+
+[node name="TextureRect" type="TextureRect" parent="SplashScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_paxuk")
+
+[node name="TextureRect2" type="TextureRect" parent="SplashScreen"]
+layout_mode = 0
+offset_left = 628.0
+offset_top = 709.0
+offset_right = 1290.0
+offset_bottom = 1081.0
+texture = ExtResource("3_wes3g")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="SplashScreen"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 799.0
+offset_right = 595.0
+offset_bottom = 960.0
+texture = ExtResource("4_s8mot")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="SplashScreen"]
+layout_mode = 0
+offset_left = 1369.0
+offset_top = 790.0
+offset_right = 1577.0
+offset_bottom = 975.0
+texture = ExtResource("5_g6ymn")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SplashScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_fprwf")
+}

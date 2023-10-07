@@ -567,7 +567,7 @@ mRandomInventory = true
 mLeftHand = NodePath("KayKit_AnimatedCharacter_v1_2/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
 mRightHand = NodePath("KayKit_AnimatedCharacter_v1_2/KayKit Animated Character2/Skeleton3D/HandSlotRight")
 
-[node name="KayKit_AnimatedCharacter_v1_2" parent="." instance=ExtResource("1_q5yux")]
+[node name="KayKit_AnimatedCharacter_v1_2" parent="." groups=["Enemy"] instance=ExtResource("1_q5yux")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.122048, 0)
 
 [node name="Skeleton3D" parent="KayKit_AnimatedCharacter_v1_2/KayKit Animated Character2" index="0"]

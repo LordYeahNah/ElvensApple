@@ -31,7 +31,7 @@ public partial class WeaponController : Node3D
 		if(mWeaponCast.IsColliding())
 		{
 			GodotObject collision = mWeaponCast.GetCollider();
-			if(collision != Owner)
+			if(collision != mOwner)
 			{
 				if(collision is BaseCharacter character)
 				{

@@ -10,7 +10,7 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Player"]]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 collision_layer = 2
 collision_mask = 2
@@ -82,6 +82,9 @@ transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0
 visible = false
 
 [node name="PlayerStatBar" parent="CanvasLayer" instance=ExtResource("5_4hc7f")]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.1, 0)
 
 [editable path="Character"]
 [editable path="Character/Animated"]
