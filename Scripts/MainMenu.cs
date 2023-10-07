@@ -41,6 +41,6 @@ public partial class MainMenu : CanvasLayer
 	{
 		mMenuFadeIn.Play("FadeIn");
 		mSplashScreen.Visible = false;
-		mMainMenu.Visible = false;
+		mMainMenu.Visible = true;
 	}
 }
