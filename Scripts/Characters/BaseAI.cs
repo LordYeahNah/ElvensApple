@@ -36,8 +36,6 @@ public partial class BaseAI : BaseCharacter, ICombat
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
         
-        BaseCharacter player = (BaseCharacter)GetTree().GetFirstNodeInGroup("Player");
-        mBlackboard.SetValue("Target", player);
         Callable.From(ActorSetup).CallDeferred();
     }
 
@@ -49,8 +47,6 @@ public partial class BaseAI : BaseCharacter, ICombat
         CreateBlackboard();
         mTree = new TestBT();
         mTree.OnInitialize(mBlackboard);
-        if(mAnimPlayer != null)
-            mAnimator = new BaseAI_Animator(mAnimPlayer, this);
     }
 
     /// <summary>
