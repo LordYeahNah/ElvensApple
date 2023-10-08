@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsaxlh3iw1dhi"]
+[gd_scene load_steps=17 format=3 uid="uid://dsaxlh3iw1dhi"]
 
+[ext_resource type="Script" path="res://Scripts/LevelController.cs" id="1_jbivt"]
 [ext_resource type="PackedScene" uid="uid://cxgs6u5j1rofb" path="res://Prefabs/Player.tscn" id="1_ltwyh"]
 [ext_resource type="PackedScene" uid="uid://b3ldyv3dnc7kj" path="res://Models/Enviroment/floorDecoration_shatteredBricks.gltf.glb" id="2_174mm"]
 [ext_resource type="PackedScene" uid="uid://dei00kxnioltf" path="res://Prefabs/Tiles/GroundB.tscn" id="3_kufn5"]
@@ -27,7 +28,9 @@ fog_enabled = true
 fog_light_color = Color(0.121569, 0.133333, 0.156863, 1)
 fog_density = 0.1363
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("mLevelPathPoints")]
+script = ExtResource("1_jbivt")
+mLevelPathPoints = []
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ltwyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
@@ -345,4 +348,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883678, 0.675351)
 light_color = Color(1, 0.560784, 0, 1)
 
 [node name="Skeleton" parent="." instance=ExtResource("13_64pc1")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492998, 0.0773272, 8.39544)
+visible = false
