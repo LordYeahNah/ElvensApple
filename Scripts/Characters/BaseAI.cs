@@ -41,6 +41,8 @@ public partial class BaseAI : BaseCharacter, ICombat
         base._Ready();
         
         CreateAI();
+        if(mTree != null)
+            mTree.OnInitialize(mBlackboard);
 
         mInventory = new Inventory(5, mLeftHand, mRightHand, this);
         
@@ -53,8 +55,6 @@ public partial class BaseAI : BaseCharacter, ICombat
     protected virtual void CreateAI()
     {
         CreateBlackboard();
-        mTree = new TestBT();
-        mTree.OnInitialize(mBlackboard);
     }
 
     /// <summary>
@@ -86,18 +86,16 @@ public partial class BaseAI : BaseCharacter, ICombat
 
     protected void HandleLookAt()
     {
+        Vector3 lookAt = Vector3.Zero;
         if(mBlackboard.GetValue<BaseCharacter>("Target") != null)
         {
-            Vector3 lookAt = mBlackboard.GetValue<BaseCharacter>("Target").Position;
-            this.LookAt(new Vector3(lookAt.X, lookAt.Y, lookAt.Z), Vector3.Up);
-        } else 
+            lookAt = mBlackboard.GetValue<BaseCharacter>("Target").Position;
+        } else
         {
-            if(mBlackboard.GetValue<bool>("HasLocation"))
-            {
-                Vector3 moveToLocation = mTargetPosition;
-                this.LookAt(new Vector3(moveToLocation.X, 0f, moveToLocation.Z), Vector3.Up);
-            }
+            lookAt = mTargetPosition;
         }
+        
+        this.LookAt(new Vector3(lookAt.X, lookAt.Y, lookAt.Z), Vector3.Up);
     }
 
     /// <summary>
