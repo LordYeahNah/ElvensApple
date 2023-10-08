@@ -4,6 +4,12 @@ using Godot;
 
 public partial class FriendlyController : BaseAI
 {
+    [ExportGroup("Interaction")] 
+    [Export] protected MeshInstance3D mQuestMarker;
+    [Export] protected MeshInstance3D mInteractionMarker;
+    [Export] protected bool mCanInteract;
+
+    public bool CanInteract => mCanInteract;
     public override void _Ready()
     {
         base._Ready();
