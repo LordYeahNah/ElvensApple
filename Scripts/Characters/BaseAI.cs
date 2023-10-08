@@ -8,6 +8,13 @@ public enum EActionDecision
     ATTACK = 1,
 }
 
+public enum EMovementState
+{
+    IDLE = 0,
+    WANDERING = 1,
+    TARGET = 2,
+}
+
 public partial class BaseAI : BaseCharacter, ICombat
 {
 
@@ -16,6 +23,7 @@ public partial class BaseAI : BaseCharacter, ICombat
     [Export] protected float mMovementSpeed;
     protected Vector3 mTargetPosition;
     public bool CanMove = false;
+    [Export] private EMovementState mMovementState;
 
     // Reference to AI Components
     protected Blackboard mBlackboard;
@@ -150,6 +158,8 @@ public partial class BaseAI : BaseCharacter, ICombat
         mBlackboard.SetValue("HasLocation", false);
         mBlackboard.SetValue("MoveToLocation", Vector3.Zero);
         mBlackboard.SetValue<BaseCharacter>("Target", null);
+        mBlackboard.SetValue("MovementState", (int)mMovementState);
+        mBlackboard.SetValue("HasWanderPoiint", false);
     }
 
     public override void LightAttack()
