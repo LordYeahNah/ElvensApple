@@ -13,6 +13,7 @@ public partial class PlayerController : BaseCharacter, ICombat
 
     [ExportGroup("Components")]
     [Export] private AnimationPlayer mAnimPlayer;
+    [Export] private DialogBoxController mDialogBox;                        // Reference to the dialog box
 
     [ExportGroup("Stat Components")]
     [Export] private TextureProgressBar mHealthBar;
@@ -153,5 +154,23 @@ public partial class PlayerController : BaseCharacter, ICombat
             pAnim.ResumeBlockAnim();
 
         mCanMove = true;
+    }
+
+    /// <summary>
+    /// Displays the dialog box with the selected dialog
+    /// </summary>
+    /// <param name="mDialogData"></param>
+    public void ShowDialogBox(DialogData mDialogData)
+    {
+        mDialogBox.Visible = true;
+        mDialogBox.Setup(mDialogData);
+    }
+
+    /// <summary>
+    /// Closes the dialog box
+    /// </summary>
+    public void CloseDialogBox()
+    {
+        mDialogBox.Visible = false;
     }
 }
