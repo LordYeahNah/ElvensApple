@@ -1,5 +1,5 @@
 using System;
-using ElvensApple.Scripts.Characters;
+using System.Collections.Generic;
 using Godot;
 
 public partial class FriendlyController : BaseAI
@@ -10,6 +10,13 @@ public partial class FriendlyController : BaseAI
     [Export] protected bool mCanInteract;
 
     public bool CanInteract => mCanInteract;
+    
+    
+    // === DIALOG === //
+    [ExportGroup("Dialog")] 
+    [Export] protected string[] mDialogID;                      // Reference to all the dialogs by ID                       
+    private List<DialogData> mDialog = new List<DialogData>();              // reference to all the dialogs
+    
     public override void _Ready()
     {
         base._Ready();
