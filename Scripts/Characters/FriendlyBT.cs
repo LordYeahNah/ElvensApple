@@ -1,8 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
-
-namespace ElvensApple.Scripts.Characters;
-
 public class FriendlyBT : BehaviorTree
 {
     protected override Task CreateTree()
