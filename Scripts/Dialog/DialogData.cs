@@ -10,7 +10,8 @@ public class DialogData
 
     private string mDialogMessage;
     public string DialogMessage => mDialogMessage;
-    public string mNextDialogData;
+    public string NextDialogData;
+    public bool HaasPlayed = false;                         // If the dialog has already played
     public event Action OnDialogComplete;
     
 
@@ -19,6 +20,7 @@ public class DialogData
         OnDialogComplete += dialogComplete;
         mDialogID = id;
         DialogName = name;
+        NextDialogData = nextDialog;
         mDialogMessage = message;
     }
 
