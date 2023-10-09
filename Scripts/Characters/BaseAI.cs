@@ -192,7 +192,7 @@ public partial class BaseAI : BaseCharacter, ICombat
 
     }
 
-    private async void ActorSetup()
+    protected virtual async void ActorSetup()
     {
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
         CreateInventory();
