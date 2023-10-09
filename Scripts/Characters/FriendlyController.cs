@@ -28,4 +28,26 @@ public partial class FriendlyController : BaseAI
         base.CreateAI();
         mTree = new FriendlyBT();
     }
+
+    private void GetDialog()
+    {
+        if (mDialogID.Length > 0)
+        {
+            DialogDatabase db = GetNode<DialogDatabase>("/root/DialogDatabase");
+            int level = LevelController.Instance.LevelNumber;
+            if (db != null)
+            {
+                foreach (var dialog in mDialogID)
+                {
+                    DialogData dialogRef = db.GetDialog(dialog, level);
+                }
+            }
+        }
+    }
+
+    protected override async void ActorSetup()
+    {
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+        GetDialog();
+    }
 }
