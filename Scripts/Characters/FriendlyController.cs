@@ -98,6 +98,7 @@ public partial class FriendlyController : BaseAI
             else
             {
                 mPlayer.CloseDialogBox();
+                mCanInteract = false;                   // Prevent further interaction once finished
             }
             
             if(mDialog.Count > 0)
