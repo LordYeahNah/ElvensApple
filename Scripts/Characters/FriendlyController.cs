@@ -10,6 +10,8 @@ public partial class FriendlyController : BaseAI
     [Export] protected bool mCanInteract;
 
     public bool CanInteract => mCanInteract;
+
+    protected PlayerController mPlayer;                         // Reference to the player controller
     
     
     // === DIALOG === //
