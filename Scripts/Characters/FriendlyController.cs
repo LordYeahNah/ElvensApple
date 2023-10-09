@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Godot;
 
 public partial class FriendlyController : BaseAI
@@ -85,6 +86,21 @@ public partial class FriendlyController : BaseAI
         }
     }
 
+    public void FinishDialog()
+    {
+        if (mPlayer != null)
+        {
+            if (mDialog.Count > 1)
+            {
+                mPlayer.ShowDialogBox(mDialog[1]);
+            }
+            else
+            {
+                mPlayer.CloseDialogBox();
+            }
+            
+            if(mDialog.Count > 0)
+                mDialog.RemoveAt(0);
         }
     }
 
@@ -92,5 +108,6 @@ public partial class FriendlyController : BaseAI
     {
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
         GetDialog();
+        CheckIfInteractable();
     }
 }
