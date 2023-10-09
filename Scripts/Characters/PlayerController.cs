@@ -16,6 +16,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     [Export] private AnimationPlayer mAnimPlayer;
     [Export] private DialogBoxController mDialogBox;                        // Reference to the dialog box
     [Export] private RayCast3D mInteractionCast;                            // Reference to the interaction raycast
+    [Export] private Label mInteractionLabel;                       // Reference to the indicator for interaction
 
     [ExportGroup("Stat Components")]
     [Export] private TextureProgressBar mHealthBar;
@@ -75,6 +76,7 @@ public partial class PlayerController : BaseCharacter, ICombat
                 GodotObject collision = mInteractionCast.GetCollider();
                 if (collision is FriendlyController friend)
                 {
+                    mInteractionLabel.Visible = true;
                     if (friend.CanInteract)
                     {
                         if (Input.IsActionJustPressed("Interact"))
@@ -84,10 +86,19 @@ public partial class PlayerController : BaseCharacter, ICombat
                         }
                     }
                 }
+                else
+                {
+                    mInteractionLabel.Visible = false;
+                }
+            }
+            else
+            {
+                mInteractionLabel.Visible = false;
             }
         }
         else
         {
+            mInteractionLabel.Visible = false;
             if (mInteractingWith != null)
             {
                 if (Input.IsActionJustPressed("ProgressDialog"))
