@@ -1,0 +1,37 @@
+[
+	{
+		"ID": "#1_0",
+		"Name": "Guide",
+		"Level": 1,
+		"Message": "You look lost Young warrior",
+		"Action": "NextID:#1_1"
+	},
+	{
+		"ID": "#1_1",
+		"Name": "Warrior",
+		"Level": 1,
+		"Message": "Where am i? Who am I?",
+		"Action": "NextID:#1_2"
+	},
+	{
+		"ID": "#1_2",
+		"Name": "Guide",
+		"Level": 1,
+		"Message": "You're a fallen warrior who must face one last battle to make your way into the after life",
+		"Action": "NextID:#1_3"
+	},
+	{
+		"ID": "#1_3",
+		"Name": "Guide",
+		"Level": 1,
+		"Message": "In order to reach the peacefull after life you must find your Elven Apple or you'll be trapped here for eternity",
+		"Action": "NextID:#1_4"
+	},
+	{
+		"ID": "#1_4",
+		"Name": "Guide",
+		"Level": 1,
+		"Message": "I'll guide you through this purgatory but you'll have to do the hard work, now off you go!",
+		"Action": "0"
+	}
+]
