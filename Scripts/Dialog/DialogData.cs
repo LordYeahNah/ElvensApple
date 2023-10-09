@@ -10,10 +10,11 @@ public class DialogData
 
     private string mDialogMessage;
     public string DialogMessage => mDialogMessage;
-
+    public string mNextDialogData;
     public event Action OnDialogComplete;
+    
 
-    public DialogData(string id, string name, string message, Action dialogComplete)
+    public DialogData(string id, string name, string message, string nextDialog, Action dialogComplete = null)
     {
         OnDialogComplete += dialogComplete;
         mDialogID = id;
