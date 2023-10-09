@@ -35,15 +35,25 @@ public partial class FriendlyController : BaseAI
     {
         if (mDialogID.Length > 0)
         {
-            DialogDatabase db = GetNode<DialogDatabase>("/root/DialogDatabase");
-            int level = LevelController.Instance.LevelNumber;
+            DialogDatabase db = GetNode<DialogDatabase>("/root/DialogDatabase");                // Get reference to the dialog database
+            int level = LevelController.Instance.LevelNumber;                   // Get reference to the level number
             if (db != null)
             {
+                // Loop throuh each id and get the dialog data
                 foreach (var dialog in mDialogID)
                 {
                     DialogData dialogRef = db.GetDialog(dialog, level);
+                    mDialog.Add(dialogRef);                 // Add the new dialog
                 }
             }
+            
+            // Add the dialog event
+            foreach (var d in mDialog)
+            {
+                d.OnDialogComplete += FinishDialog;
+            }
+        }
+    }
         }
     }
 
