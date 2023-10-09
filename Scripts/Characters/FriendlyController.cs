@@ -74,6 +74,7 @@ public partial class FriendlyController : BaseAI
         if (!hasInteracted)
         {
             mInteractionMarker.Visible = true;
+            mCanInteract = true;
         }
     }
 
