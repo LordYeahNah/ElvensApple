@@ -75,6 +75,16 @@ public partial class FriendlyController : BaseAI
             mInteractionMarker.Visible = true;
         }
     }
+
+    public void InteractWith(PlayerController player)
+    {
+        mPlayer = player;
+        if (mPlayer != null)
+        {
+            mPlayer.ShowDialogBox(mDialog[0]);
+        }
+    }
+
         }
     }
 
