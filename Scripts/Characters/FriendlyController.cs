@@ -54,6 +54,27 @@ public partial class FriendlyController : BaseAI
             }
         }
     }
+
+    private void CheckIfInteractable()
+    {
+        bool hasInteracted = true;                      // Predefine the flag
+        foreach (var dialog in mDialog)
+        {
+            // Check if the dialog has already played, if it hasn't
+            // break the loop
+            if (!dialog.HaasPlayed)
+            {
+                hasInteracted = false;
+                break;
+            }
+        }
+
+        // if we still need to interact with character than display interaction marker
+        if (!hasInteracted)
+        {
+            mInteractionMarker.Visible = true;
+        }
+    }
         }
     }
 
