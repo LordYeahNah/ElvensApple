@@ -32,6 +32,7 @@ fog_density = 0.1363
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("mLevelPathPoints")]
 script = ExtResource("1_jbivt")
 mLevelPathPoints = [NodePath("WanderPoint1"), NodePath("WanderPoint2"), NodePath("WanderPoint3")]
+mLevelNumber = 1
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ltwyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
@@ -364,3 +365,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33471, 0, 11.9559)
 
 [node name="Guide" parent="." instance=ExtResource("15_y4jgy")]
 transform = Transform3D(-0.580845, 0, -0.814014, 0, 1, 0, 0.814014, 0, -0.580845, 10.7305, 0.00717402, 4.33768)
+mDialogID = PackedStringArray("#1_0", "#1_1", "#1_2", "#1_3", "#1_4")

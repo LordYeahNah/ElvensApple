@@ -32,6 +32,6 @@
 		"Name": "Guide",
 		"Level": 1,
 		"Message": "I'll guide you through this purgatory but you'll have to do the hard work, now off you go!",
-		"Action": "0"
+		"Action": "NextID:0"
 	}
 ]

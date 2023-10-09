@@ -24,6 +24,8 @@ public partial class FriendlyController : BaseAI
     {
         base._Ready();
         mAnimator = new BaseAI_Animator(mAnimPlayer, this);
+        
+        Callable.From(ActorSetup).CallDeferred();
     }
 
     protected override void CreateAI()
@@ -34,6 +36,8 @@ public partial class FriendlyController : BaseAI
 
     private void GetDialog()
     {
+        if (mDialogID == null)
+            return;
         if (mDialogID.Length > 0)
         {
             DialogDatabase db = GetNode<DialogDatabase>("/root/DialogDatabase");                // Get reference to the dialog database
@@ -47,12 +51,7 @@ public partial class FriendlyController : BaseAI
                     mDialog.Add(dialogRef);                 // Add the new dialog
                 }
             }
-            
-            // Add the dialog event
-            foreach (var d in mDialog)
-            {
-                d.OnDialogComplete += FinishDialog;
-            }
+
         }
     }
 
@@ -87,23 +86,32 @@ public partial class FriendlyController : BaseAI
         }
     }
 
-    public void FinishDialog()
+    /// <summary>
+    /// Finishes the dialog
+    /// </summary>
+    /// <returns>If the dialog has completely finished</returns>
+    public bool FinishDialog()
     {
         if (mPlayer != null)
         {
             if (mDialog.Count > 1)
             {
                 mPlayer.ShowDialogBox(mDialog[1]);
+                if(mDialog.Count > 0)
+                    mDialog.RemoveAt(0);
+                return false;
             }
             else
             {
+                if(mDialog.Count > 0)
+                    mDialog.RemoveAt(0);
                 mPlayer.CloseDialogBox();
                 mCanInteract = false;                   // Prevent further interaction once finished
+                return true;
             }
-            
-            if(mDialog.Count > 0)
-                mDialog.RemoveAt(0);
         }
+
+        return false;
     }
 
     protected override async void ActorSetup()

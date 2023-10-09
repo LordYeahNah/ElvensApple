@@ -368,9 +368,14 @@ albedo_texture = ExtResource("3_qyyfh")
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("4_32rjr")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.52
 
-[node name="Guide" type="CharacterBody3D" node_paths=PackedStringArray("mAgent", "mAnimPlayer", "mLeftHand", "mRightHand")]
+[node name="Guide" type="CharacterBody3D" node_paths=PackedStringArray("mQuestMarker", "mInteractionMarker", "mAgent", "mAnimPlayer", "mLeftHand", "mRightHand")]
 script = ExtResource("1_gn4dw")
+mQuestMarker = NodePath("QuestMarker")
+mInteractionMarker = NodePath("InteractionMarker2")
 mAgent = NodePath("NavigationAgent3D")
 mMovementSpeed = 2.5
 mAnimPlayer = NodePath("KayKit_AnimatedCharacter_v1_2/AnimationPlayer")
@@ -446,7 +451,7 @@ path_desired_distance = 0.5
 target_desired_distance = 0.5
 path_max_distance = 100.01
 
-[node name="InteractionMarker" type="MeshInstance3D" parent="."]
+[node name="QuestMarker" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.17067, 0)
 visible = false
 mesh = SubResource("PlaneMesh_dt8eg")
@@ -454,6 +459,7 @@ surface_material_override/0 = SubResource("ORMMaterial3D_ydr01")
 
 [node name="InteractionMarker2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.17067, 0)
+visible = false
 mesh = SubResource("PlaneMesh_dt8eg")
 surface_material_override/0 = SubResource("ORMMaterial3D_d0sj7")
 

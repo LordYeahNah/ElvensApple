@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Godot;
 
 public partial class PlayerController : BaseCharacter, ICombat
@@ -14,11 +15,15 @@ public partial class PlayerController : BaseCharacter, ICombat
     [ExportGroup("Components")]
     [Export] private AnimationPlayer mAnimPlayer;
     [Export] private DialogBoxController mDialogBox;                        // Reference to the dialog box
+    [Export] private RayCast3D mInteractionCast;                            // Reference to the interaction raycast
 
     [ExportGroup("Stat Components")]
     [Export] private TextureProgressBar mHealthBar;
     [Export] private TextureProgressBar mManaBar;
 
+    // === INTERACTION === //
+    private bool mIsInInteraction = false;                       // if the character is currently interacting with something
+    private FriendlyController mInteractingWith;                    // The character that we are interacting with
     public override void _Ready()
     {
         base._Ready();
@@ -62,6 +67,39 @@ public partial class PlayerController : BaseCharacter, ICombat
 
         if(Input.IsActionJustReleased("Block"))
             StopBlocking();
+
+        if (!mIsInInteraction)
+        {
+            if (mInteractionCast.IsColliding())
+            {
+                GodotObject collision = mInteractionCast.GetCollider();
+                if (collision is FriendlyController friend)
+                {
+                    if (friend.CanInteract)
+                    {
+                        if (Input.IsActionJustPressed("Interact"))
+                        {
+                            mInteractingWith = friend;
+                            friend.InteractWith(this);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (mInteractingWith != null)
+            {
+                if (Input.IsActionJustPressed("ProgressDialog"))
+                {
+                    if (mInteractingWith.FinishDialog())
+                    {
+                        mInteractingWith = null;
+                        mIsInInteraction = false;
+                    }
+                }
+            }
+        }
 
     }
 
@@ -164,6 +202,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     {
         mDialogBox.Visible = true;
         mDialogBox.Setup(mDialogData);
+        mIsInInteraction = true;
     }
 
     /// <summary>
@@ -172,5 +211,6 @@ public partial class PlayerController : BaseCharacter, ICombat
     public void CloseDialogBox()
     {
         mDialogBox.Visible = false;
+        mIsInInteraction = false;
     }
 }
