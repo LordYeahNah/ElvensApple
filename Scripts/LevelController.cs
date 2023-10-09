@@ -6,7 +6,8 @@ public partial class LevelController : Node3D
 {
     public static LevelController Instance;                 // Global instance of this class
     [Export] protected Node3D[] mLevelPathPoints;                        // Reference to all the random path points a character may move to
-
+    [Export] protected int mLevelNumber;
+    public int LevelNumber => mLevelNumber;
     public override void _Ready()
     {
         base._Ready();
