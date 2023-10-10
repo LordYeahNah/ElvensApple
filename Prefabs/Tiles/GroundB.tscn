@@ -45,7 +45,7 @@ data = PackedVector3Array(1, 0.95, 1, 1, 0.05, 1, -1, 0.05, 1, 1, 0.95, 1, -1, 0
 mesh = SubResource("ArrayMesh_7alec")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="tileBrickB_large"]
+[node name="StaticBody3D" type="StaticBody3D" parent="tileBrickB_large" groups=["Ground"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tileBrickB_large/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3j2w8")
