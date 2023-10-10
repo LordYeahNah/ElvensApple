@@ -15,6 +15,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     [ExportGroup("Jump Settings")] 
     [Export] private float mGravity = -9.81f;
     [Export] private float mJumpForce;
+    [Export] private float mAirMovementForce;                   // Fast the character can move when not grounded
 
     [ExportGroup("Components")]
     [Export] private AnimationPlayer mAnimPlayer;
@@ -146,9 +147,19 @@ public partial class PlayerController : BaseCharacter, ICombat
             
             if(movementInput.Length() > 0.1)
             {
-                // Calculate movement directions
-                Vector3 forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
-                Vector3 right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
+                Vector3 forward;
+                Vector3 right;
+                if (IsGrounded())
+                {
+                    // Calculate movement directions
+                    forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
+                    right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
+                }
+                else
+                {
+                    forward = this.Transform.Basis.X * (movementInput.Y * mAirMovementForce);
+                    right = this.Transform.Basis.Y * (movementInput.X * mAirMovementForce);
+                }
 
                 // Apply the movement
                 moveDirection = (forward + right) * delta;
