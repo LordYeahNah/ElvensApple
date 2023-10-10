@@ -175,9 +175,6 @@ public partial class PlayerController : BaseCharacter, ICombat
             moveDirection.Y += mGravity * delta;
         }
 
-        
-        GD.Print(IsGrounded());
-
         if (IsGrounded())
         {
             this.Velocity = moveDirection;                  // apply the movement direction
