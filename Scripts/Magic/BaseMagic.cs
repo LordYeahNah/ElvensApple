@@ -9,6 +9,7 @@ public enum EMagicVFXSpawn
 
 public abstract class BaseMagic
 {
+    
     public string MagicName;                        // Name of the magic
     public Texture2D SpellIcon;
     public PackedScene VFX_Scene;                     // Reference to the VFX
@@ -16,18 +17,6 @@ public abstract class BaseMagic
 
     private bool mHasCooldown = false;
     private float mCooldownTime;
-    
 
-    public BaseMagic(string name, PackedScene vfx, EMagicVFXSpawn spawnPoint, float cooldownTime = 0f)
-    {
-        MagicName = name;
-        VFX_Scene = vfx;
-        SpawnPoint = spawnPoint;
-        if (cooldownTime > 0f)
-            mHasCooldown = true;
-
-        mCooldownTime = cooldownTime;
-    }
-    
     public abstract void UseMagic();
 }
