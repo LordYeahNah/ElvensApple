@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1k0xq")
-mSpellsSlot = []
+mSpellsSlot = [NodePath("TextureRect/Spell1"), NodePath("TextureRect/Spell2"), NodePath("TextureRect/Spell3"), NodePath("TextureRect/Spell4"), NodePath("TextureRect/Spell5"), NodePath("TextureRect/Spell6"), NodePath("TextureRect/Spell7"), NodePath("TextureRect/Spell8")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
