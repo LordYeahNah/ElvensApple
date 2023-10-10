@@ -16,17 +16,19 @@
 font = ExtResource("6_1u4it")
 font_size = 50
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mDialogBox", "mInteractionCast", "mInteractionLabel", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mDialogBox", "mInteractionCast", "mInteractionLabel", "mGroundCast", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
+mJumpForce = 2.0
 mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
 mDialogBox = NodePath("Dialog")
 mInteractionCast = NodePath("InteractionRaycast")
 mInteractionLabel = NodePath("CanvasLayer/InteractLabel")
+mGroundCast = NodePath("GroundedRaycast")
 mHealthBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/HealthBar")
 mManaBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/ManaBar")
 mInventoryPanel = NodePath("CanvasLayer/Inventory")
@@ -105,7 +107,9 @@ label_settings = SubResource("LabelSettings_6a4dm")
 visible = false
 
 [node name="GroundedRaycast" type="RayCast3D" parent="."]
-target_position = Vector3(0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0910622, 0)
+target_position = Vector3(0, -0.2, 0)
+collide_with_areas = true
 
 [node name="InteractionRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.527924, 1.27423, 0)
