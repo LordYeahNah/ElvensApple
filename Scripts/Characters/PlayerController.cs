@@ -33,6 +33,8 @@ public partial class PlayerController : BaseCharacter, ICombat
     [ExportGroup("Magic")] 
     [Export] private TextureRect mMagicSlotOne;
     [Export] private TextureRect mMagicSlotTwo;
+    [Export] private SpellInventory mSpellInventory;
+    private bool mSpellsIsOpen;                             // flag for if the spells inventory is open
 
     public TextureRect MagicSlotOne => mMagicSlotOne;
     public TextureRect MagicSlotTwo => mMagicSlotTwo;
@@ -50,7 +52,7 @@ public partial class PlayerController : BaseCharacter, ICombat
         mStats = new CharacterStats("Player");
 
         mHealthBar.Value = mStats.CurrentHealth;
-
+        
         // Debug Inventory
         Callable.From(ActorSetup).CallDeferred();   
     }
@@ -71,6 +73,21 @@ public partial class PlayerController : BaseCharacter, ICombat
                 mInventoryPanel.Setup(mInventory);
                 Input.MouseMode = Input.MouseModeEnum.Visible;
             } else 
+            {
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+        }
+
+        if (Input.IsActionJustPressed("Spells"))
+        {
+            mSpellsIsOpen = !mSpellsIsOpen;
+            mSpellInventory.Visible = mSpellsIsOpen;
+            if (mSpellsIsOpen)
+            {
+                mSpellInventory.Setup();
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+            }
+            else
             {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
             }
