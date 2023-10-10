@@ -79,12 +79,12 @@ public partial class BaseAI : BaseCharacter, ICombat
         if(mTree != null)
             mTree.OnUpdate((float)delta);
 
-        HandleLookAt();
+        HandleLookAt((float)delta);
 
         
     }
 
-    protected void HandleLookAt()
+    protected void HandleLookAt(float delta)
     {
         Vector3 lookAt = Vector3.Zero;
         if(mBlackboard.GetValue<BaseCharacter>("Target") != null)
@@ -94,8 +94,14 @@ public partial class BaseAI : BaseCharacter, ICombat
         {
             lookAt = mTargetPosition;
         }
-        
-        this.LookAt(new Vector3(lookAt.X, lookAt.Y, lookAt.Z), Vector3.Up);
+
+        if (lookAt != Vector3.Zero)
+        {
+            Transform3D lookTarget = Transform.LookingAt(lookAt, Vector3.Up);
+            GlobalTransform = GlobalTransform.InterpolateWith(lookTarget, 1 * delta);
+        }
+            
+        //this.LookAt(new Vector3(lookAt.X, lookAt.Y, lookAt.Z), Vector3.Up);
     }
 
     /// <summary>
