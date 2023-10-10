@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmtye6yvbevax"
+path="res://.godot/imported/Heroic Demise (New).mp3-1d12717f051e356a69c6b1457486038e.mp3str"
+
+[deps]
+
+source_file="res://SFX/Heroic Demise (New).mp3"
+dest_files=["res://.godot/imported/Heroic Demise (New).mp3-1d12717f051e356a69c6b1457486038e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
