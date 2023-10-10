@@ -1,0 +1,266 @@
+[gd_scene load_steps=11 format=3 uid="uid://baaleke7secxq"]
+
+[ext_resource type="Script" path="res://Scripts/LevelController.cs" id="1_0rpqp"]
+[ext_resource type="PackedScene" uid="uid://daxqn2801asjj" path="res://Prefabs/Tiles/GroundB_CrackedB.tscn" id="2_6u1xr"]
+[ext_resource type="PackedScene" uid="uid://dei00kxnioltf" path="res://Prefabs/Tiles/GroundB.tscn" id="3_iac6g"]
+[ext_resource type="PackedScene" uid="uid://crtjkbxd4fd4t" path="res://Prefabs/Tiles/GroundB_CrackedA.tscn" id="4_ihtuj"]
+[ext_resource type="PackedScene" uid="uid://brpvw5w4lg5uq" path="res://Prefabs/Tiles/SmallTileA.tscn" id="5_61t8e"]
+[ext_resource type="PackedScene" uid="uid://damd15gx55pgo" path="res://Prefabs/Walls/WallDoor.tscn" id="6_5mpnh"]
+[ext_resource type="PackedScene" uid="uid://c0nlsqxmr6xy0" path="res://Prefabs/Walls/WallGeneral.tscn" id="7_owtwi"]
+[ext_resource type="PackedScene" uid="uid://cpmgbt0rivpvj" path="res://Prefabs/Walls/WallSingleCorner.tscn" id="8_p1r0y"]
+[ext_resource type="PackedScene" uid="uid://dy6rkjjmdlx5d" path="res://Prefabs/Walls/WallEnd.tscn" id="9_irim6"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jiow4"]
+vertices = PackedVector3Array(-2.66506, 1.5, -14.5263, -2.66506, 1.75, -12.5263, -2.16506, 1.75, -12.5263, -2.41506, 2, 2.72367, -0.915057, 2, 2.72367, -0.165057, 2, 2.47367, -2.66506, 2.25, -8.77633, -2.16506, 1.75, -12.5263, -2.66506, 2, -10.5263, -1.41506, 2, -10.2763, -2.66506, 1.5, -14.5263, -2.16506, 1.75, -12.5263, -1.41506, 2, -10.2763, 8.58494, 1.5, -8.77633, 8.58494, 1.5, -14.5263, 2.59004, 1.5, -12.0134, 8.58494, 1.5, -8.77633, -1.41506, 2.25, -9.52633, -2.66506, 2.25, -8.77633, 14.5849, 1.5, 2.22367, 14.5849, 1.5, -8.52633, 8.58494, 1.5, -8.77633, -2.66506, 2.25, -8.77633, -0.165057, 2, 2.47367, 2.78494, 2.25, 2.42367, 8.68494, 1.5, 2.32367, 2.58021, 2.25, -4.50962, 8.58494, 1.5, -8.77633, -1.41506, 2, -10.2763, -1.41506, 2.25, -9.52633, 5.58494, 1.5, 11.2237, 5.08494, 1.5, 11.2237, 4.83494, 1.5, 12.4737, 4.83494, 1.75, 13.4737, -0.165057, 2, 3.97367, -0.415057, 2, 5.47367, -0.415057, 2, 5.72367, 0.334943, 2, 2.72367, 5.58494, 1.75, 10.4737, 5.58494, 1.5, 11.2237, 14.5849, 1.5, 8.22367, 12.0135, 1.25, 8.86652, -0.165057, 2, 2.47367, 0.334943, 2, 2.72367, 14.5849, 1.5, 2.22367, 8.68494, 1.5, 2.32367, 2.78494, 2.25, 2.42367, 3.18494, 2.25, 2.62366, 8.88494, 1.5, 2.42367, 5.58494, 1.5, 11.2237, 4.83494, 1.75, 13.4737, 4.83494, 1.5, 14.4737, 14.5849, 1.5, 14.4737, 14.5849, 1.5, 8.22367, -0.415057, 2, 5.72367, 4.83494, 1.5, 10.4737, 5.58494, 1.75, 10.4737, 14.5849, 1.5, 8.22367, 14.5849, 1.5, 2.22367, 0.334943, 2, 2.72367, 2.73494, 2, 8.57367, 12.0135, 1.25, 8.86652, 8.88494, 1.5, 2.42367, 3.18494, 2.25, 2.62366, 5.60023, 1.5, 8.96236, 4.83494, 1.5, 14.4737, 4.83494, 1.75, 13.4737, 4.33494, 1.5, 13.4737, -2.66506, 1.5, 14.4737, -0.665057, 2, 4.97367, -0.415057, 2, 5.47367, -0.165057, 2, 3.97367, 4.83494, 1.5, 12.4737, 5.08494, 1.5, 11.2237, 4.58494, 1.5, 11.2237, 4.33494, 1.5, 12.4737, -0.915057, 2, 6.47367, -2.41506, 2.25, 7.72367, -2.91506, 2, 9.47367, -2.66506, 1.5, 14.4737, 4.33494, 1.5, 12.4737, 4.58494, 1.5, 11.2237, 0.184943, 2.25, 7.42367, -0.665057, 2, 4.97367, -0.165057, 2, 3.97367, -1.16506, 2, 3.72367, -1.66506, 2, 4.97367, 4.83494, 1.5, 10.4737, -0.415057, 2, 5.72367, -0.915057, 2, 6.47367, 4.58494, 1.5, 11.2237, 2.73494, 2, 8.57367, 0.184943, 2.25, 7.42367, -1.16506, 2, 3.72367, -0.915057, 2, 2.72367, -2.41506, 2, 2.72367, -1.66506, 2, 4.97367, -0.915057, 2, 6.47367, -1.91506, 2, 6.22367, -2.41506, 2.25, 7.72367, -1.66506, 2, 4.97367, -2.41506, 2, 2.72367, -2.41506, 2.25, 7.72367, -1.91506, 2, 6.22367, -2.66506, 1.5, 14.4737, 4.33494, 1.5, 13.4737, 4.33494, 1.5, 12.4737)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(13, 15, 14), PackedInt32Array(14, 15, 10), PackedInt32Array(10, 15, 11), PackedInt32Array(11, 15, 12), PackedInt32Array(12, 15, 13), PackedInt32Array(18, 17, 16), PackedInt32Array(22, 26, 23), PackedInt32Array(23, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(25, 20, 19), PackedInt32Array(20, 25, 21), PackedInt32Array(21, 26, 22), PackedInt32Array(26, 21, 25), PackedInt32Array(29, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(38, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(42, 46, 43), PackedInt32Array(43, 46, 47), PackedInt32Array(47, 46, 45), PackedInt32Array(47, 45, 48), PackedInt32Array(48, 45, 44), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(52, 49, 53), PackedInt32Array(63, 54, 59), PackedInt32Array(54, 63, 60), PackedInt32Array(60, 64, 55), PackedInt32Array(55, 64, 56), PackedInt32Array(56, 64, 61), PackedInt32Array(61, 58, 57), PackedInt32Array(58, 61, 62), PackedInt32Array(62, 64, 63), PackedInt32Array(63, 64, 60), PackedInt32Array(64, 62, 61), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(70, 69, 71), PackedInt32Array(75, 74, 72), PackedInt32Array(72, 74, 73), PackedInt32Array(76, 82, 77), PackedInt32Array(77, 82, 78), PackedInt32Array(78, 82, 79), PackedInt32Array(79, 82, 81), PackedInt32Array(79, 81, 80), PackedInt32Array(84, 83, 85), PackedInt32Array(85, 83, 86), PackedInt32Array(89, 88, 92), PackedInt32Array(92, 88, 91), PackedInt32Array(92, 91, 87), PackedInt32Array(92, 87, 90), PackedInt32Array(94, 93, 95), PackedInt32Array(95, 93, 96), PackedInt32Array(98, 97, 99), PackedInt32Array(103, 102, 100), PackedInt32Array(100, 102, 101), PackedInt32Array(106, 105, 104)]
+
+[node name="Root" type="Node3D" node_paths=PackedStringArray("mLevelPathPoints")]
+script = ExtResource("1_0rpqp")
+mLevelPathPoints = []
+mLevelNumber = 1
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jiow4")
+
+[node name="tileBrickB_largeCrackedB_gltf" parent="NavigationRegion3D" instance=ExtResource("2_6u1xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99196, 0, -0.011381)
+
+[node name="tileBrickB_large_gltf" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9951, 0, 5.92211)
+
+[node name="tileBrickB_large_gltf4" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9963, 0, -8.27312e-05)
+
+[node name="tileBrickB_large_gltf5" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614846, 0, 11.9249)
+
+[node name="tileBrickB_large_gltf6" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9814, 0, 11.9249)
+
+[node name="tileBrickB_large_gltf9" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94539, 0, -6.01848)
+
+[node name="tileBrickB_large_gltf10" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94539, 0, -12.0263)
+
+[node name="tileBrickB_large_gltf8" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614846, 0, -11.9456)
+
+[node name="tileBrickB_largeCrackedA_gltf" parent="NavigationRegion3D" instance=ExtResource("4_ihtuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.002, 0, 5.92559)
+
+[node name="tileBrickB_largeCrackedA_gltf2" parent="NavigationRegion3D" instance=ExtResource("4_ihtuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.002, 0, -6.01233)
+
+[node name="tileBrickB_largeCrackedB_gltf2" parent="NavigationRegion3D" instance=ExtResource("2_6u1xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98632, 0, 11.9164)
+
+[node name="tileBrickA_small_gltf" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.958343, 0, 0.285621, 0.025405, 0.996036, -0.0852412, -0.284489, 0.0889465, 0.954544, -0.410361, 0.355687, 11.5041)
+
+[node name="tileBrickA_small_gltf11" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88831, 0.355687, 11.7174)
+
+[node name="tileBrickA_small_gltf2" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.879034, 0, 0.47676, -0.0361949, 0.997114, 0.0667349, -0.475384, -0.0759185, 0.876497, 1.12786, 0.355687, 10.9043)
+
+[node name="tileBrickA_small_gltf3" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.807767, 0.106056, 0.579884, -0.0861543, 0.99436, -0.0618488, -0.583173, 0, 0.812348, 2.61962, 0.355687, 9.98004)
+
+[node name="tileBrickA_small_gltf4" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.722827, 0.0313504, 0.690317, 0.0401806, 0.995373, -0.0872773, -0.689859, 0.0908238, 0.718224, 3.96492, 0.355687, 8.84263)
+
+[node name="tileBrickA_small_gltf5" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.544551, 0, 0.838728, 0.0552644, 0.997827, -0.0358809, -0.836905, 0.0658908, 0.543368, 4.94504, 0.355687, 7.62067)
+
+[node name="tileBrickA_small_gltf6" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.317612, -0.00343321, 0.948215, -0.0535138, 0.998335, 0.0215395, -0.94671, -0.0575837, 0.316899, 5.74351, 0.355687, 6.12647)
+
+[node name="tileBrickA_small_gltf7" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.235193, 0, 0.971949, 0, 1, 0, -0.971949, 0, 0.235193, 6.34472, 0.355687, 4.37996)
+
+[node name="tileBrickA_small_gltf8" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.141151, -0.00272465, 0.989984, -0.010262, 0.999938, 0.00421518, -0.989935, -0.0107542, 0.141114, 6.6823, 0.355687, 2.58136)
+
+[node name="tileBrickA_small_gltf9" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.0675217, -0.00351285, 0.997712, -0.010262, 0.999938, 0.00421518, -0.997665, -0.0105231, 0.0674815, 6.85627, 0.355687, 0.659044)
+
+[node name="tileBrickA_small_gltf10" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(3.65096e-05, -0.00349046, 0.999994, -0.0104717, 0.999939, 0.00349065, -0.999945, -0.0104718, -4.37111e-08, 6.91347, 0.355687, -1.29173)
+
+[node name="tileBrickA_small_gltf12" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.2666, -0.00615638, 0.963788, -0.0104717, 0.999939, 0.00349065, -0.96375, -0.00916191, -0.266648, 6.72432, 0.355687, -2.91634)
+
+[node name="tileBrickA_small_gltf13" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.338389, -0.00682857, 0.940982, -0.0104717, 0.999939, 0.00349065, -0.940948, -0.0086725, -0.33844, 6.15624, 0.355687, -4.6798)
+
+[node name="tileBrickA_small_gltf14" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.481269, 0.00153464, 0.876572, -0.0114805, 0.999902, -0.00805375, -0.876498, -0.0139395, -0.481204, 5.37941, 0.355687, -6.39508)
+
+[node name="tileBrickA_small_gltf15" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.549756, -0.0076065, 0.835291, -0.0293661, 0.999517, -0.0102257, -0.834809, -0.0301509, -0.549714, 4.4188, 0.355687, -7.99822)
+
+[node name="tileBrickA_small_gltf16" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.652439, 0.0294283, 0.75727, 0.0312075, 0.999442, -0.011952, -0.757199, 0.0158345, -0.652993, 3.19747, 0.355687, -9.54271)
+
+[node name="tileBrickA_small_gltf17" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.709014, -0.00988655, 0.705125, -0.0104717, 0.999939, 0.00349065, -0.705116, -0.00490895, -0.709074, 1.82229, 0.355687, -10.9606)
+
+[node name="tileBrickA_small_gltf18" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.862986, -0.0108008, 0.505112, -0.0104717, 0.999939, 0.00349065, -0.505119, -0.00227701, -0.863047, 0.29674, 0.355687, -12.011)
+
+[node name="tileBrickA_small_gltf19" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.998677, 0.0509477, -0.00697434, 0.0514092, 0.992305, -0.112641, 0.00118189, -0.11285, -0.993612, -1.59826, 0.329108, -12.6808)
+
+[node name="tileBrickA_small_gltf20" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.852751, 5.5256e-09, 0.237427, 0.0226059, 0.984926, -0.0708579, -0.253144, 0.0879543, 0.793478, -1.27683, 0.575094, 9.91864)
+
+[node name="tileBrickA_small_gltf21" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.854285, 0, 0, 0, 1, 0, 0, 0, 0.858401, -2.53941, 0.575094, 10.1018)
+
+[node name="tileBrickA_small_gltf22" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.809417, -3.75993e-09, 0.390426, -0.0333284, 1.00639, 0.0546502, -0.437735, -0.0766244, 0.717776, 0.0372584, 0.575094, 9.4038)
+
+[node name="tileBrickA_small_gltf23" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.76112, 0.104513, 0.47245, -0.081179, 0.97989, -0.0503903, -0.549496, 3.67108e-09, 0.661847, 1.31164, 0.575094, 8.6104)
+
+[node name="tileBrickA_small_gltf24" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.697952, 0.0308606, 0.561235, 0.0387978, 0.979822, -0.0709574, -0.666118, 0.0894048, 0.583923, 2.46091, 0.575094, 7.63405)
+
+[node name="tileBrickA_small_gltf25" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.444282, 1.8777e-09, 0.783042, 0.0450885, 1.00589, -0.0334987, -0.682805, 0.0664233, 0.507292, 3.29822, 0.575094, 6.58511)
+
+[node name="tileBrickA_small_gltf26" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.263145, -0.00341011, 0.84827, -0.0443369, 0.991621, 0.0192692, -0.784361, -0.0571965, 0.283497, 3.98034, 0.575094, 5.30249)
+
+[node name="tileBrickA_small_gltf27" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.196331, 0, 0.858031, 0, 1, 0, -0.811347, 0, 0.207627, 4.49394, 0.575094, 3.80328)
+
+[node name="tileBrickA_small_gltf28" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.119033, -0.00272203, 0.861773, -0.00865399, 0.998975, 0.00366928, -0.834819, -0.0107438, 0.122838, 4.78233, 0.575094, 2.25936)
+
+[node name="tileBrickA_small_gltf29" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.05745, -0.00350995, 0.859741, -0.00873127, 0.999111, 0.00363228, -0.848852, -0.0105144, 0.0581496, 4.93095, 0.575094, 0.609245)
+
+[node name="tileBrickA_small_gltf30" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(3.13401e-05, -0.00348758, 0.854281, -0.00898898, 0.999115, 0.00298202, -0.858359, -0.0104632, -3.73418e-08, 4.97982, 0.575094, -1.0653)
+
+[node name="tileBrickA_small_gltf31" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.238593, -0.00615454, 0.800344, -0.00937165, 0.99964, 0.00289869, -0.862507, -0.00915917, -0.221429, 4.81823, 0.575094, -2.45987)
+
+[node name="tileBrickA_small_gltf32" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.306851, -0.00682757, 0.776754, -0.00949574, 0.999793, 0.00288144, -0.85325, -0.00867122, -0.279373, 4.33293, 0.575094, -3.97362)
+
+[node name="tileBrickA_small_gltf33" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.449225, 0.00153166, 0.716746, -0.0107161, 0.997964, -0.00658531, -0.818138, -0.0139125, -0.393466, 3.66929, 0.575094, -5.44602)
+
+[node name="tileBrickA_small_gltf34" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.521119, -0.00758583, 0.68076, -0.0278364, 0.9968, -0.0083339, -0.791323, -0.0300689, -0.448016, 2.84866, 0.575094, -6.82216)
+
+[node name="tileBrickA_small_gltf35" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.634199, 0.0293675, 0.615336, 0.030335, 0.997375, -0.00971188, -0.73603, 0.0158018, -0.530604, 1.80529, 0.575094, -8.14796)
+
+[node name="tileBrickA_small_gltf36" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.575894, -0.00986722, 0.695067, -0.00850561, 0.997984, 0.00344086, -0.572728, -0.00489935, -0.69896, 0.630497, 0.575094, -9.36508)
+
+[node name="tileBrickA_small_gltf37" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.704761, -0.0107818, 0.473942, -0.00855177, 0.998185, 0.00327525, -0.412507, -0.00227301, -0.809789, -0.67276, 0.575094, -10.2667)
+
+[node name="tileBrickA_small_gltf38" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.853485, 0.0505715, -0.00598809, 0.0439351, 0.984978, -0.0967136, 0.00100997, -0.112017, -0.853117, -2.29163, 0.548514, -10.8417)
+
+[node name="tileBrickA_small_gltf39" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.705955, 5.43374e-09, 0.183572, 0.0187144, 0.968551, -0.0547853, -0.209567, 0.086492, 0.613494, -1.45597, 0.820885, 8.16265)
+
+[node name="tileBrickA_small_gltf40" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.663228, 0, 0, 0, 1, 0, 0, 0, 0.701571, -2.43618, 0.820885, 8.31234)
+
+[node name="tileBrickA_small_gltf41" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.708935, -3.81348e-09, 0.292964, -0.029191, 1.02072, 0.0410079, -0.383394, -0.0777158, 0.538598, -0.435771, 0.820885, 7.74188)
+
+[node name="tileBrickA_small_gltf42" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.692815, 0.102068, 0.350072, -0.0738938, 0.956967, -0.0373377, -0.500182, 3.5852e-09, 0.490409, 0.553601, 0.820885, 7.09343)
+
+[node name="tileBrickA_small_gltf43" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.662136, 0.0301273, 0.412058, 0.0368069, 0.956541, -0.0520968, -0.631936, 0.0872805, 0.428715, 1.44584, 0.820885, 6.29546)
+
+[node name="tileBrickA_small_gltf45" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.202249, -0.00337593, 0.708392, -0.0340765, 0.98168, 0.0160917, -0.602846, -0.0566231, 0.236749, 2.62545, 0.820885, 4.38988)
+
+[node name="tileBrickA_small_gltf46" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.15304, 0, 0.701287, 0, 1, 0, -0.632445, 0, 0.169698, 3.02419, 0.820885, 3.16458)
+
+[node name="tileBrickA_small_gltf47" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.0944605, -0.00271818, 0.688773, -0.0068675, 0.997561, 0.00293268, -0.662483, -0.0107286, 0.0981787, 3.24809, 0.820885, 1.90273)
+
+[node name="tileBrickA_small_gltf48" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(0.0462787, -0.00350574, 0.676361, -0.00703346, 0.997913, 0.00285753, -0.683791, -0.0105018, 0.0457465, 3.36347, 0.820885, 0.554089)
+
+[node name="tileBrickA_small_gltf49" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(2.56143e-05, -0.00348342, 0.663226, -0.00734672, 0.997922, 0.00231511, -0.701539, -0.0104507, -2.89905e-08, 3.40141, 0.820885, -0.814519)
+
+[node name="tileBrickA_small_gltf50" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.207974, -0.0061523, 0.596707, -0.00816897, 0.999276, 0.00216115, -0.75182, -0.00915584, -0.165089, 3.27596, 0.820885, -1.9543)
+
+[node name="tileBrickA_small_gltf51" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.272725, -0.00682672, 0.574777, -0.00843968, 0.999668, 0.00213218, -0.758357, -0.00867014, -0.206728, 2.89919, 0.820885, -3.19149)
+
+[node name="tileBrickA_small_gltf52" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.416341, 0.00152715, 0.524999, -0.00993165, 0.995023, -0.00482358, -0.758249, -0.0138715, -0.288204, 2.38397, 0.820885, -4.39488)
+
+[node name="tileBrickA_small_gltf53" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.493676, -0.00755563, 0.497473, -0.0263705, 0.992833, -0.00609009, -0.749651, -0.0299492, -0.327393, 1.74687, 0.820885, -5.5196)
+
+[node name="tileBrickA_small_gltf54" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.62249, 0.0292638, 0.449771, 0.0297749, 0.993853, -0.00709875, -0.722441, 0.015746, -0.387837, 0.936847, 0.820885, -6.60317)
+
+[node name="tileBrickA_small_gltf55" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.421866, -0.0098367, 0.695761, -0.00623072, 0.994898, 0.00344429, -0.419547, -0.0048842, -0.699658, 0.0247925, 0.820885, -7.59793)
+
+[node name="tileBrickA_small_gltf56" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.515696, -0.0107516, 0.442529, -0.0062576, 0.995389, 0.00305816, -0.301844, -0.00226664, -0.756116, -0.986997, 0.820885, -8.33485)
+
+[node name="tileBrickA_small_gltf57" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(-0.663008, 0.0500593, -0.00489334, 0.0341299, 0.975002, -0.0790324, 0.000784567, -0.110882, -0.69715, -2.24381, 0.794305, -8.80478)
+
+[node name="tileBrickB_largeCrackedB_gltf3" parent="NavigationRegion3D" instance=ExtResource("2_6u1xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111512, 0.683552, 4.41853)
+
+[node name="tileBrickB_large_gltf2" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150415, 0.672312, -1.60264)
+
+[node name="tileBrickB_large_gltf3" parent="NavigationRegion3D" instance=ExtResource("3_iac6g")]
+transform = Transform3D(0.637082, 0, 0, 0, 0.637082, 0, 0, 0, 0.637082, -0.946107, 0.994776, -5.52043)
+
+[node name="tileBrickA_small_gltf44" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97279, 0.557211, -7.83239)
+
+[node name="tileBrickA_small_gltf58" parent="NavigationRegion3D" instance=ExtResource("5_61t8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85853, 0.606087, -5.08872)
+
+[node name="wall_door_gltf" parent="." instance=ExtResource("6_5mpnh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.56101, 1.67231, 0.940435)
+
+[node name="wall_gltf" parent="." instance=ExtResource("7_owtwi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.62194, 1.68355, 5.96136)
+
+[node name="wall_gltf3" parent="." instance=ExtResource("7_owtwi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.56842, 1.68355, -4.02776)
+
+[node name="wall_gltf4" parent="." instance=ExtResource("7_owtwi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.19536, 0, -1, 0, -4.37114e-08, -3.56842, 0.920948, -7.98245)
+
+[node name="wall_gltf5" parent="." instance=ExtResource("7_owtwi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.19536, 0, -1, 0, -4.37114e-08, -3.56842, 0.920948, -11.6632)
+
+[node name="wall_gltf2" parent="." instance=ExtResource("7_owtwi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.17253, 0, -1, 0, -4.37114e-08, -3.62194, 1.01538, 9.96284)
+
+[node name="wallSingle_corner_gltf" parent="." instance=ExtResource("8_p1r0y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1.17715, 0, 8.74228e-08, 0, -1, -3.71121, 1, 15.6357)
+
+[node name="wallSingle_corner_gltf2" parent="." instance=ExtResource("8_p1r0y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.17715, 0, -1, 0, -4.37114e-08, -3.57213, 1, -15.6721)
+
+[node name="wall_end_gltf" parent="." instance=ExtResource("9_irim6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.17202, 0, -1, 0, -4.37114e-08, -3.62974, 1.01338, 13.9234)
