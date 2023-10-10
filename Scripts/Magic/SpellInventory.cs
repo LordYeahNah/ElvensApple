@@ -8,9 +8,10 @@ public partial class SpellInventory : Control
     [ExportGroup("UI")]
     [Export] private MagicInventorySlot[] mSpellsSlot;
 
-    public override void _Ready()
+    public void SetPlayer(PlayerController player) => mPlayer = player;
+
+    public void Setup()
     {
-        base._Ready();
 
         if (mPlayer != null)
         {
