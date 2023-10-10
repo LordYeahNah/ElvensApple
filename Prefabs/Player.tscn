@@ -17,7 +17,7 @@
 font = ExtResource("6_1u4it")
 font_size = 50
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mDialogBox", "mInteractionCast", "mInteractionLabel", "mGroundCast", "mHealthBar", "mManaBar", "mStatBarContainer", "mMagicSlotOne", "mMagicSlotTwo", "mInventoryPanel", "mLeftHand", "mRightHand", "mMagicSpawnPointAboveHead", "mMagicSpawnPointLeftHand") groups=["Friendly", "Player"]]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mDialogBox", "mInteractionCast", "mInteractionLabel", "mGroundCast", "mHealthBar", "mManaBar", "mStatBarContainer", "mMagicSlotOne", "mMagicSlotTwo", "mSpellInventory", "mInventoryPanel", "mLeftHand", "mRightHand", "mMagicSpawnPointAboveHead", "mMagicSpawnPointLeftHand") groups=["Friendly", "Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 collision_layer = 2
 collision_mask = 2
@@ -39,6 +39,7 @@ mManaBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/ManaBar")
 mStatBarContainer = NodePath("CanvasLayer/PlayerStatBar")
 mMagicSlotOne = NodePath("CanvasLayer/PlayerStatBar/SpellBar/SlotOne")
 mMagicSlotTwo = NodePath("CanvasLayer/PlayerStatBar/SpellBar/SlotTwo")
+mSpellInventory = NodePath("CanvasLayer/Spells")
 mInventoryPanel = NodePath("CanvasLayer/Inventory")
 mLeftHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
 mRightHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotRight")
@@ -106,8 +107,9 @@ transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_5fww8")]
 visible = false
 
-[node name="Spells" parent="CanvasLayer" instance=ExtResource("5_vccjy")]
+[node name="Spells" parent="CanvasLayer" node_paths=PackedStringArray("mPlayer") instance=ExtResource("5_vccjy")]
 visible = false
+mPlayer = NodePath("../..")
 
 [node name="PlayerStatBar" parent="CanvasLayer" instance=ExtResource("5_4hc7f")]
 
