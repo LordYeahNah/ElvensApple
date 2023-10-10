@@ -12,11 +12,16 @@ public partial class PlayerController : BaseCharacter, ICombat
     public bool IsMoving = false;                       // if the character is currently moving
     [Export] private Node3D mMovementDirection;             // Object to set the direction we are moving in
 
+    [ExportGroup("Jump Settings")] 
+    [Export] private float mGravity = -9.81f;
+    [Export] private float mJumpForce;
+
     [ExportGroup("Components")]
     [Export] private AnimationPlayer mAnimPlayer;
     [Export] private DialogBoxController mDialogBox;                        // Reference to the dialog box
     [Export] private RayCast3D mInteractionCast;                            // Reference to the interaction raycast
     [Export] private Label mInteractionLabel;                       // Reference to the indicator for interaction
+    [Export] private RayCast3D mGroundCast;
 
     [ExportGroup("Stat Components")]
     [Export] private TextureProgressBar mHealthBar;
@@ -103,11 +108,19 @@ public partial class PlayerController : BaseCharacter, ICombat
             {
                 if (Input.IsActionJustPressed("ProgressDialog"))
                 {
-                    if (mInteractingWith.FinishDialog())
+                    if (mDialogBox.IsTyping)
                     {
-                        mInteractingWith = null;
-                        mIsInInteraction = false;
+                        mDialogBox.CompleteMessage();
                     }
+                    else
+                    {
+                        if (mInteractingWith.FinishDialog())
+                        {
+                            mInteractingWith = null;
+                            mIsInInteraction = false;
+                        }
+                    }
+                    
                 }
             }
         }
@@ -130,6 +143,7 @@ public partial class PlayerController : BaseCharacter, ICombat
             Vector2 movementInput = Input.GetVector("MoveLeft", "MoveRight", "MoveBack", "MoveForward");
             
             // Check that we are moving
+            
             if(movementInput.Length() > 0.1)
             {
                 // Calculate movement directions
@@ -151,7 +165,28 @@ public partial class PlayerController : BaseCharacter, ICombat
             }
         }
 
-        this.Velocity = moveDirection;                  // apply the movement direction
+        if (IsGrounded() && Input.IsActionJustPressed("Jump"))
+        {
+            moveDirection.Y = mJumpForce * delta;
+        }
+
+        if (!IsGrounded())
+        {
+            moveDirection.Y += mGravity * delta;
+        }
+
+        
+        GD.Print(IsGrounded());
+
+        if (IsGrounded())
+        {
+            this.Velocity = moveDirection;                  // apply the movement direction
+        }
+        else
+        {
+            this.Velocity += moveDirection;
+        }
+        
         MoveAndSlide();
     }
 
@@ -204,6 +239,12 @@ public partial class PlayerController : BaseCharacter, ICombat
 
         mCanMove = true;
     }
+
+    /// <summary>
+    /// Checks if the character is grounded
+    /// </summary>
+    /// <returns></returns>
+    public bool IsGrounded() => mGroundCast.IsColliding();
 
     /// <summary>
     /// Displays the dialog box with the selected dialog
