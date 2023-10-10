@@ -236,12 +236,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 38.794
 [node name="floorDecoration_shatteredBricks_gltf" parent="." instance=ExtResource("2_174mm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35734, 0, 0.4859)
 
-[node name="floorDecoration_shatteredBricks_gltf2" parent="." instance=ExtResource("2_174mm")]
-transform = Transform3D(-0.44726, 0, -0.894404, 0, 1, 0, 0.894404, 0, -0.44726, 5.25217, 0, 4.41503)
-
-[node name="floorDecoration_shatteredBricks_gltf3" parent="." instance=ExtResource("2_174mm")]
-transform = Transform3D(0.355776, 0, -0.934571, 0, 1, 0, 0.934571, 0, 0.355776, 7.41993, 0.0125899, 0.537075)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bcyvm")
 
@@ -367,3 +361,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33471, 0, 11.9559)
 [node name="Guide" parent="." instance=ExtResource("15_y4jgy")]
 transform = Transform3D(-0.580845, 0, -0.814014, 0, 1, 0, 0.814014, 0, -0.580845, 10.7305, 0.00717402, 4.33768)
 mDialogID = PackedStringArray("#1_0", "#1_1", "#1_2", "#1_3", "#1_4")
+mMovementState = 1
