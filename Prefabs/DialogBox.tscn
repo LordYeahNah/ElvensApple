@@ -18,6 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_erp2u")
 mDialogName = NodePath("TextureRect/CharacterName")
 mDialogMessage = NodePath("TextureRect/Message")
+mPrintTime = 0.05
 metadata/_edit_vertical_guides_ = [963.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
