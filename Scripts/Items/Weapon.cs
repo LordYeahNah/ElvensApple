@@ -11,6 +11,8 @@ public partial class Weapon : Equipable
     protected float mHeavyAttackBoost = 1.3f;               // Additional Damage when performing heavy attack
     public bool IsHeavyAttack = false;                      // If we are to perform a heavy attack
 
+    public float DamagePoints => mDamagePoints;
+
     public Weapon(string itemName, string desc, int cost, float damage, float critHit, Texture2D icon, PackedScene mesh) : base(itemName, false, desc, cost, icon, mesh)
     {
         mDamagePoints = damage;

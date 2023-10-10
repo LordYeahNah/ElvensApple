@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rdxpmufdvnyp"]
+[gd_scene load_steps=15 format=3 uid="uid://rdxpmufdvnyp"]
 
 [ext_resource type="Texture2D" uid="uid://b0dl4shybi5s4" path="res://UI/Inventory.png" id="1_66sti"]
 [ext_resource type="Script" path="res://Scripts/Items/InventoryController.cs" id="1_rvljx"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Items/InventoryItem.cs" id="5_43txo"]
 [ext_resource type="Texture2D" uid="uid://bv5lwy5qkbqka" path="res://UI/SelectedIndicator.png" id="5_oobpb"]
 [ext_resource type="Texture2D" uid="uid://bg4yojmhedld4" path="res://UI/CountIndicator.png" id="6_cjvdm"]
+[ext_resource type="Texture2D" uid="uid://bdilwnp0fuchf" path="res://UI/Icons/axeDouble.png" id="7_8nbx5"]
+[ext_resource type="FontFile" uid="uid://db1oqeggsj2ya" path="res://UI/Fonts/evil_empire/Evil Empire.otf" id="8_tv756"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wfj3j"]
 font_size = 12
@@ -14,7 +16,22 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7f54"]
 bg_color = Color(1, 1, 1, 0.454902)
 
-[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mEquippedLeftHand", "mEquippedRightHand", "mEquippedArmor", "mQuickAccessLeft", "mQuickAccessRight", "mActionPanel", "mConsumablePanel", "mEquippedPanel", "mArmorPanel")]
+[sub_resource type="LabelSettings" id="LabelSettings_a2vwt"]
+font = ExtResource("8_tv756")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7svg"]
+font = ExtResource("8_tv756")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mx1t"]
+font = ExtResource("8_tv756")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0ien"]
+font = ExtResource("8_tv756")
+font_size = 40
+
+[node name="Inventory" type="Control" node_paths=PackedStringArray("mSlotItems", "mEquippedLeftHand", "mEquippedRightHand", "mEquippedArmor", "mQuickAccessLeft", "mQuickAccessRight", "mActionPanel", "mConsumablePanel", "mEquippedPanel", "mArmorPanel", "mViewingPanel", "mViewingItemIcon", "mViewingItemName", "mViewingItemDescription", "mViewingItemStatHeader", "mViewingItemStatValue")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +50,12 @@ mConsumablePanel = NodePath("ConsumableActionPanel")
 mEquippedPanel = NodePath("EquippedActionPanel")
 mArmorPanel = NodePath("ArmorActionPanel")
 mPanelOffset = Vector2(70, 70)
+mViewingPanel = NodePath("ViewingItem")
+mViewingItemIcon = NodePath("ViewingItem/ItemIcon")
+mViewingItemName = NodePath("ViewingItem/ItemName")
+mViewingItemDescription = NodePath("ViewingItem/ItemDesc")
+mViewingItemStatHeader = NodePath("ViewingItem/ItemStatHeader")
+mViewingItemStatValue = NodePath("ViewingItem/Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -1187,6 +1210,70 @@ offset_top = 27.0
 offset_right = 1544.0
 offset_bottom = 67.0
 
+[node name="ViewingItem" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 274.0
+offset_top = 793.0
+offset_right = 807.0
+offset_bottom = 917.0
+
+[node name="ItemIcon" type="TextureRect" parent="ViewingItem"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 120.0
+texture = ExtResource("7_8nbx5")
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="ViewingItem"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 17.0
+offset_right = 348.0
+offset_bottom = 46.0
+text = "Weapon Name"
+label_settings = SubResource("LabelSettings_a2vwt")
+vertical_alignment = 1
+
+[node name="ItemDesc" type="Label" parent="ViewingItem"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 56.0
+offset_right = 348.0
+offset_bottom = 130.0
+text = "This is the viewing weapon description"
+label_settings = SubResource("LabelSettings_k7svg")
+autowrap_mode = 2
+
+[node name="ItemStatHeader" type="Label" parent="ViewingItem"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 18.0
+offset_right = 544.0
+offset_bottom = 44.0
+text = "Damage Points"
+label_settings = SubResource("LabelSettings_5mx1t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="ViewingItem"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 45.0
+offset_right = 535.0
+offset_bottom = 48.0
+
+[node name="Label" type="Label" parent="ViewingItem"]
+layout_mode = 0
+offset_left = 371.0
+offset_top = 57.0
+offset_right = 533.0
+offset_bottom = 130.0
+text = "37"
+label_settings = SubResource("LabelSettings_f0ien")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="EquippedSlots/TextureButton" to="EquippedSlots/TextureButton" method="OnPressed"]
 [connection signal="pressed" from="EquippedSlots/TextureButton2" to="EquippedSlots/TextureButton2" method="OnPressed"]
 [connection signal="pressed" from="EquippedSlots/TextureButton3" to="EquippedSlots/TextureButton3" method="OnPressed"]
@@ -1214,8 +1301,12 @@ offset_bottom = 67.0
 [connection signal="pressed" from="ItemSlots/TextureButton20" to="ItemSlots/TextureButton20" method="OnPressed"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button2" to="." method="EquipRightHand"]
 [connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
+[connection signal="pressed" from="ItemActionPanel/VBoxContainer/Button4" to="." method="OnView"]
 [connection signal="pressed" from="ArmorActionPanel/VBoxContainer/Button2" to="." method="EquipArmor"]
 [connection signal="pressed" from="ArmorActionPanel/VBoxContainer/Button3" to="." method="OnDrop"]
+[connection signal="pressed" from="ArmorActionPanel/VBoxContainer/Button4" to="." method="OnView"]
+[connection signal="pressed" from="ConsumableActionPanel/VBoxContainer/Button3" to="." method="OnView"]
 [connection signal="pressed" from="EquippedActionPanel/VBoxContainer/Unequip" to="." method="OnUnequip"]
+[connection signal="pressed" from="EquippedActionPanel/VBoxContainer/Button3" to="." method="OnView"]
 [connection signal="pressed" from="CloseBtn" to="." method="CloseInventory"]
 [connection signal="pressed" from="CloseBtn2" to="." method="CloseInventory"]

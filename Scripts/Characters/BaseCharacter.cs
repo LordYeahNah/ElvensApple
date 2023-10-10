@@ -22,6 +22,8 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     [Export] protected BoneAttachment3D mLeftHand;
     [Export] protected BoneAttachment3D mRightHand;
 
+    public bool IsInventoryOpen => mIsInventoryOpen;
+
     protected AnimationController mAnimator;
 
     public override void _Ready()

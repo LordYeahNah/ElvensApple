@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using Godot;
 
 public enum EItemType
@@ -31,6 +32,14 @@ public partial class InventoryController : Control
     [Export] private Panel mEquippedPanel;
     [Export] private Panel mArmorPanel;
     [Export] private Vector2 mPanelOffset;
+
+    [ExportGroup("Viewing Item")] 
+    [Export] private Control mViewingPanel;                  // Reference to the viewing panel
+    [Export] private TextureRect mViewingItemIcon;
+    [Export] private Label mViewingItemName;
+    [Export] private Label mViewingItemDescription;
+    [Export] private Label mViewingItemStatHeader;
+    [Export] private Label mViewingItemStatValue;
 
     public void Setup(Inventory inv)
     {
@@ -175,6 +184,31 @@ public partial class InventoryController : Control
         }
 
         RedrawInventory();
+    }
+
+    public void OnView()
+    {
+        if (mSelectedItem == null)
+        {
+            mViewingPanel.Visible = false;
+            return;
+        }
+
+        mViewingPanel.Visible = true;
+        mViewingItemIcon.Texture = mSelectedItem.Icon;
+        mViewingItemName.Text = mSelectedItem.Item.ItemName;
+        mViewingItemDescription.Text = mSelectedItem.Item.ItemDesc;
+
+        if (mSelectedItem.Item is Weapon weapon)
+        {
+            mViewingItemStatHeader.Text = "Damage Points";
+            mViewingItemStatValue.Text = weapon.DamagePoints.ToString("N");
+        } else if (mSelectedItem.Item is Armor armor)
+        {
+            mViewingItemStatHeader.Text = "Resistance";
+            int reductionPoints = Mathf.FloorToInt(armor.ReductionModifier * 100);
+            mViewingItemStatValue.Text = $"{reductionPoints} %";
+        }
     }
 
     public void OnDrop()

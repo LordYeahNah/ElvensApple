@@ -11,6 +11,7 @@ public partial class CameraController : Node3D
     [ExportGroup("Player Objects")]
     [Export] private PlayerController mCharacterObject;                   // Reference to the character object
     [Export] private Node3D mMovementDirectionObject;           // Reference to the movement direction
+    
 
     private Vector2 mMouseDelta;
 
@@ -22,6 +23,9 @@ public partial class CameraController : Node3D
 
     public override void _Process(double delta)
     {
+        if (mCharacterObject.IsInventoryOpen)
+            return;
+        
         base._Process(delta);
         HandleRotation((float)delta);
     }

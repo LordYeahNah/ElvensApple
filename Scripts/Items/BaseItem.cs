@@ -11,6 +11,10 @@ public abstract class BaseItem
     protected Texture2D mIcon;
 
     public Texture2D Icon => mIcon;
+    public string ItemName => mItemName;
+    public bool IsConsumable => mIsConsumable;
+    public string ItemDesc => mItemDescription;
+    public int ItemCost => mCost;
 
     public BaseItem(string itemName, bool isConsumable, string desc, int cost, Texture2D icon)
     {
