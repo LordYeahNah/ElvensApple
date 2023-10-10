@@ -27,6 +27,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     [ExportGroup("Stat Components")]
     [Export] private TextureProgressBar mHealthBar;
     [Export] private TextureProgressBar mManaBar;
+    [Export] private Control mStatBarContainer;
 
     // === INTERACTION === //
     private bool mIsInInteraction = false;                       // if the character is currently interacting with something
@@ -55,6 +56,7 @@ public partial class PlayerController : BaseCharacter, ICombat
         {
             mIsInventoryOpen = !mIsInventoryOpen;
             mInventoryPanel.Visible = mIsInventoryOpen;
+            mStatBarContainer.Visible = !mIsInventoryOpen;
 
             if(mIsInventoryOpen)
             {
