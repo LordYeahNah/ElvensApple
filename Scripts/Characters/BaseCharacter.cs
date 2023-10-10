@@ -22,6 +22,15 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     [Export] protected BoneAttachment3D mLeftHand;
     [Export] protected BoneAttachment3D mRightHand;
 
+    public Inventory GetInventory() => mInventory;
+    
+    [ExportGroup("Magic")] 
+    [Export] protected Node3D mMagicSpawnPointAboveHead;
+    [Export] protected Node3D mMagicSpawnPointLeftHand;
+
+    public Vector3 MagicAboveHeadPoint => mMagicSpawnPointAboveHead.GlobalTransform.Origin;
+    public Vector3 MagicLeftHandPoint => mMagicSpawnPointLeftHand.GlobalTransform.Origin;
+
     public bool IsInventoryOpen => mIsInventoryOpen;
 
     protected AnimationController mAnimator;

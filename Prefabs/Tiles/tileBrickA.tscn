@@ -8,6 +8,8 @@ data = PackedVector3Array(0.0401, 0.7563, -3.0059, 3.0059, 0.7563, -3.0059, 3.00
 [node name="tileBrickA_large_gltf" instance=ExtResource("1_q53aa")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tileBrickA_large" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tileBrickA_large/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_rkrjn")

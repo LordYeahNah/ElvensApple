@@ -11,6 +11,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     private bool mCanMove = true;                       // if the character can move
     public bool IsMoving = false;                       // if the character is currently moving
     [Export] private Node3D mMovementDirection;             // Object to set the direction we are moving in
+    public float SpeedModifier = 1.0f;
 
     [ExportGroup("Jump Settings")] 
     [Export] private float mGravity = -9.81f;
@@ -28,6 +29,13 @@ public partial class PlayerController : BaseCharacter, ICombat
     [Export] private TextureProgressBar mHealthBar;
     [Export] private TextureProgressBar mManaBar;
     [Export] private Control mStatBarContainer;
+
+    [ExportGroup("Magic")] 
+    [Export] private TextureRect mMagicSlotOne;
+    [Export] private TextureRect mMagicSlotTwo;
+
+    public TextureRect MagicSlotOne => mMagicSlotOne;
+    public TextureRect MagicSlotTwo => mMagicSlotTwo;
 
     // === INTERACTION === //
     private bool mIsInInteraction = false;                       // if the character is currently interacting with something
@@ -154,8 +162,8 @@ public partial class PlayerController : BaseCharacter, ICombat
                 if (IsGrounded())
                 {
                     // Calculate movement directions
-                    forward = this.Transform.Basis.X * (movementInput.Y * mMovementSpeed);
-                    right = this.Transform.Basis.Z * (movementInput.X * mMovementSpeed);
+                    forward = this.Transform.Basis.X * (movementInput.Y * (mMovementSpeed * SpeedModifier));
+                    right = this.Transform.Basis.Z * (movementInput.X * (mMovementSpeed * SpeedModifier));
                 }
                 else
                 {

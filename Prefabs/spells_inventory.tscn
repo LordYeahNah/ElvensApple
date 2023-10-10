@@ -1,0 +1,251 @@
+[gd_scene load_steps=6 format=3 uid="uid://niwr854fljap"]
+
+[ext_resource type="Script" path="res://Scripts/Magic/SpellInventory.cs" id="1_1k0xq"]
+[ext_resource type="Texture2D" uid="uid://cc4jmsdanifsu" path="res://UI/Spells.png" id="2_jjnyx"]
+[ext_resource type="Script" path="res://Scripts/Magic/MagicInventorySlot.cs" id="3_idtb5"]
+[ext_resource type="Texture2D" uid="uid://bv5lwy5qkbqka" path="res://UI/SelectedIndicator.png" id="4_r8ybr"]
+[ext_resource type="FontFile" uid="uid://db1oqeggsj2ya" path="res://UI/Fonts/evil_empire/Evil Empire.otf" id="5_tmkdt"]
+
+[node name="Spells" type="Control" node_paths=PackedStringArray("mSpellsSlot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1k0xq")
+mSpellsSlot = []
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 4.0
+offset_right = 1921.0
+offset_bottom = 1073.0
+texture = ExtResource("2_jjnyx")
+
+[node name="CloseBtn" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 25.0
+offset_right = 1100.0
+offset_bottom = 65.0
+
+[node name="Spell1" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 573.0
+offset_top = 186.0
+offset_right = 553.92
+offset_bottom = 173.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell1"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell2" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 703.0
+offset_top = 186.0
+offset_right = 683.92
+offset_bottom = 173.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell2"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell3" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 837.0
+offset_top = 187.0
+offset_right = 817.92
+offset_bottom = 174.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell3"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell4" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 969.0
+offset_top = 185.0
+offset_right = 949.92
+offset_bottom = 172.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell4"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell5" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 573.0
+offset_top = 308.0
+offset_right = 553.92
+offset_bottom = 295.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell5"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell6" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 703.0
+offset_top = 308.0
+offset_right = 683.92
+offset_bottom = 295.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell6"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell7" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 837.0
+offset_top = 309.0
+offset_right = 817.92
+offset_bottom = 296.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell7"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="Spell8" type="TextureRect" parent="TextureRect" node_paths=PackedStringArray("mEquippedIndicator")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.049
+anchor_bottom = 0.081
+offset_left = 969.0
+offset_top = 307.0
+offset_right = 949.92
+offset_bottom = 294.52
+expand_mode = 1
+script = ExtResource("3_idtb5")
+mEquippedIndicator = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Spell8"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 59.0
+offset_right = 79.0
+offset_bottom = 78.0
+texture = ExtResource("4_r8ybr")
+expand_mode = 1
+
+[node name="ActionPanel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 197.0
+offset_top = 165.0
+offset_right = 334.0
+offset_bottom = 257.0
+color = Color(1, 1, 1, 0.580392)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ActionPanel"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 86.0
+
+[node name="Button" type="Button" parent="ActionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_tmkdt")
+text = "Equip Slot One"
+flat = true
+
+[node name="Button2" type="Button" parent="ActionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_tmkdt")
+text = "Equip Slot Two"
+flat = true
+
+[node name="Button3" type="Button" parent="ActionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_tmkdt")
+text = "View"
+flat = true

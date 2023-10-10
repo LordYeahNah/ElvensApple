@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl640dbp8xofp"]
+
+[ext_resource type="Texture2D" uid="uid://dii47xfdlk7wh" path="res://VFX/HealVFX.png" id="1_dygku"]
+
+[sub_resource type="Gradient" id="Gradient_ch2vb"]
+colors = PackedColorArray(0.778816, 0.778816, 1.15514e-06, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l0t0b"]
+gradient = SubResource("Gradient_ch2vb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c1mbu"]
+emission_shape = 2
+emission_sphere_radius = 2.0
+spread = 0.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(1, 0.819608, 0.458824, 1)
+color_ramp = SubResource("GradientTexture1D_l0t0b")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_c41ik"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_dygku")
+emission_enabled = true
+emission = Color(1, 0.85098, 0.231373, 1)
+emission_energy_multiplier = 6.82
+
+[sub_resource type="QuadMesh" id="QuadMesh_i1en6"]
+material = SubResource("ORMMaterial3D_c41ik")
+size = Vector2(0.3, 0.3)
+
+[node name="HealVFX" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997751, 0.0670227, 0, -0.0670227, 0.997751, 0, 3.37066, 0)
+emitting = false
+amount = 20
+one_shot = true
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+trail_lifetime = 5.45
+process_material = SubResource("ParticleProcessMaterial_c1mbu")
+draw_pass_1 = SubResource("QuadMesh_i1en6")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv1648fpvptli"]
+
+[ext_resource type="PackedScene" uid="uid://c05oojh742d2j" path="res://Models/Enviroment/torch.gltf.glb" id="1_nop6f"]
+
+[node name="torch_gltf" instance=ExtResource("1_nop6f")]
+transform = Transform3D(1.48695, 0, 0, 0, 1.48695, 0, 0, 0, 1.48695, 0, 0.71776, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(0.672517, 0, 0, 0, 0.672517, 0, 0, 0, 0.672517, 0, 0.54554, 0)
+light_color = Color(0.831373, 0.447059, 0, 1)
+light_energy = 5.598

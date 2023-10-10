@@ -18,6 +18,8 @@ public class Inventory
     private List<InventoryStack> mItems = new List<InventoryStack>();                   // List of sttack items
     public List<InventoryStack> Items => mItems;
 
+    public List<BaseMagic> SpellsObtained = new List<BaseMagic>();
+
     private int mInventorySize;             // The current size of the inventory
     private int mMaxInventorySize;              // The max size of the inventory
 
@@ -30,10 +32,14 @@ public class Inventory
     private Equipable mEquippedLeftHand;
     private Equipable mEquippedRight;
     private Equipable mArmor;
+    private BaseMagic mEquippedSpellOne;
+    private BaseMagic mEquippedSpellTwo;
 
     public BaseItem EquippedRightHand => mEquippedRight;
     public BaseItem EquippedLeftHand => mEquippedLeftHand;
     public BaseItem EquippedArmor => mArmor;
+    public BaseMagic EquippedSpellOnce => mEquippedSpellOne;
+    public BaseMagic EquippedSpellTwo => mEquippedSpellTwo;
 
     public Inventory(int inventorySize, BoneAttachment3D leftHand, BoneAttachment3D rightHand, Node3D owner)
     {

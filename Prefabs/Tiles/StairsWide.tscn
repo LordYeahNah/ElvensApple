@@ -48,6 +48,8 @@ mesh = SubResource("ArrayMesh_ownbj")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="stairs_wide"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stairs_wide/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_i1jpr")

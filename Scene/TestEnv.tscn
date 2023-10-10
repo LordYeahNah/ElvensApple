@@ -36,7 +36,6 @@ mLevelNumber = 1
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ltwyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.0399271, 1)
-mJumpForce = 500.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_uf0cq")
