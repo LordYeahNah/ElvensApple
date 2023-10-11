@@ -28,6 +28,12 @@ public class Timer
             OnTimerComplete();
     }
 
+    public void Restart(bool active = false)
+    {
+        mCurrentTime = 0f;
+        IsActive = active;
+    }
+
     private void OnTimerComplete()
     {
         mCurrentTime = 0f;
