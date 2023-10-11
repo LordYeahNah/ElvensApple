@@ -55,6 +55,9 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
 
         if(mAnimator != null)
             mAnimator.OnUpdate((float)delta);
+        
+        if(mStats != null)
+            mStats.OnUpdate((float)delta);
     }
 
     /// <summary>
