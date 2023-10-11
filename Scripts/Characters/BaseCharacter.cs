@@ -156,12 +156,17 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
 
         if (spell != null)
         {
+            if (mStats.CurrentMana < spell.ManaUse)
+                return;
+            
             PackedScene magicVFX = spell.VFX_Scene;
             if (magicVFX != null)
             {
                 MagicController controller = magicVFX.Instantiate<MagicController>();
                 this.AddChild(controller);
                 controller.UseMagic(spell, this);
+                mStats.UseMana(spell.ManaUse);
+                mStats.ResetManaWait();
             }
         }
     }

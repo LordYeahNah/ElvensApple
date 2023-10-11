@@ -77,7 +77,7 @@ public class CharacterStats
         mStartManaRegenTimer.IsActive = false;
     }
 
-    public void ResetWait()
+    public void ResetManaWait()
     {
         if (mStartManaRegenTimer != null)
             mStartManaRegenTimer.Restart(true);
