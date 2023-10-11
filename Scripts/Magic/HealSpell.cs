@@ -13,7 +13,7 @@ public class HealSpell : BaseMagic
         VFX_Scene = GD.Load<PackedScene>("res://VFX/heal_vfx.tscn");
         SpawnPoint = EMagicVFXSpawn.ABOVE_HEAD;
         ManaUse = 25;
-
+        mSpellAnimIndex = 1;
     }
 
     public override void UseMagic()

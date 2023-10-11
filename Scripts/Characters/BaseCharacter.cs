@@ -173,7 +173,7 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
             if (mAnimator != null)
             {
                 mAnimator.SetBool(PlayerAnimator.IS_USING_MAGIC, true);
-                mAnimator.SetInt(PlayerAnimator.MAGIC_INDEX, 1);
+                mAnimator.SetInt(PlayerAnimator.MAGIC_INDEX, spell.SpellAnimIndex);
             }
         }
     }

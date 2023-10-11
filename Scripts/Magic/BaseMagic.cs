@@ -14,6 +14,8 @@ public abstract class BaseMagic
     public Texture2D SpellIcon;
     public PackedScene VFX_Scene;                     // Reference to the VFX
     public EMagicVFXSpawn SpawnPoint;                       // Where the magic spawns from
+    protected int mSpellAnimIndex;                          // Reference to which animation to play
+    public int SpellAnimIndex => mSpellAnimIndex;
 
     public bool CanUseSpell = true;                        // If this is spell can be used
 
