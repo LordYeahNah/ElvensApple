@@ -20,5 +20,12 @@ public class CharacterStats
     {
         mCurrentHealth -= dp;
     }
+
+    public void IncreaseHealth(float points)
+    {
+        mCurrentHealth += points;
+        if (mCurrentHealth > MAX_HEALTH)
+            mCurrentHealth = MAX_HEALTH;
+    }
     
 }

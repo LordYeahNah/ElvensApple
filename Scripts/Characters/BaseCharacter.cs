@@ -28,6 +28,14 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     [Export] protected Node3D mMagicSpawnPointAboveHead;
     [Export] protected Node3D mMagicSpawnPointLeftHand;
 
+    [ExportGroup("Magic")] 
+    [Export] public TextureRect MagicSlotOne;
+    [Export] public TextureRect MagicSlotTwo;
+    [Export] public SpellInventory mSpellInventory;
+    public bool mSpellsIsOpen;                             // flag for if the spells inventory is open
+
+
+
     public Vector3 MagicAboveHeadPoint => mMagicSpawnPointAboveHead.GlobalTransform.Origin;
     public Vector3 MagicLeftHandPoint => mMagicSpawnPointLeftHand.GlobalTransform.Origin;
 
@@ -112,6 +120,8 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
         ATakeDamage?.Invoke();
     }
 
+    public void IncreaseHealth(float points) => mStats.IncreaseHealth(points);
+
     /// <summary>
     /// Performs block
     /// </summary>
@@ -127,5 +137,29 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
         IsBlocking = false;
         if(mAnimator != null)
             mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, false);
+    }
+
+    public void UseMagic(int slot)
+    {
+        BaseMagic spell = null;
+        if (slot == 1)
+        {
+            spell = mInventory.EquippedSpellOnce;
+        }
+        else
+        {
+            spell = mInventory.EquippedSpellTwo;
+        }
+
+        if (spell != null)
+        {
+            PackedScene magicVFX = spell.VFX_Scene;
+            if (magicVFX != null)
+            {
+                MagicController controller = magicVFX.Instantiate<MagicController>();
+                this.AddChild(controller);
+                controller.UseMagic(spell, this);
+            }
+        }
     }
 }

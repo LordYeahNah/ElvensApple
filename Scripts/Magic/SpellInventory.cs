@@ -8,7 +8,47 @@ public partial class SpellInventory : Control
     [ExportGroup("UI")]
     [Export] private MagicInventorySlot[] mSpellsSlot;
 
+    [Export] private ColorRect mActionPanel;
+    [Export] private Vector2 mPanelOffset;
+
     public void SetPlayer(PlayerController player) => mPlayer = player;
+
+    private MagicInventorySlot mSelectedSlot;                       // reference to the slot we have selected
+
+    public void SelectItem(MagicInventorySlot slot)
+    {
+        mSelectedSlot = slot;
+        if (mActionPanel != null)
+        {
+            mActionPanel.Visible = true;
+            mActionPanel.GlobalPosition = slot.GlobalPosition + mPanelOffset;
+        }
+    }
+
+    public void EquipSlotOne()
+    {
+        if (mPlayer != null)
+        {
+            mPlayer.GetInventory().EquipSpell(mSelectedSlot.AssignedMagic, 1);
+        }
+        
+        Redraw();
+    }
+
+    public void EquipSlotTwo()
+    {
+        if (mPlayer != null)
+        {
+            mPlayer.GetInventory().EquipSpell(mSelectedSlot.AssignedMagic, 1);
+        }
+        
+        Redraw();
+    }
+
+    public void View()
+    {
+        
+    }
 
     public void Setup()
     {
@@ -28,15 +68,28 @@ public partial class SpellInventory : Control
                     {
                         if (spell == equippedSpellOnce || spell == equippedSpellTwo)
                         {
-                            mSpellsSlot[i].Setup(spell, true);
+                            mSpellsSlot[i].Setup(this, spell, true);
                         }
                         else
                         {
-                            mSpellsSlot[i].Setup(spell);
+                            mSpellsSlot[i].Setup(this, spell);
                         }
                     }
                 }
             }
         }
+    }
+
+    public void Redraw()
+    {
+        foreach (var spell in mSpellsSlot)
+        {
+            spell.Setup(this ,null);
+        }
+
+        mSelectedSlot = null;
+        mActionPanel.Visible = false;
+        
+        Setup();
     }
 }

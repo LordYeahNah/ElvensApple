@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl640dbp8xofp"]
+[gd_scene load_steps=8 format=3 uid="uid://dl640dbp8xofp"]
 
 [ext_resource type="Texture2D" uid="uid://dii47xfdlk7wh" path="res://VFX/HealVFX.png" id="1_dygku"]
+[ext_resource type="Script" path="res://Scripts/Magic/MagicController.cs" id="1_qj2ox"]
 
 [sub_resource type="Gradient" id="Gradient_ch2vb"]
 colors = PackedColorArray(0.778816, 0.778816, 1.15514e-06, 1, 0, 1, 0, 1)
@@ -11,8 +12,12 @@ gradient = SubResource("Gradient_ch2vb")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c1mbu"]
 emission_shape = 2
 emission_sphere_radius = 2.0
-spread = 0.0
+spread = 67.22
+flatness = 0.49
 gravity = Vector3(0, 9.8, 0)
+angular_velocity_max = 473.93
+radial_accel_min = -18.99
+radial_accel_max = 75.95
 color = Color(1, 0.819608, 0.458824, 1)
 color_ramp = SubResource("GradientTexture1D_l0t0b")
 
@@ -28,10 +33,13 @@ emission_energy_multiplier = 6.82
 material = SubResource("ORMMaterial3D_c41ik")
 size = Vector2(0.3, 0.3)
 
-[node name="HealVFX" type="Node3D"]
+[node name="HealVFX" type="Node3D" node_paths=PackedStringArray("mParticleSystem")]
+script = ExtResource("1_qj2ox")
+mDestroyTime = 3.0
+mParticleSystem = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997751, 0.0670227, 0, -0.0670227, 0.997751, 0, 3.37066, 0)
+transform = Transform3D(0.0307124, 0.015582, 0.999406, -0.00254337, 0.999876, -0.0155111, -0.999525, -0.00206548, 0.0307483, 0, 3.37066, 0)
 emitting = false
 amount = 20
 one_shot = true

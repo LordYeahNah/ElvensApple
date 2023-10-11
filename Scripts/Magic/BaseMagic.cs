@@ -9,14 +9,29 @@ public enum EMagicVFXSpawn
 
 public abstract class BaseMagic
 {
-    
+    public BaseCharacter SpellOwner;
     public string MagicName;                        // Name of the magic
     public Texture2D SpellIcon;
     public PackedScene VFX_Scene;                     // Reference to the VFX
     public EMagicVFXSpawn SpawnPoint;                       // Where the magic spawns from
 
-    private bool mHasCooldown = false;
-    private float mCooldownTime;
+    public bool CanUseSpell = true;                        // If this is spell can be used
 
+    protected bool mHasCooldown = false;
+    protected float mCooldownTime;
+
+    protected Timer mCooldownTimer;
+
+    public virtual void OnUpdate(float delta)
+    {
+        if(mCooldownTimer != null)
+            mCooldownTimer.OnUpdate(delta);
+    }
+    
     public abstract void UseMagic();
+
+    protected void ResetSpell()
+    {
+        CanUseSpell = true;
+    }
 }

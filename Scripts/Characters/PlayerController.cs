@@ -30,15 +30,6 @@ public partial class PlayerController : BaseCharacter, ICombat
     [Export] private TextureProgressBar mManaBar;
     [Export] private Control mStatBarContainer;
 
-    [ExportGroup("Magic")] 
-    [Export] private TextureRect mMagicSlotOne;
-    [Export] private TextureRect mMagicSlotTwo;
-    [Export] private SpellInventory mSpellInventory;
-    private bool mSpellsIsOpen;                             // flag for if the spells inventory is open
-
-    public TextureRect MagicSlotOne => mMagicSlotOne;
-    public TextureRect MagicSlotTwo => mMagicSlotTwo;
-
     // === INTERACTION === //
     private bool mIsInInteraction = false;                       // if the character is currently interacting with something
     private FriendlyController mInteractingWith;                    // The character that we are interacting with
@@ -101,6 +92,16 @@ public partial class PlayerController : BaseCharacter, ICombat
 
         if(Input.IsActionJustReleased("Block"))
             StopBlocking();
+
+        if (Input.IsActionJustPressed("SpellOne"))
+        {
+            UseMagic(1);
+        }
+
+        if (Input.IsActionJustPressed("SpellTwo"))
+        {
+            UseMagic(2);
+        }
 
         if (!mIsInInteraction)
         {
@@ -230,6 +231,12 @@ public partial class PlayerController : BaseCharacter, ICombat
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
         bool added = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomWeapon());
         bool addedArmor = mInventory.AddItem(GetNode<ItemDatabase>("/root/ItemDatabase").GetRandomArmor());
+        
+        HealSpell heal = new HealSpell();
+        if (heal != null)
+        {
+            mInventory.SpellsObtained.Add(heal);
+        }
     }
 
     public override void LightAttack()

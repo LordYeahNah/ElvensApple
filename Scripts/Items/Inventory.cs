@@ -223,4 +223,38 @@ public class Inventory
         }
     }
 
+    public void EquipSpell(BaseMagic spell, int slot)
+    {
+        if (slot == 1)
+        {
+            mEquippedSpellOne = spell;
+            if (Owner is PlayerController player)
+            {
+                if (spell != null)
+                {
+                    player.MagicSlotOne.Texture = spell.SpellIcon;
+                }
+                else
+                {
+                    player.MagicSlotOne.Texture = null;
+                }
+            }
+        }
+        else
+        {
+            mEquippedSpellTwo = spell;
+            if (Owner is PlayerController player)
+            {
+                if (spell != null)
+                {
+                    player.MagicSlotTwo.Texture = spell.SpellIcon;
+                }
+                else
+                {
+                    player.MagicSlotTwo = null;
+                }
+            }
+        }
+    }
+
 }
