@@ -100,6 +100,12 @@ spring_length = 5.0
 [node name="Camera3D" type="Camera3D" parent="CameraJoint/SpringArm3D"]
 transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0.238466, -1.261e-09, 0.238466, 0.971151, 0.698779, -0.191362, 5.59386)
 
+[node name="RayCast3D" type="RayCast3D" parent="CameraJoint"]
+transform = Transform3D(0.448087, -0.89399, 0, 0.89399, 0.448087, 0, 0, 0, 1, -4.42977, 2.19238, 0.691823)
+target_position = Vector3(0, -10, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="MoveDirection" type="Node3D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

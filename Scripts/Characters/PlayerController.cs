@@ -33,6 +33,7 @@ public partial class PlayerController : BaseCharacter, ICombat
     // === INTERACTION === //
     private bool mIsInInteraction = false;                       // if the character is currently interacting with something
     private FriendlyController mInteractingWith;                    // The character that we are interacting with
+    public bool IsInInteraction => mIsInInteraction;
     public override void _Ready()
     {
         base._Ready();
