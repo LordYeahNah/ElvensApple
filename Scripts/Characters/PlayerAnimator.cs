@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Xml.Schema;
 using Godot;
 
 public class PlayerAnimator : AnimationController
@@ -70,6 +71,7 @@ public class PlayerAnimator : AnimationController
         mAnyTransitions.Add(CreateDeathAnimation());
         mAnyTransitions.Add(CreateHeavyAttack(idleAnimation));
         mAnyTransitions.Add(CreateSpellIndexOne(idleAnimation));
+        mAnyTransitions.Add(CreateSpellIndexTwo(idleAnimation));
 
         return idleAnimation;                       // Return the idle animation as the root
     }
@@ -114,6 +116,19 @@ public class PlayerAnimator : AnimationController
         TriggerAnimation anim = new TriggerAnimation("Cheer", mAnimator, this);
         anim.RequiredProperties.Add(new AnimationBool(IS_USING_MAGIC, true));
         anim.RequiredProperties.Add(new AnimationInt(MAGIC_INDEX, 1));
+        anim.TransitionAnimations.Add(transBack);
+
+        AnimationEvent animEvent = new AnimationEvent(1.2f, ResetMagic);
+        anim.AnimEvents.Add(animEvent);
+
+        return anim;
+    }
+
+    private Animation CreateSpellIndexTwo(Animation transBack)
+    {
+        TriggerAnimation anim = new TriggerAnimation("Throw", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool(IS_USING_MAGIC, true));
+        anim.RequiredProperties.Add(new AnimationInt(MAGIC_INDEX, 2));
         anim.TransitionAnimations.Add(transBack);
 
         AnimationEvent animEvent = new AnimationEvent(1.1f, ResetMagic);
