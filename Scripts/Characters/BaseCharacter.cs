@@ -34,6 +34,9 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     [Export] public SpellInventory mSpellInventory;
     public bool mSpellsIsOpen;                             // flag for if the spells inventory is open
 
+    [ExportGroup("Components")]
+    [Export] private AudioController mAudio;
+
 
 
     public Vector3 MagicAboveHeadPoint => mMagicSpawnPointAboveHead.GlobalTransform.Origin;
@@ -175,6 +178,9 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
                 mAnimator.SetBool(PlayerAnimator.IS_USING_MAGIC, true);
                 mAnimator.SetInt(PlayerAnimator.MAGIC_INDEX, spell.SpellAnimIndex);
             }
+            
+            if(mAudio != null)
+                mAudio.PlayAudio("Healing");
         }
     }
 }
