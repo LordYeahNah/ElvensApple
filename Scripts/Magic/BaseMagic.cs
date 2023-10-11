@@ -17,9 +17,6 @@ public abstract class BaseMagic
 
     public bool CanUseSpell = true;                        // If this is spell can be used
 
-    protected bool mHasCooldown = false;
-    protected float mCooldownTime;
-
     protected Timer mCooldownTimer;
 
     public virtual void OnUpdate(float delta)
