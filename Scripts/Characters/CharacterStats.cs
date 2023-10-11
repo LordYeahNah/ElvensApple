@@ -22,6 +22,7 @@ public class CharacterStats
     private Timer mStartManaRegenTimer;                 // Time to wait before regen
     private Timer mManaRegenTimer;                      // Time when regeneration
     private bool mCanRegenMana = false;                 // if we can regen mana
+    public event Action ManaIncrease;
 
     public CharacterStats(string characterName = "Skeleton")
     {
@@ -62,6 +63,7 @@ public class CharacterStats
     public void RegenMana()
     {
         mCurrentMana += MANA_REGEN_AMOUNT;
+        ManaIncrease?.Invoke();
         if (mCurrentMana > MAX_MANA)
         {
             mCurrentMana = MAX_MANA;

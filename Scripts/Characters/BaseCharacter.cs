@@ -142,7 +142,7 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
             mAnimator.SetBool(PlayerAnimator.IS_BLOCKING, false);
     }
 
-    public void UseMagic(int slot)
+    public virtual void UseMagic(int slot)
     {
         BaseMagic spell = null;
         if (slot == 1)

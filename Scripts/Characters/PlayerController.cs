@@ -41,8 +41,10 @@ public partial class PlayerController : BaseCharacter, ICombat
         mInventory = new Inventory(20, mLeftHand, mRightHand, this);            // Create the inventory
 
         mStats = new CharacterStats("Player");
+        mStats.ManaIncrease += UpdateManaBar;
 
         mHealthBar.Value = mStats.CurrentHealth;
+        mManaBar.Value = mStats.CurrentMana;
         
         // Debug Inventory
         Callable.From(ActorSetup).CallDeferred();   
@@ -265,6 +267,24 @@ public partial class PlayerController : BaseCharacter, ICombat
         }
 
         mHealthBar.Value = mStats.CurrentHealth;
+    }
+
+    public override void UseMagic(int slot)
+    {
+        base.UseMagic(slot);
+
+        if (mStats != null && mManaBar != null)
+        {
+            mManaBar.Value = mStats.CurrentMana;
+        }
+    }
+
+    public void UpdateManaBar()
+    {
+        if (mStats != null && mManaBar != null)
+        {
+            mManaBar.Value = mStats.CurrentMana;
+        }
     }
 
     public override void Block()
