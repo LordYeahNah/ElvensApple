@@ -23,7 +23,7 @@ public partial class CameraController : Node3D
 
     public override void _Process(double delta)
     {
-        if (mCharacterObject.IsInventoryOpen)
+        if (mCharacterObject.IsInventoryOpen || mCharacterObject.IsSpellOpen)
             return;
         
         base._Process(delta);

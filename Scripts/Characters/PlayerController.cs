@@ -42,6 +42,7 @@ public partial class PlayerController : BaseCharacter, ICombat
 
         mStats = new CharacterStats("Player");
         mStats.ManaIncrease += UpdateManaBar;
+        mStats.HealthIncrease += OnUpdateHealth;
 
         mHealthBar.Value = mStats.CurrentHealth;
         mManaBar.Value = mStats.CurrentMana;
@@ -224,7 +225,6 @@ public partial class PlayerController : BaseCharacter, ICombat
         {
             this.Velocity += moveDirection;
         }
-        
         MoveAndSlide();
     }
 
@@ -267,6 +267,12 @@ public partial class PlayerController : BaseCharacter, ICombat
         }
 
         mHealthBar.Value = mStats.CurrentHealth;
+    }
+
+    public void OnUpdateHealth()
+    {
+        if (mStats != null && mHealthBar != null)
+            mHealthBar.Value = mStats.CurrentHealth;
     }
 
     public override void UseMagic(int slot)

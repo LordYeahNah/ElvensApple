@@ -228,6 +228,8 @@ public class Inventory
         if (slot == 1)
         {
             mEquippedSpellOne = spell;
+            if (spell != null)
+                spell.SpellOwner = (BaseCharacter)Owner;
             if (Owner is PlayerController player)
             {
                 if (spell != null)
@@ -243,6 +245,8 @@ public class Inventory
         else
         {
             mEquippedSpellTwo = spell;
+            if (spell != null)
+                spell.SpellOwner = (BaseCharacter)Owner;    
             if (Owner is PlayerController player)
             {
                 if (spell != null)

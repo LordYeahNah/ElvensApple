@@ -15,6 +15,7 @@ public class CharacterStats
     protected float mCurrentHealth;                     // Current level of health
     public float CurrentHealth => mCurrentHealth;
     public bool IsAlive => mCurrentHealth > 0;                  // Check if the character is alive
+    public event Action HealthIncrease;
     
     // === MANA === //
     private float mCurrentMana;
@@ -53,6 +54,8 @@ public class CharacterStats
         mCurrentHealth += points;
         if (mCurrentHealth > MAX_HEALTH)
             mCurrentHealth = MAX_HEALTH;
+        
+        HealthIncrease?.Invoke();
     }
 
     public void UseMana(float manaPoints)

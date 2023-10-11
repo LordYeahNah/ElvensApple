@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo5pa8mpgql54"]
+[gd_scene load_steps=9 format=3 uid="uid://bo5pa8mpgql54"]
 
 [ext_resource type="Script" path="res://Scripts/Traps/SpikeTrap.cs" id="1_eg3tn"]
 
@@ -95,7 +95,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0jvdt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j0ocf"]
-size = Vector3(3.50175, 1.24543, 3.30357)
+size = Vector3(3.50175, 2.43106, 3.30357)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7f0lx"]
+size = Vector3(4.37431, 0.52426, 3.54592)
 
 [node name="SpikeTrap" type="Node3D"]
 script = ExtResource("1_eg3tn")
@@ -108,10 +111,18 @@ skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.335033, 0)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_j0ocf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474911, 0)
+shape = SubResource("BoxShape3D_7f0lx")
 
 [connection signal="body_entered" from="Area3D" to="." method="OnBodyEnter"]

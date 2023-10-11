@@ -40,6 +40,7 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
     public Vector3 MagicLeftHandPoint => mMagicSpawnPointLeftHand.GlobalTransform.Origin;
 
     public bool IsInventoryOpen => mIsInventoryOpen;
+    public bool IsSpellOpen => mSpellsIsOpen;
 
     protected AnimationController mAnimator;
 

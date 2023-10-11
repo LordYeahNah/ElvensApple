@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://db1oqeggsj2ya" path="res://UI/Fonts/evil_empire/Evil Empire.otf" id="6_1u4it"]
 [ext_resource type="PackedScene" uid="uid://dbc0p4ub50o3w" path="res://Prefabs/DialogBox.tscn" id="6_xplqp"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wrgfb"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbobm"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
 
@@ -21,10 +21,7 @@ font_size = 50
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
 collision_layer = 2
 collision_mask = 2
-wall_min_slide_angle = 0.785398
-floor_stop_on_slope = false
-floor_block_on_wall = false
-floor_snap_length = 2.0
+axis_lock_angular_z = true
 script = ExtResource("1_uqjoj")
 mMovementSpeed = 200.0
 mMovementDirection = NodePath("MoveDirection")
@@ -81,7 +78,7 @@ transform = Transform3D(-1, 0, 5.96046e-07, 5.96046e-07, 0, 1, 0, 1, 0, -0.4, 0.
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)
-shape = SubResource("CylinderShape3D_wrgfb")
+shape = SubResource("CapsuleShape3D_cbobm")
 
 [node name="CameraJoint" type="Node3D" parent="." node_paths=PackedStringArray("mCharacterObject", "mMovementDirectionObject")]
 transform = Transform3D(0.999913, -0.0131769, 0, 0.0131769, 0.999913, 0, 0, 0, 1, 0, 1.56961, 0)
@@ -127,7 +124,7 @@ visible = false
 
 [node name="GroundedRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0910622, 0)
-target_position = Vector3(0, -0.2, 0)
+target_position = Vector3(0, -0.12, 0)
 collide_with_areas = true
 
 [node name="InteractionRaycast" type="RayCast3D" parent="."]
