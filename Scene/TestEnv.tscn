@@ -29,9 +29,8 @@ fog_enabled = true
 fog_light_color = Color(0.121569, 0.133333, 0.156863, 1)
 fog_density = 0.1363
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("mLevelPathPoints")]
+[node name="Node3D" type="Node3D"]
 script = ExtResource("1_jbivt")
-mLevelPathPoints = [NodePath("WanderPoint1"), NodePath("WanderPoint2"), NodePath("WanderPoint3")]
 mLevelNumber = 1
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ltwyh")]
@@ -359,5 +358,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33471, 0, 11.9559)
 
 [node name="Guide" parent="." instance=ExtResource("15_y4jgy")]
 transform = Transform3D(-0.580845, 0, -0.814014, 0, 1, 0, 0.814014, 0, -0.580845, 10.7305, 0.00717402, 4.33768)
+mQuestMarker = Object(MeshInstance3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.17067, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":false,"visibility_parent":NodePath(""),"layers":1,"sorting_offset":0.0,"sorting_use_aabb_center":true,"material_override":null,"material_overlay":null,"transparency":0.0,"cast_shadow":1,"extra_cull_margin":0.0,"custom_aabb":AABB(0, 0, 0, 0, 0, 0),"lod_bias":1.0,"ignore_occlusion_culling":false,"gi_mode":1,"gi_lightmap_scale":0,"visibility_range_begin":0.0,"visibility_range_begin_margin":0.0,"visibility_range_end":0.0,"visibility_range_end_margin":0.0,"visibility_range_fade_mode":0,"mesh":null,"skin":null,"skeleton":NodePath(".."),"script":null)
+
+mInteractionMarker = Object(MeshInstance3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 3.17067, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":false,"visibility_parent":NodePath(""),"layers":1,"sorting_offset":0.0,"sorting_use_aabb_center":true,"material_override":null,"material_overlay":null,"transparency":0.0,"cast_shadow":1,"extra_cull_margin":0.0,"custom_aabb":AABB(0, 0, 0, 0, 0, 0),"lod_bias":1.0,"ignore_occlusion_culling":false,"gi_mode":1,"gi_lightmap_scale":0,"visibility_range_begin":0.0,"visibility_range_begin_margin":0.0,"visibility_range_end":0.0,"visibility_range_end_margin":0.0,"visibility_range_fade_mode":0,"mesh":null,"skin":null,"skeleton":NodePath(".."),"script":null)
+
+mAgent = Object(NavigationAgent3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","target_position":Vector3(0, 0, 0),"path_desired_distance":0.5,"target_desired_distance":0.5,"path_height_offset":0.0,"path_max_distance":100.01,"navigation_layers":1,"pathfinding_algorithm":0,"path_postprocessing":0,"path_metadata_flags":7,"avoidance_enabled":false,"velocity":Vector3(0, 0, 0),"height":1.0,"radius":0.5,"neighbor_distance":50.0,"max_neighbors":10,"time_horizon_agents":1.0,"time_horizon_obstacles":0.0,"max_speed":10.0,"use_3d_avoidance":false,"avoidance_layers":1,"avoidance_mask":1,"avoidance_priority":1.0,"debug_enabled":false,"debug_use_custom":false,"debug_path_custom_color":Color(1, 1, 1, 1),"debug_path_custom_point_size":4.0,"script":null)
+
+mAnimPlayer = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","root_node":NodePath(".."),"autoplay":"","reset_on_save":true,"playback_process_mode":1,"playback_default_blend_time":0.0,"speed_scale":1.0,"method_call_mode":0,"audio_max_polyphony":32,"movie_quit_on_finish":false,"libraries":{},"blend_times":[],"script":null)
+
+mLeftHand = Object(BoneAttachment3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(-0.999838, -0.000615299, -0.0179922, -0.0179964, 0.00751074, 0.99981, -0.000480078, 0.999972, -0.00752058, 0.408697, 0.210639, -0.00142044),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"bone_name":"handSlotLeft","bone_idx":3,"override_pose":false,"use_external_skeleton":false,"script":null)
+
+mRightHand = Object(BoneAttachment3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(-0.975164, 0.212255, -0.0632665, 0.0127524, 0.338983, 0.940706, 0.221116, 0.916536, -0.333271, -0.405125, 0.238063, 0.160776),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"bone_name":"handSlotRight","bone_idx":5,"override_pose":false,"use_external_skeleton":false,"script":null)
+
 mDialogID = PackedStringArray("#1_0", "#1_1", "#1_2", "#1_3", "#1_4")
 mMovementState = 1

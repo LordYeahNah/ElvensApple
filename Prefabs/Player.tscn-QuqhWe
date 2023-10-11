@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxgs6u5j1rofb"]
+
+[ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_h6mgi"]
+[ext_resource type="Script" path="res://Scripts/Characters/PlayerController.cs" id="1_uqjoj"]
+[ext_resource type="PackedScene" uid="uid://cx33xsbaa0ahd" path="res://Models/Character/character_knight.tscn" id="2_lhv5y"]
+[ext_resource type="PackedScene" uid="uid://rdxpmufdvnyp" path="res://Prefabs/inventory.tscn" id="4_5fww8"]
+[ext_resource type="PackedScene" uid="uid://bnc68xxvljgok" path="res://Prefabs/HealthBar.tscn" id="5_4hc7f"]
+[ext_resource type="PackedScene" uid="uid://niwr854fljap" path="res://Prefabs/spells_inventory.tscn" id="5_vccjy"]
+[ext_resource type="FontFile" uid="uid://db1oqeggsj2ya" path="res://UI/Fonts/evil_empire/Evil Empire.otf" id="6_1u4it"]
+[ext_resource type="PackedScene" uid="uid://dbc0p4ub50o3w" path="res://Prefabs/DialogBox.tscn" id="6_xplqp"]
+[ext_resource type="AudioStream" uid="uid://dfuxa4ne7nx1" path="res://SFX/Healing.ogg" id="9_ktbki"]
+[ext_resource type="Script" path="res://Scripts/AudioController.cs" id="10_jdjeh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbobm"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cqku2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6a4dm"]
+font = ExtResource("6_1u4it")
+font_size = 50
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("mMovementDirection", "mAnimPlayer", "mHealthBar", "mManaBar", "mInventoryPanel", "mLeftHand", "mRightHand") groups=["Friendly", "Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611852, 0)
+collision_layer = 2
+collision_mask = 2
+axis_lock_angular_z = true
+script = ExtResource("1_uqjoj")
+mMovementSpeed = 200.0
+mMovementDirection = NodePath("MoveDirection")
+mAnimPlayer = NodePath("Character/Animated/AnimationPlayer")
+mHealthBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/HealthBar")
+mManaBar = NodePath("CanvasLayer/PlayerStatBar/TextureRect/ManaBar")
+mInventoryPanel = NodePath("CanvasLayer/Inventory")
+mLeftHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft")
+mRightHand = NodePath("Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotRight")
+
+[node name="Character" parent="." instance=ExtResource("2_lhv5y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.169725, 0)
+
+[node name="Skeleton3D" parent="Character/Animated/KayKit Animated Character2" index="0"]
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/position = Vector3(0.14, 0.691598, -1.3027e-15)
+bones/2/rotation = Quaternion(-0.685863, -0.172023, 0.685863, -0.172022)
+bones/3/position = Vector3(1.04314e-15, 0.550922, 1.13735e-08)
+bones/3/scale = Vector3(1.00343, 1.00343, 1.00343)
+bones/4/rotation = Quaternion(-0.685863, 0.172023, 0.685863, 0.172023)
+bones/5/rotation = Quaternion(0.36334, -0.36334, 0.606617, 0.606617)
+
+[node name="Head" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711598, 0)
+
+[node name="Body" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="ArmLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="3"]
+transform = Transform3D(-3.57628e-07, 0.471936, -0.881633, 1.35601e-06, -0.881633, -0.471936, -1, -1.35601e-06, -3.57628e-07, 0.14, 0.691598, -1.3027e-15)
+
+[node name="ArmRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="4"]
+transform = Transform3D(0, -0.471937, -0.881632, 0, -0.881632, 0.471937, -1, 0, 0, -0.14, 0.691598, 8.40813e-15)
+
+[node name="HandSlotLeft" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="5"]
+transform = Transform3D(-1.00343, 3.58855e-07, 8.04663e-07, 7.7486e-07, -1.36066e-06, 1.00343, 3.25766e-07, 1.00343, 1.36896e-06, 0.4, 0.205887, -7.47053e-07)
+
+[node name="MagicLeftHand" type="Node3D" parent="Character/Animated/KayKit Animated Character2/Skeleton3D/HandSlotLeft" index="0"]
+
+[node name="HandSlotRight" parent="Character/Animated/KayKit Animated Character2/Skeleton3D" index="6"]
+transform = Transform3D(-1, 0, 5.96046e-07, 5.96046e-07, 0, 1, 0, 1, 0, -0.4, 0.205887, 5.07587e-15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03552, 0)
+shape = SubResource("CapsuleShape3D_cbobm")
+
+[node name="CameraJoint" type="Node3D" parent="." node_paths=PackedStringArray("mCharacterObject", "mMovementDirectionObject")]
+transform = Transform3D(0.999913, -0.0131769, 0, 0.0131769, 0.999913, 0, 0, 0, 1, 0, 1.56961, 0)
+script = ExtResource("1_h6mgi")
+mLookSensitivity = 50.0
+mLookClampMin = -44.0
+mLookClampMax = 25.0
+mCharacterObject = NodePath("..")
+mMovementDirectionObject = NodePath("../MoveDirection")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraJoint"]
+transform = Transform3D(-3.96344e-08, 0.421717, -0.906728, 1.84338e-08, 0.906728, 0.421717, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_cqku2")
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraJoint/SpringArm3D"]
+transform = Transform3D(1, 1.04237e-08, -1.26109e-09, -1.04237e-08, 0.971151, -0.238466, -1.261e-09, 0.238466, 0.971151, 0.698779, -0.191362, 5.59386)
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraJoint"]
+transform = Transform3D(0.448087, -0.89399, 0, 0.89399, 0.448087, 0, 0, 0, 1, -4.42977, 2.19238, 0.691823)
+target_position = Vector3(0, -10, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="MoveDirection" type="Node3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_5fww8")]
+visible = false
+
+[node name="Spells" parent="CanvasLayer" instance=ExtResource("5_vccjy")]
+visible = false
+mActionPanel = Object(ColorRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":0,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":197.0,"offset_top":165.0,"offset_right":334.0,"offset_bottom":257.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","color":Color(1, 1, 1, 0.580392),"script":null)
+
