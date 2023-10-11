@@ -169,6 +169,12 @@ public partial class BaseCharacter : CharacterBody3D, ICombat
                 mStats.UseMana(spell.ManaUse);
                 mStats.ResetManaWait();
             }
+
+            if (mAnimator != null)
+            {
+                mAnimator.SetBool(PlayerAnimator.IS_USING_MAGIC, true);
+                mAnimator.SetInt(PlayerAnimator.MAGIC_INDEX, 1);
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ public class PlayerAnimator : AnimationController
     public const string ATTACK_TYPE = "AttackType";
     public const string IS_ALIVE = "IsAlive";
     public const string IS_BLOCKING = "IsBlocking";
+    public const string IS_USING_MAGIC = "IsUsingMagic";
+    public const string MAGIC_INDEX = "MagicIndex";
 
     private PlayerController mPlayerController;
     public PlayerAnimator(AnimationPlayer mPlayer, PlayerController controller) : base(mPlayer)
@@ -27,6 +29,8 @@ public class PlayerAnimator : AnimationController
         SetBool(IS_ALIVE, true);
         SetInt(ATTACK_TYPE, 0);
         SetBool(IS_BLOCKING, false);
+        SetBool(IS_USING_MAGIC, false);
+        SetInt(MAGIC_INDEX, 0);
     }
 
     public override Animation CreateAnimationTree()
@@ -38,12 +42,14 @@ public class PlayerAnimator : AnimationController
         moveAnimation.RequiredProperties.Add(new AnimationBool(IS_MOVING, true));
         moveAnimation.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
         moveAnimation.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
+        moveAnimation.RequiredProperties.Add(new AnimationBool(IS_USING_MAGIC, false));
 
         // Create the idle animation
         Animation idleAnimation = new Animation("Idle", mAnimator, this);
         idleAnimation.RequiredProperties.Add(new AnimationBool(IS_MOVING, false));
         idleAnimation.RequiredProperties.Add(new AnimationBool(IS_ATTACKING, false));
         idleAnimation.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, false));
+        idleAnimation.RequiredProperties.Add(new AnimationBool(IS_USING_MAGIC, false));
 
         Animation blockAnim = new Animation("Block", mAnimator, this);
         blockAnim.RequiredProperties.Add(new AnimationBool(IS_BLOCKING, true));
@@ -63,6 +69,7 @@ public class PlayerAnimator : AnimationController
         mAnyTransitions.Add(CreateLightAttack(idleAnimation));
         mAnyTransitions.Add(CreateDeathAnimation());
         mAnyTransitions.Add(CreateHeavyAttack(idleAnimation));
+        mAnyTransitions.Add(CreateSpellIndexOne(idleAnimation));
 
         return idleAnimation;                       // Return the idle animation as the root
     }
@@ -98,7 +105,20 @@ public class PlayerAnimator : AnimationController
     {
         TriggerAnimation anim = new TriggerAnimation("Defeat", mAnimator, this);
         anim.RequiredProperties.Add(new AnimationBool("IsAlive", false));
-        
+
+        return anim;
+    }
+
+    private Animation CreateSpellIndexOne(Animation transBack)
+    {
+        TriggerAnimation anim = new TriggerAnimation("Cheer", mAnimator, this);
+        anim.RequiredProperties.Add(new AnimationBool(IS_USING_MAGIC, true));
+        anim.RequiredProperties.Add(new AnimationInt(MAGIC_INDEX, 1));
+        anim.TransitionAnimations.Add(transBack);
+
+        AnimationEvent animEvent = new AnimationEvent(1.1f, ResetMagic);
+        anim.AnimEvents.Add(animEvent);
+
         return anim;
     }
 
@@ -109,6 +129,12 @@ public class PlayerAnimator : AnimationController
         // Update the player controller
         if(mPlayerController != null)
             mPlayerController.IsAttacking = false;
+    }
+
+    private void ResetMagic()
+    {
+        SetBool(IS_USING_MAGIC, false);
+        SetInt(MAGIC_INDEX, 0);
     }
 
     public void PauseBlockAnim()
